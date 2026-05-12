@@ -1,35 +1,358 @@
-/* style.css */
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  max-width: 600px;
-  line-height: 1.5;
+/* Grundregeln */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+/* Gesamte Seite */
+
+body {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-image: url('../Bilder/Test_Hintergrund.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(36, 35, 79, 0.8);
+  background-blend-mode: darken;
+  color: white;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Login-Box */
+
+.login-box {
+  width: 100%;
+  max-width: 600px;
+
+  padding: 48px 40px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border-radius: 32px;
+
+  background: rgba(91, 87, 135, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+
+  backdrop-filter: blur(10px);
+}
+
+/* Titel und Untertitel */
 
 h1 {
-  margin-bottom: 1em;
+  margin-bottom: 24px;
+
+  font-size: 32px;
+  font-weight: 700;
+
+  text-align: center;
 }
 
-form > div {
-  margin-bottom: 1em;
+.untertitel {
+  margin-bottom: 28px;
+
+  color: #bfb7db;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  text-align: center;
 }
 
-label {
-  display: inline-block;
-  width: 80px;
-}
+/* Umschalter Anmelden / Registrieren */
 
-input[type="email"],
-input[type="password"] {
-  width: 200px;
+.umschalter {
+  width: 100%;
+  max-width: 360px;
+
+  display: flex;
+
+  margin-bottom: 24px;
   padding: 4px;
+
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.08);
 }
 
-button {
-  padding: 8px 16px;
+.umschalter-button {
+  flex: 1;
+
+  padding: 14px 16px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: transparent;
+
+  color: #cbc4e6;
+
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+
   cursor: pointer;
 }
 
-p {
-  margin-top: 1em;
+.umschalter-button.aktiv {
+  color: white;
+
+  background: linear-gradient(90deg, #a64cff, #3f86ff);
+}
+
+/* Formular */
+
+form {
+  width: 100%;
+  max-width: 360px;
+}
+
+form div {
+  margin-bottom: 24px;
+}
+
+/* Labels */
+
+label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: #ddd7f1;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Eingabefelder */
+
+input {
+  width: 100%;
+
+  padding: 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.1);
+
+  color: white;
+
+  font-size: 15px;
+
+  outline: none;
+}
+
+input::placeholder {
+  color: #a9a3bf;
+}
+
+input:focus {
+  border-color: #7d8cff;
+
+  box-shadow: 0 0 0 3px rgba(125, 140, 255, 0.2);
+}
+
+/* Formular-Button */
+
+form button {
+  width: 100%;
+
+  padding: 16px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(90deg, #a64cff, #3f86ff);
+
+  color: white;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: opacity 0.2s;
+}
+
+form button:hover {
+  opacity: 0.92;
+}
+
+/* Links */
+
+a {
+  color: white;
+
+  font-weight: 700;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+
+/* =========================
+   HOME LAYOUT
+========================= */
+
+.home-seite {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+/* Obere Navigation */
+
+.topbar {
+  height: 90px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 32px;
+
+  background: rgba(91, 87, 135, 0.35);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Logo-Bereich */
+
+.logo-bereich {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo {
+  font-size: 34px;
+}
+
+.logo-bereich h1 {
+  font-size: 30px;
+}
+
+.logo-bereich p {
+  color: #c7c1df;
+
+  font-size: 14px;
+}
+
+/* Abmelden */
+
+.abmelden-button {
+  padding: 12px 18px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+/* Hauptbereich */
+
+.hauptbereich {
+  flex: 1;
+}
+
+/* Untere Navigation */
+
+.bottom-nav {
+  height: 90px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+
+  background: rgba(91, 87, 135, 0.35);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Navigation */
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+
+  color: #c7c1df;
+
+  text-decoration: none;
+
+  font-size: 14px;
+}
+
+.nav-item span {
+  font-size: 24px;
+}
+
+.nav-item.aktiv {
+  color: white;
+}
+
+
+/* =========================
+   PERSONALSIERUNG ICON
+========================= */
+
+.nav-item.icon-personalisierung {
+  position: relative;
+
+  transform: translateY(-28px);
+}
+
+/* Kreis */
+
+.icon-personalisierung-kreis {
+  width: 78px;
+  height: 78px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  background: linear-gradient(180deg, #ff66d9, #a64cff);
+
+  box-shadow: 0 12px 24px rgba(166, 76, 255, 0.35);
+}
+
+/* Icon */
+
+.icon-personalisierung-kreis img {
+  width: 90px;
+  height: 85px;
+
+  object-fit: contain;
 }

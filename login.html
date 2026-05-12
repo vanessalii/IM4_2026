@@ -6,7 +6,14 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <h1>Login</h1>
+    <div class="login-box">
+    <h1>SleepySheepy</h1>
+    <p class="untertitel">Willkommen zurück!</p>
+
+    <div class="umschalter">
+      <button class="umschalter-button aktiv" type="button">Anmelden</button>
+      <a class="umschalter-button" href="register.html">Registrieren</a>
+    </div>
 
     <form id="loginForm">
       <div>
@@ -17,11 +24,12 @@
         <label>Password</label>
         <input type="password" id="password" required />
       </div>
-      <button type="submit">Login</button>
+      <button type="submit">Anmelden</button>
     </form>
 
-    <p>Don’t have an account? <a href="register.html">Register here</a>.</p>
+    
 
     <script src="js/login.js"></script>
+    </div>
   </body>
 </html>

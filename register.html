@@ -2,11 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Register</title>
+    <title>Registrieren</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <h1>Register</h1>
+    <div class="login-box">
+    <h1>SleepySheepy</h1>
+    <p class="untertitel">Erstelle einen neuen Account, um fortzufahren.</p>
+
+    <div class="umschalter">
+  <a class="umschalter-button" href="login.html">Anmelden</a>
+
+  <button class="umschalter-button aktiv" type="button">
+    Registrieren
+  </button>
+</div>
 
     <form id="registerForm">
       <div>
@@ -17,11 +27,12 @@
         <label>Password</label>
         <input type="password" id="password" required />
       </div>
-      <button type="submit">Register</button>
+      <button type="submit"> Registrieren</button>
     </form>
 
-    <p>Already have an account? <a href="login.html">Login here</a>.</p>
+    
 
     <script src="js/register.js"></script>
+    </div>
   </body>
 </html>

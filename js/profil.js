@@ -25,8 +25,8 @@ document
   .addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const vorname = document.getElementById("Vorname").value.trim();
-    const nachname = document.getElementById("Nachname").value.trim();
+    const vorname = document.getElementById("vorname").value.trim();
+    const nachname = document.getElementById("nachname").value.trim();
 
     try {
       const response = await fetch("api/profilUpdate.php", {
