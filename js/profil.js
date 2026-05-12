@@ -8,6 +8,9 @@ async function loadProfile() {
     const result = await response.json();
     console.log("Profile data:", result);
 
+    document.querySelector("#vorname").value = result.vorname || "";
+    document.querySelector("#nachname").value = result.nachname || "";
+
   } catch (error) {
     console.error("Failed to load profile:", error);
     alert("Failed to load profile data.");
@@ -15,12 +18,7 @@ async function loadProfile() {
 }
 
 
-
-
 loadProfile ();
-
-
-
 
 document
   .getElementById("ProfilForm")

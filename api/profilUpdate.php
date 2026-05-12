@@ -22,9 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute([':vorname' => $vorname, ':nachname' => $nachname, ':userId' => $userId]);
     $userUpdate = $stmt->fetch();
 
-    // Verify password
-    if ($userUpdate) {
-              echo json_encode(["status" => "success"]);
+
+    echo json_encode(["status" => "success"]);
     
 } else {
     echo json_encode(["status" => "error", "message" => "Invalid request method"]);
