@@ -282,7 +282,9 @@ a:hover {
   flex: 1;
 }
 
-/* Untere Navigation */
+/* =========================
+   UNTERE NAVIGATION
+========================= */
 
 .bottom-nav {
   height: 90px;
@@ -290,19 +292,21 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 48px;
+
+  gap: 200px;
 
   background: rgba(91, 87, 135, 0.35);
 
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Navigation */
+/* Navigationselemente */
 
 .nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   gap: 6px;
 
   color: #c7c1df;
@@ -310,25 +314,36 @@ a:hover {
   text-decoration: none;
 
   font-size: 14px;
+  font-weight: 600;
 }
 
-.nav-item span {
-  font-size: 24px;
-}
+/* Aktiver Bereich */
 
 .nav-item.aktiv {
   color: white;
 }
 
+/* Normale Icons */
+
+.nav-icon {
+  width: 50px;
+  height: 50px;
+
+  display: block;
+
+  object-fit: contain;
+}
 
 /* =========================
-   PERSONALSIERUNG ICON
+   PERSONALISIERUNG ICON
 ========================= */
 
 .nav-item.icon-personalisierung {
   position: relative;
 
   transform: translateY(-28px);
+
+  margin: 0 12px;
 }
 
 /* Kreis */
@@ -348,11 +363,13 @@ a:hover {
   box-shadow: 0 12px 24px rgba(166, 76, 255, 0.35);
 }
 
-/* Icon */
+/* Icon im Kreis */
 
 .icon-personalisierung-kreis img {
-  width: 90px;
-  height: 85px;
+  width: 42px;
+  height: 42px;
+
+  display: block;
 
   object-fit: contain;
 }
