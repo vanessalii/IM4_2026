@@ -1,4 +1,5 @@
 // profil.js
+
 async function loadProfile() {
   try {
     const response = await fetch("/api/Profil.php", {
@@ -8,8 +9,19 @@ async function loadProfile() {
     const result = await response.json();
     console.log("Profile data:", result);
 
-    document.querySelector("#vorname").value = result.vorname || "";
-    document.querySelector("#nachname").value = result.nachname || "";
+    const vorname = result.vorname || "";
+    const nachname = result.nachname || "";
+
+    document.querySelector("#vorname").value = vorname;
+    document.querySelector("#nachname").value = nachname;
+
+    // Wichtig: Namen auch beim Laden speichern
+    const vollerName = `${vorname} ${nachname}`.trim();
+
+    if (vollerName) {
+      localStorage.setItem("profilName", vollerName);
+      console.log("Gespeicherter Profilname:", vollerName);
+    }
 
   } catch (error) {
     console.error("Failed to load profile:", error);
@@ -17,8 +29,7 @@ async function loadProfile() {
   }
 }
 
-
-loadProfile ();
+loadProfile();
 
 document
   .getElementById("ProfilForm")
@@ -29,24 +40,27 @@ document
     const nachname = document.getElementById("nachname").value.trim();
 
     try {
-      const response = await fetch("api/profilUpdate.php", {
+      const response = await fetch("/api/profilUpdate.php", {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ vorname, nachname }),
       });
-      const result = await response.text();
-        console.log("Update response:", result);
 
-      /*
-      if (result.status === "success") {
-        alert("Registration successful! You can now log in.");
-        window.location.href = "login.html";
-      } else {
-        alert(result.message || "Registration failed.");
-      } */
-     
+      const result = await response.text();
+      console.log("Update response:", result);
+
+      const vollerName = `${vorname} ${nachname}`.trim();
+
+      if (vollerName) {
+        localStorage.setItem("profilName", vollerName);
+        console.log("Gespeicherter Profilname:", vollerName);
+      }
+
+      alert("Profil wurde gespeichert.");
+
     } catch (error) {
       console.error("Error:", error);
       alert("Something went wrong!");

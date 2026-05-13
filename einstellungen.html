@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Einstellungen</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="home-seite settings-body">
+
+  <!-- Obere Navigation -->
+  <header class="topbar">
+
+    <div class="logo-bereich">
+      <div class="logo">🐑</div>
+
+      <div>
+        <h1>SleepySheepy</h1>
+        <p>Schlaf-Tracker für Kinder</p>
+      </div>
+    </div>
+
+    <button class="abmelden-button">
+      Abmelden
+    </button>
+
+  </header>
+
+  <!-- Hauptbereich -->
+  <main class="hauptbereich settings-main">
+
+    <section class="settings-page">
+
+      <header class="settings-header">
+        <h1 class="settings-title">Einstellungen</h1>
+        <p class="settings-subtitle">Verwalte dein Konto</p>
+      </header>
+
+      <section class="settings-profile-card">
+
+        <div class="settings-profile-info">
+          <h2 id="settingsName">Name wird geladen...</h2>
+          <p id="settingsEmail">E-Mail wird geladen...</p>
+        </div>
+      </section>
+
+      <section class="settings-section">
+        <h3>Konto</h3>
+
+        <div class="settings-menu-card">
+          <a href="profil.html" class="settings-menu-item">
+            <span class="settings-icon">👤</span>
+            <span>Profil bearbeiten</span>
+            <span class="settings-arrow">›</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="settings-section">
+        <h3>Gerät</h3>
+
+        <div class="settings-menu-card">
+          <a href="schaf-verbinden.html" class="settings-menu-item">
+            <span class="settings-icon">📡</span>
+            <span>Schaf verbinden</span>
+            <span class="settings-arrow">›</span>
+          </a>
+        </div>
+      </section>
+
+    </section>
+
+  </main>
+
+  <!-- Untere Navigation -->
+  <nav class="bottom-nav">
+
+    <a class="nav-item" href="home.html">
+      <img 
+        class="nav-icon"
+        src="bilder/icon_home.png" 
+        alt="Home"
+      >
+      <p>Home</p>
+    </a>
+
+    <a class="nav-item" href="statistik.html">
+      <img 
+        class="nav-icon"
+        src="bilder/icon_statistik.png" 
+        alt="Statistik"
+      >
+      <p>Statistik</p>
+    </a>
+
+    <a class="nav-item icon-personalisierung" href="personalisierung.html">
+      <div class="icon-personalisierung-kreis">
+        <img 
+          src="bilder/Icon_Personalisierung.png" 
+          alt="Personalisierung"
+        >
+      </div>
+    </a>
+
+    <a class="nav-item" href="blog.html">
+      <img 
+        class="nav-icon"
+        src="bilder/icon_blog.png" 
+        alt="Blog"
+      >
+      <p>Blog</p>
+    </a>
+
+    <a class="nav-item aktiv" href="einstellungen.html">
+      <img 
+        class="nav-icon"
+        src="bilder/icon_profil.png" 
+        alt="Profil"
+      >
+      <p>Profil</p>
+    </a>
+
+  </nav>
+
+  <script>
+    async function loadSettingsProfile() {
+      try {
+        const response = await fetch("/api/Profil.php", {
+          credentials: "include",
+        });
+
+        const result = await response.json();
+        console.log("Settings profile data:", result);
+
+        if (result.status === "success") {
+          const vorname = result.vorname || "";
+          const nachname = result.nachname || "";
+          const vollerName = `${vorname} ${nachname}`.trim();
+
+          document.getElementById("settingsName").textContent =
+            vollerName || "Kein Name gespeichert";
+
+          document.getElementById("settingsEmail").textContent =
+            result.email || "Keine E-Mail gespeichert";
+        }
+
+      } catch (error) {
+        console.error("Profil konnte nicht geladen werden:", error);
+      }
+    }
+
+    loadSettingsProfile();
+  </script>
+
+</body>
+</html>

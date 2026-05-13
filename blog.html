@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DreamSheep | Blog</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="blog-page">
+
+  <div class="blog-wrapper">
+
+    <!-- HEADER -->
+    <header class="app-header">
+      <a href="index.html" class="app-brand">
+        <span class="app-logo">🐑</span>
+
+        <span>
+          <strong>DreamSheep</strong>
+          <small>Schlaf-Tracker für Kinder</small>
+        </span>
+      </a>
+
+      <button class="app-logout" type="button">Abmelden</button>
+    </header>
+
+    <!-- MAIN -->
+    <main class="blog-main">
+      <section class="blog-hero">
+        <div>
+          <h2>Blog &amp; Community</h2>
+          <p>Teile Erfahrungen und lerne von anderen Eltern</p>
+        </div>
+
+        <button class="blog-new-post" type="button">
+          <span>+</span>
+          Neuer Beitrag
+        </button>
+      </section>
+
+      <section class="blog-create-form" id="blogCreateForm">
+        <h2>Neuen Beitrag erstellen</h2>
+
+        <form>
+          <label for="postTitle">Titel</label>
+          <input
+            type="text"
+            id="postTitle"
+            name="postTitle"
+            placeholder="Gib deinem Beitrag einen Titel..."
+          />
+
+          <label for="postCategory">Kategorie</label>
+
+          <div class="blog-custom-select" id="blogCategorySelect">
+            <button type="button" class="blog-custom-select-button">
+              <span id="blogSelectedCategory">Tipps &amp; Tricks</span>
+              <span class="blog-custom-select-arrow">⌄</span>
+            </button>
+
+            <div class="blog-custom-select-options">
+              <button type="button" data-value="Tipps & Tricks">Tipps &amp; Tricks</button>
+              <button type="button" data-value="Schlafhygiene">Schlafhygiene</button>
+              <button type="button" data-value="Routine">Routine</button>
+              <button type="button" data-value="Probleme">Probleme</button>
+            </div>
+          </div>
+
+          <input type="hidden" id="postCategory" name="postCategory" value="Tipps & Tricks" />
+
+          <label for="postContent">Inhalt</label>
+          <textarea
+            id="postContent"
+            name="postContent"
+            placeholder="Teile deine Gedanken und Erfahrungen..."
+          ></textarea>
+
+          <div class="blog-form-actions">
+            <button type="submit" class="blog-publish-button">
+              Veröffentlichen
+            </button>
+
+            <button type="button" class="blog-cancel-button" id="blogCancelButton">
+              Abbrechen
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <nav class="blog-filter-bar" aria-label="Blog Kategorien">
+        <button class="blog-filter is-active" type="button" data-category="Alle">Alle</button>
+        <button class="blog-filter" type="button" data-category="Tipps & Tricks">Tipps &amp; Tricks</button>
+        <button class="blog-filter" type="button" data-category="Schlafhygiene">Schlafhygiene</button>
+        <button class="blog-filter" type="button" data-category="Routine">Routine</button>
+        <button class="blog-filter" type="button" data-category="Probleme">Probleme</button>
+      </nav>
+
+      <section class="blog-posts">
+        <article class="blog-card" data-category="Tipps & Tricks">
+          <div class="blog-card-icon">💤</div>
+
+          <div class="blog-card-content">
+            <span class="blog-tag">Tipps &amp; Tricks</span>
+
+            <h3>5 Tipps für besseren Kinderschlaf</h3>
+
+            <p>
+              Entdecke bewährte Methoden, um deinem Kind zu helfen,
+              schneller einzuschlafen und durchzuschlafen.
+            </p>
+
+            <div class="blog-meta">
+              <div class="blog-meta-left">
+                <span>◷ 28. April 2026</span>
+                <span>•</span>
+                <span>Dr. Anna Müller</span>
+              </div>
+
+              <div class="blog-meta-right">
+                <span>♡ 45</span>
+                <span>☁ 12</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card" data-category="Schlafhygiene">
+          <div class="blog-card-icon">🌙</div>
+
+          <div class="blog-card-content">
+            <span class="blog-tag">Schlafhygiene</span>
+
+            <h3>Die richtige Schlafumgebung gestalten</h3>
+
+            <p>
+              Licht, Geräusche und Raumtemperatur beeinflussen den Schlaf
+              deines Kindes stärker, als man denkt.
+            </p>
+
+            <div class="blog-meta">
+              <div class="blog-meta-left">
+                <span>◷ 25. April 2026</span>
+                <span>•</span>
+                <span>Laura Schneider</span>
+              </div>
+
+              <div class="blog-meta-right">
+                <span>♡ 32</span>
+                <span>☁ 8</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card" data-category="Routine">
+          <div class="blog-card-icon">⭐</div>
+
+          <div class="blog-card-content">
+            <span class="blog-tag">Routine</span>
+
+            <h3>Abendrituale, die wirklich funktionieren</h3>
+
+            <p>
+              Eine ruhige und wiederkehrende Abendroutine gibt Kindern
+              Sicherheit und erleichtert den Übergang in die Nacht.
+            </p>
+
+            <div class="blog-meta">
+              <div class="blog-meta-left">
+                <span>◷ 21. April 2026</span>
+                <span>•</span>
+                <span>DreamSheep Team</span>
+              </div>
+
+              <div class="blog-meta-right">
+                <span>♡ 58</span>
+                <span>☁ 17</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+
+    <a class="nav-item" href="home.html">
+      <img 
+        class="nav-icon"
+        src="bilder/icon_home.png" 
+        alt="Home"
+      >
+      <p>Home</p>
+    </a>
+
+    <a class="nav-item" href="statistik.html">
+      <img 
+        class="nav-icon"
+        src="bilder/icon_statistik.png" 
+        alt="Statistik"
+      >
+      <p>Statistik</p>
+    </a>
+
+    <a class="nav-item icon-personalisierung" href="personalisierung.html">
+      <div class="icon-personalisierung-kreis">
+        <img 
+          src="bilder/Icon_Personalisierung.png" 
+          alt="Personalisierung"
+        >
+      </div>
+    </a>
+
+    <a class="nav-item" href="blog.html">
+      <img 
+        class="nav-icon"
+        src="bilder/icon_blog.png" 
+        alt="Blog"
+      >
+      <p>Blog</p>
+    </a>
+
+    <a class="nav-item aktiv" href="einstellungen.html">
+      <img 
+        class="nav-icon"
+        src="bilder/icon_profil.png" 
+        alt="Profil"
+      >
+      <p>Profil</p>
+    </a>
+
+  </nav>
+  </div>
+
+  <script src="js/blog.js"></script>
+</body>
+</html>
