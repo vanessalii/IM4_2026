@@ -32,9 +32,8 @@ try {
 
     
     // ==========================================
-    // 5. SQL-Abfrage schreiben 
-    // SQL kann Daten speichern, laden, löschen, ändern – alles was in der DB passiert
-    // Hier: Holt Einstellungen + Farbnamen + Soundtyp
+    // 5. SQL-Abfrage schreiben
+    // Holt Einstellungen + Farbnamen + Soundtyp
     // ==========================================
 
     $sql = "
@@ -48,7 +47,7 @@ try {
 
         lc.colour AS lightcolour,
 
-        st.id AS soundtype
+        st.typename AS soundtype
 
     FROM einstellungen e
 
@@ -58,7 +57,9 @@ try {
     JOIN soundtype st
     ON e.soundtype_id = st.id
 
-    WHERE serialnr = ?";
+    WHERE e.serialnr = ?
+
+    ";
 
 
     // ==========================================
@@ -89,7 +90,7 @@ try {
     echo json_encode($results);
 
 
-} catch (PDOException $e) {
+} catch (Exception $e) {
 
     // ==========================================
     // 10. Fehler anzeigen
