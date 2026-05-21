@@ -6,14 +6,13 @@
   box-sizing: border-box;
 }
 
-/* Gesamte Seite */
+html {
+  min-height: 100%;
+}
 
 body {
   min-height: 100vh;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 0;
 
   background-image: url('../Bilder/Test_Hintergrund.jpeg');
   background-size: cover;
@@ -22,11 +21,29 @@ body {
   background-color: rgba(36, 35, 79, 0.8);
   background-blend-mode: darken;
   color: white;
-
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Login-Box */
+
+a {
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+/* Login und Registrierung */
+
+body:not(.home-seite):not(.blog-page):not(.profil-page) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .login-box {
   width: 100%;
@@ -39,23 +56,19 @@ body {
   align-items: center;
 
   border-radius: 32px;
-
-  background: rgba(91, 87, 135, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.12);
 
+  background: rgba(91, 87, 135, 0.45);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
 
   backdrop-filter: blur(10px);
 }
 
-/* Titel und Untertitel */
-
-h1 {
+.login-box h1 {
   margin-bottom: 24px;
 
   font-size: 32px;
   font-weight: 700;
-
   text-align: center;
 }
 
@@ -66,11 +79,8 @@ h1 {
 
   font-size: 16px;
   font-weight: 500;
-
   text-align: center;
 }
-
-/* Umschalter Anmelden / Registrieren */
 
 .umschalter {
   width: 100%;
@@ -82,7 +92,6 @@ h1 {
   padding: 4px;
 
   border-radius: 12px;
-
   background: rgba(255, 255, 255, 0.08);
 }
 
@@ -95,7 +104,6 @@ h1 {
   border-radius: 10px;
 
   background: transparent;
-
   color: #cbc4e6;
 
   font-size: 16px;
@@ -108,11 +116,8 @@ h1 {
 
 .umschalter-button.aktiv {
   color: white;
-
   background: linear-gradient(90deg, #a64cff, #3f86ff);
 }
-
-/* Formular */
 
 form {
   width: 100%;
@@ -122,8 +127,6 @@ form {
 form div {
   margin-bottom: 24px;
 }
-
-/* Labels */
 
 label {
   display: block;
@@ -136,8 +139,6 @@ label {
   font-weight: 700;
 }
 
-/* Eingabefelder */
-
 input {
   width: 100%;
 
@@ -145,14 +146,12 @@ input {
 
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 10px;
+  outline: none;
 
   background: rgba(255, 255, 255, 0.1);
-
   color: white;
 
   font-size: 15px;
-
-  outline: none;
 }
 
 input::placeholder {
@@ -161,11 +160,8 @@ input::placeholder {
 
 input:focus {
   border-color: #7d8cff;
-
   box-shadow: 0 0 0 3px rgba(125, 140, 255, 0.2);
 }
-
-/* Formular-Button */
 
 form button {
   width: 100%;
@@ -176,14 +172,12 @@ form button {
   border-radius: 10px;
 
   background: linear-gradient(90deg, #a64cff, #3f86ff);
-
   color: white;
 
   font-size: 16px;
   font-weight: 700;
 
   cursor: pointer;
-
   transition: opacity 0.2s;
 }
 
@@ -191,36 +185,22 @@ form button:hover {
   opacity: 0.92;
 }
 
-/* Links */
 
-a {
-  color: white;
+/* App-Layout */
 
-  font-weight: 700;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-
-
-/* =========================
-   HOME LAYOUT
-========================= */
-
-.home-seite {
+body.home-seite {
   min-height: 100vh;
+  padding-bottom: 90px;
 
   display: flex;
   flex-direction: column;
-
-  justify-content: space-between;
   align-items: stretch;
+  justify-content: flex-start;
 }
 
-/* Obere Navigation */
+.hauptbereich {
+  flex: 1;
+}
 
 .topbar {
   height: 90px;
@@ -232,11 +212,8 @@ a:hover {
   padding: 0 32px;
 
   background: rgba(91, 87, 135, 0.35);
-
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
-
-/* Logo-Bereich */
 
 .logo-bereich {
   display: flex;
@@ -249,16 +226,15 @@ a:hover {
 }
 
 .logo-bereich h1 {
+  margin: 0;
+
   font-size: 30px;
 }
 
 .logo-bereich p {
   color: #c7c1df;
-
   font-size: 14px;
 }
-
-/* Abmelden */
 
 .abmelden-button {
   padding: 12px 18px;
@@ -267,7 +243,6 @@ a:hover {
   border-radius: 10px;
 
   background: rgba(255, 255, 255, 0.12);
-
   color: white;
 
   font-size: 14px;
@@ -276,77 +251,65 @@ a:hover {
   cursor: pointer;
 }
 
-/* Hauptbereich */
 
-.hauptbereich {
-  flex: 1;
-}
-
-/* =========================
-   UNTERE NAVIGATION
-========================= */
+/* Untere Navigation */
 
 .bottom-nav {
+  width: 100%;
   height: 90px;
 
   display: flex;
   justify-content: center;
   align-items: center;
-
   gap: 200px;
 
   background: rgba(91, 87, 135, 0.35);
-
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Navigationselemente */
+body.home-seite .bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+}
 
 .nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   gap: 6px;
 
   color: #c7c1df;
 
-  text-decoration: none;
-
   font-size: 14px;
   font-weight: 600;
+  text-decoration: none;
 }
 
-/* Aktiver Bereich */
+.nav-item:hover {
+  text-decoration: none;
+}
 
 .nav-item.aktiv {
   color: white;
 }
-
-/* Normale Icons */
 
 .nav-icon {
   width: 50px;
   height: 50px;
 
   display: block;
-
   object-fit: contain;
 }
 
-/* =========================
-   PERSONALISIERUNG ICON
-========================= */
-
 .nav-item.icon-personalisierung {
   position: relative;
-
   transform: translateY(-28px);
 
   margin: 0 12px;
 }
-
-/* Kreis */
 
 .icon-personalisierung-kreis {
   width: 78px;
@@ -359,34 +322,19 @@ a:hover {
   border-radius: 50%;
 
   background: linear-gradient(180deg, #ff66d9, #a64cff);
-
   box-shadow: 0 12px 24px rgba(166, 76, 255, 0.35);
 }
-
-/* Icon im Kreis */
 
 .icon-personalisierung-kreis img {
   width: 42px;
   height: 42px;
 
   display: block;
-
   object-fit: contain;
 }
 
 
-/* =========================
-   EINSTELLUNGEN SEITE
-========================= */
-
-.settings-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-}
-
-/* Hauptbereich der Einstellungsseite */
+/* Einstellungen */
 
 .settings-main {
   flex: 1;
@@ -398,17 +346,13 @@ a:hover {
   overflow-y: auto;
 }
 
-/* Hauptcontainer orientiert sich an der Loginbox */
-
 .settings-page {
-  width: 100%;
-  max-width: 620px;
+  width: min(980px, calc(100% - 80px));
+  max-width: 980px;
 
   margin: 0 auto;
   padding: 34px 24px 46px;
 }
-
-/* Header */
 
 .settings-header {
   margin-bottom: 24px;
@@ -422,7 +366,6 @@ a:hover {
   font-size: 34px;
   font-weight: 800;
   line-height: 1.1;
-
   text-align: left;
 }
 
@@ -432,8 +375,6 @@ a:hover {
   font-size: 17px;
   line-height: 1.4;
 }
-
-/* Profilkarte */
 
 .settings-profile-card {
   width: 100%;
@@ -446,34 +387,12 @@ a:hover {
   padding: 28px 32px;
 
   border-radius: 28px;
-
-  background: rgba(91, 87, 135, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.14);
 
+  background: rgba(91, 87, 135, 0.55);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
 
   backdrop-filter: blur(10px);
-}
-
-.settings-avatar {
-  width: 78px;
-  height: 78px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  flex-shrink: 0;
-
-  border-radius: 50%;
-
-  background: linear-gradient(180deg, #ff66d9, #a64cff);
-
-  color: white;
-
-  font-size: 32px;
-
-  box-shadow: 0 12px 24px rgba(166, 76, 255, 0.35);
 }
 
 .settings-profile-info {
@@ -499,8 +418,6 @@ a:hover {
   word-break: break-word;
 }
 
-/* Sektionen */
-
 .settings-section {
   margin-bottom: 26px;
 }
@@ -514,18 +431,15 @@ a:hover {
   font-weight: 800;
 }
 
-/* Menükarte */
-
 .settings-menu-card {
   width: 100%;
 
   overflow: hidden;
 
   border-radius: 26px;
-
-  background: rgba(91, 87, 135, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.12);
 
+  background: rgba(91, 87, 135, 0.55);
   box-shadow: 0 20px 44px rgba(0, 0, 0, 0.26);
 
   backdrop-filter: blur(10px);
@@ -542,10 +456,9 @@ a:hover {
   padding: 18px 26px;
 
   background: transparent;
-
   color: white;
-  text-decoration: none;
 
+  text-decoration: none;
   transition: background 0.2s ease, transform 0.2s ease;
 }
 
@@ -562,8 +475,6 @@ a:hover {
   transform: scale(0.99);
 }
 
-/* Icon-Kreis */
-
 .settings-icon {
   width: 48px;
   height: 48px;
@@ -571,21 +482,17 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-
   flex-shrink: 0;
 
   border-radius: 50%;
 
   background: rgba(255, 255, 255, 0.12);
-
   color: white;
 
   font-size: 21px;
 
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
-
-/* Menütext */
 
 .settings-menu-item span:nth-child(2) {
   flex: 1;
@@ -596,8 +503,6 @@ a:hover {
   font-weight: 800;
 }
 
-/* Pfeil */
-
 .settings-arrow {
   color: #d7d0ee;
 
@@ -606,135 +511,22 @@ a:hover {
   line-height: 1;
 }
 
-/* =========================
-   RESPONSIVE TABLET
-========================= */
 
-@media (max-width: 1000px) {
-  .settings-page {
-    max-width: 600px;
-  }
-}
-
-/* =========================
-   RESPONSIVE MOBILE
-========================= */
-
-@media (max-width: 700px) {
-  .settings-page {
-    max-width: 100%;
-
-    padding: 28px 18px 40px;
-  }
-
-  .settings-title {
-    font-size: 30px;
-  }
-
-  .settings-subtitle {
-    font-size: 16px;
-  }
-
-  .settings-profile-card {
-    gap: 16px;
-
-    padding: 22px 20px;
-
-    border-radius: 24px;
-  }
-
-  .settings-avatar {
-    width: 66px;
-    height: 66px;
-
-    font-size: 28px;
-  }
-
-  .settings-profile-card h2 {
-    font-size: 22px;
-  }
-
-  .settings-profile-card p {
-    font-size: 14px;
-  }
-
-  .settings-menu-card {
-    border-radius: 24px;
-  }
-
-  .settings-menu-item {
-    min-height: 72px;
-
-    gap: 14px;
-
-    padding: 16px 20px;
-  }
-
-  .settings-icon {
-    width: 44px;
-    height: 44px;
-
-    font-size: 19px;
-  }
-
-  .settings-menu-item span:nth-child(2) {
-    font-size: 16px;
-  }
-
-  .settings-arrow {
-    font-size: 30px;
-  }
-}
-
-/* =========================
-   KLEINE SMARTPHONES
-========================= */
-
-@media (max-width: 420px) {
-  .settings-profile-card {
-    align-items: flex-start;
-  }
-
-  .settings-avatar {
-    width: 60px;
-    height: 60px;
-
-    font-size: 25px;
-  }
-
-  .settings-profile-card h2 {
-    font-size: 20px;
-  }
-
-  .settings-profile-card p {
-    font-size: 13px;
-  }
-}
-
-/* ============================= */
-/* Blogseite ohne Header */
-/* ============================= */
+/* Blog */
 
 body.blog-page {
-  margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-/* Wrapper nutzt den Hintergrund deiner allgemeinen Seite */
 .blog-wrapper {
-  min-height: 100vh;
   width: 100%;
-  position: relative;
-  color: #f8f7ff;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: transparent;
-}
+  min-height: 100vh;
 
-.blog-wrapper *,
-.blog-wrapper *::before,
-.blog-wrapper *::after {
-  box-sizing: border-box;
+  position: relative;
+
+  color: #f8f7ff;
+  background: transparent;
 }
 
 .blog-wrapper h1,
@@ -744,70 +536,57 @@ body.blog-page {
   margin-top: 0;
 }
 
-/* Hauptbereich */
 .blog-main {
-  width: min(980px, calc(100% - 40px)) !important;
-  max-width: 980px !important;
-  margin: 0 auto !important;
-  padding: 56px 0 80px !important;
+  width: min(980px, calc(100% - 40px));
+  max-width: 980px;
+
   position: relative;
   z-index: 2;
+
+  margin: 0 auto;
+  padding: 56px 0 80px;
 }
 
-/* Intro-Box */
 .blog-hero {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   gap: 24px;
+
   padding: 30px 32px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 18px;
-  background: rgba(92, 89, 137, 0.54);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 20px 50px rgba(0, 0, 0, 0.12);
 }
 
 .blog-hero h2 {
   margin: 0 0 12px;
+
+  color: white;
+
   font-size: 30px;
-  line-height: 1.1;
   font-weight: 800;
-  color: #ffffff;
+  line-height: 1.1;
 }
 
-.blog-hero {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 30px 32px;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-}
-
-/* Neuer Beitrag Button */
 .blog-new-post {
   display: inline-flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: 12px;
-  white-space: nowrap;
-  border: none;
-  color: #ffffff;
+
   padding: 14px 22px;
+
+  border: none;
   border-radius: 12px;
+
+  background: linear-gradient(90deg, #a942f5 0%, #3287ff 100%);
+  color: white;
+  box-shadow: 0 16px 32px rgba(79, 112, 255, 0.25);
+
   font-size: 17px;
   font-weight: 900;
+  white-space: nowrap;
+
   cursor: pointer;
-  background: linear-gradient(90deg, #a942f5 0%, #3287ff 100%);
-  box-shadow: 0 16px 32px rgba(79, 112, 255, 0.25);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    opacity 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 }
 
 .blog-new-post span {
@@ -826,28 +605,29 @@ body.blog-page {
   opacity: 0.9;
 }
 
-/* Filter */
 .blog-filter-bar {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+
   margin: 28px 0 34px;
 }
 
 .blog-filter {
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  color: #f5f2ff;
-  background: rgba(255, 255, 255, 0.1);
   padding: 11px 20px;
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.1);
+  color: #f5f2ff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
   font-size: 15px;
   font-weight: 800;
+
   cursor: pointer;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease,
-    border-color 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
 }
 
 .blog-filter.is-active,
@@ -857,31 +637,32 @@ body.blog-page {
   transform: translateY(-1px);
 }
 
-/* Blogposts */
 .blog-posts {
   display: grid;
   gap: 18px;
+
   padding-bottom: 60px;
 }
 
 .blog-card {
+  min-height: auto;
+
   display: grid;
   grid-template-columns: 70px 1fr;
-  gap: 20px;
   align-items: start;
-  min-height: auto !important;
-  height: auto !important;
-  padding: 26px 30px !important;
+  gap: 20px;
+
+  padding: 26px 30px;
+
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+
   background: rgba(92, 89, 137, 0.63);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 18px 45px rgba(0, 0, 0, 0.12);
-  transition:
-    transform 0.22s ease,
-    border-color 0.22s ease,
-    background 0.22s ease;
+
+  transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
 }
 
 .blog-card:hover {
@@ -891,13 +672,16 @@ body.blog-page {
 }
 
 .blog-card-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 62px;
   height: 62px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   font-size: 38px;
   line-height: 1;
+
   filter: drop-shadow(0 7px 12px rgba(0, 0, 0, 0.18));
 }
 
@@ -906,228 +690,138 @@ body.blog-page {
 }
 
 .blog-tag {
+  width: fit-content;
+
   display: inline-flex;
   align-items: center;
-  width: fit-content;
+
+  margin-bottom: 14px;
   padding: 7px 16px;
+
   border-radius: 999px;
+
   background: #7f4bc0;
   color: #ddd3f4;
-  font-weight: 800;
+
   font-size: 14px;
+  font-weight: 800;
   line-height: 1;
-  margin-bottom: 14px;
 }
 
 .blog-card h3 {
   margin: 0 0 16px;
-  font-size: 24px !important;
-  line-height: 1.2;
+
+  color: white;
+
+  font-size: 24px;
   font-weight: 800;
-  color: #ffffff;
+  line-height: 1.2;
   letter-spacing: -0.02em;
 }
 
 .blog-card p {
-  margin: 0 0 20px;
   max-width: 720px;
+
+  margin: 0 0 20px;
+
   color: #d0c7e6;
-  font-size: 17px !important;
-  line-height: 1.5;
+
+  font-size: 17px;
   font-weight: 600;
+  line-height: 1.5;
 }
 
-/* Meta-Daten */
 .blog-meta {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   gap: 18px;
+
   color: #c9c1df;
-  font-weight: 700;
+
   font-size: 14px;
+  font-weight: 700;
 }
 
 .blog-meta-left,
 .blog-meta-right {
   display: flex;
   align-items: center;
-  gap: 18px;
   flex-wrap: wrap;
+  gap: 18px;
 }
 
 .blog-meta span {
   line-height: 1.3;
 }
 
-/* Deko-Elemente */
-.blog-star {
-  position: absolute;
-  color: rgba(255, 222, 151, 0.35);
-  font-size: 1rem;
-  z-index: 1;
-  pointer-events: none;
-}
 
-.blog-star-1 {
-  top: 170px;
-  left: 52%;
-}
-
-.blog-star-2 {
-  top: 320px;
-  right: 8%;
-}
-
-.blog-star-3 {
-  top: 560px;
-  left: 10%;
-}
-
-.blog-cloud {
-  display: none;
-}
-
-/* ============================= */
-/* Responsive */
-/* ============================= */
-
-@media (max-width: 900px) {
-  .blog-main {
-    width: min(100% - 28px, 760px) !important;
-    margin: 0 auto !important;
-    padding-top: 36px !important;
-  }
-
-  .blog-hero {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 26px 26px;
-  }
-
-  .blog-card {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 24px 26px !important;
-  }
-
-  .blog-card-icon {
-    justify-content: flex-start;
-    width: auto;
-    height: auto;
-  }
-
-  .blog-meta {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-@media (max-width: 620px) {
-  .blog-main {
-    width: calc(100% - 24px) !important;
-    padding-top: 28px !important;
-    padding-bottom: 50px !important;
-  }
-
-  .blog-hero,
-  .blog-card {
-    padding: 22px !important;
-    border-radius: 16px;
-  }
-
-  .blog-hero h2 {
-    font-size: 26px;
-  }
-
-  .blog-hero p {
-    font-size: 16px;
-  }
-
-  .blog-new-post {
-    width: 100%;
-    padding: 13px 18px;
-    font-size: 16px;
-  }
-
-  .blog-filter-bar {
-    margin: 24px 0 28px;
-  }
-
-  .blog-filter {
-    padding: 10px 15px;
-    font-size: 14px;
-  }
-
-  .blog-card h3 {
-    font-size: 21px !important;
-  }
-
-  .blog-card p {
-    font-size: 16px !important;
-  }
-
-  .blog-meta-left,
-  .blog-meta-right {
-    gap: 12px;
-  }
-
-  .blog-star {
-    display: none;
-  }
-}
-
-/* ============================= */
-/* Blog Formular final */
-/* ============================= */
+/* Blogformular */
 
 body.blog-page .blog-create-form {
-  width: 100% !important;
-  max-width: none !important;
-  margin: 32px 0 34px !important;
-  padding: 30px 30px 28px !important;
+  display: none;
+
+  width: 100%;
+  max-width: none;
+
+  margin: 32px 0 34px;
+  padding: 30px 30px 28px;
+
   border-radius: 22px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+
   background: rgba(92, 89, 137, 0.72);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.1),
     0 20px 50px rgba(0, 0, 0, 0.14);
 }
 
+body.blog-page .blog-create-form.is-visible {
+  display: block;
+}
+
 body.blog-page .blog-create-form h2 {
   margin: 0 0 30px;
-  color: #ffffff;
+
+  color: white;
+
   font-size: 26px;
-  line-height: 1.2;
   font-weight: 800;
+  line-height: 1.2;
 }
 
 body.blog-page .blog-create-form form {
-  width: 100% !important;
-  max-width: none !important;
+  width: 100%;
+  max-width: none;
+
   display: flex;
   flex-direction: column;
   gap: 22px;
 }
 
 body.blog-page .blog-create-form label {
-  display: block;
   margin: 0 0 -6px;
+
   color: #d7c9f4;
+
   font-size: 17px;
   font-weight: 800;
 }
 
 body.blog-page .blog-create-form input,
 body.blog-page .blog-create-form textarea {
+  width: 100%;
+  max-width: none;
+
   display: block;
-  width: 100% !important;
-  max-width: none !important;
+
   border: 1px solid rgba(255, 255, 255, 0.22);
-  outline: none;
   border-radius: 14px;
+  outline: none;
+
   background: rgba(255, 255, 255, 0.09);
-  color: #ffffff;
+  color: white;
+
   font: inherit;
   font-size: 18px;
   line-height: 1.4;
@@ -1156,10 +850,12 @@ body.blog-page .blog-create-form textarea:focus {
 }
 
 body.blog-page .blog-form-actions {
-  width: 100% !important;
+  width: 100%;
+
   display: grid;
   grid-template-columns: 1fr 250px;
   gap: 22px;
+
   margin-top: 4px;
 }
 
@@ -1167,12 +863,17 @@ body.blog-page .blog-publish-button,
 body.blog-page .blog-cancel-button {
   width: 100%;
   height: 64px;
+
+  padding: 0 22px;
+
   border: none;
   border-radius: 14px;
-  padding: 0 22px;
-  color: #ffffff;
+
+  color: white;
+
   font-size: 18px;
   font-weight: 900;
+
   cursor: pointer;
 }
 
@@ -1184,75 +885,8 @@ body.blog-page .blog-cancel-button {
   background: rgba(255, 255, 255, 0.14);
 }
 
-@media (max-width: 700px) {
-  body.blog-page .blog-create-form {
-    padding: 24px 22px !important;
-  }
 
-  body.blog-page .blog-form-actions {
-    grid-template-columns: 1fr;
-  }
-
-  body.blog-page .blog-publish-button,
-  body.blog-page .blog-cancel-button {
-    height: 58px;
-  }
-}
-
-/* Kategorie-Auswahlfeld stylen */
-
-body.blog-page .blog-create-form select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-
-  width: 100% !important;
-  height: 76px;
-  padding: 0 60px 0 26px;
-
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 16px;
-  outline: none;
-
-  color: #ffffff;
-  background:
-    linear-gradient(45deg, transparent 50%, #d7c9f4 50%),
-    linear-gradient(135deg, #d7c9f4 50%, transparent 50%),
-    rgba(255, 255, 255, 0.09);
-  background-position:
-    calc(100% - 34px) 50%,
-    calc(100% - 24px) 50%,
-    0 0;
-  background-size:
-    10px 10px,
-    10px 10px,
-    100% 100%;
-  background-repeat: no-repeat;
-
-  font: inherit;
-  font-size: 18px;
-  line-height: 1.4;
-  cursor: pointer;
-}
-
-body.blog-page .blog-create-form select:hover {
-  border-color: rgba(255, 255, 255, 0.34);
-  background-color: rgba(255, 255, 255, 0.12);
-}
-
-body.blog-page .blog-create-form select:focus {
-  border-color: rgba(170, 90, 255, 0.75);
-  box-shadow: 0 0 0 4px rgba(170, 90, 255, 0.16);
-}
-
-body.blog-page .blog-create-form select option {
-  color: #1c1b3f;
-  background: #ffffff;
-}
-
-/* ============================= */
-/* Custom Kategorie Dropdown */
-/* ============================= */
+/* Kategorie-Auswahl */
 
 body.blog-page .blog-custom-select {
   position: relative;
@@ -1262,20 +896,26 @@ body.blog-page .blog-custom-select {
 body.blog-page .blog-custom-select-button {
   width: 100%;
   height: 76px;
+
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   gap: 18px;
+
   padding: 0 26px;
+
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 16px;
   outline: none;
-  color: #ffffff;
+
   background: rgba(255, 255, 255, 0.09);
+  color: white;
+
   font: inherit;
   font-size: 18px;
   line-height: 1.4;
   text-align: left;
+
   cursor: pointer;
 }
 
@@ -1291,8 +931,10 @@ body.blog-page .blog-custom-select.is-open .blog-custom-select-button {
 
 body.blog-page .blog-custom-select-arrow {
   color: #d7c9f4;
+
   font-size: 28px;
   line-height: 1;
+
   transition: transform 0.2s ease;
 }
 
@@ -1302,16 +944,21 @@ body.blog-page .blog-custom-select.is-open .blog-custom-select-arrow {
 
 body.blog-page .blog-custom-select-options {
   display: none;
+
   position: absolute;
   top: calc(100% + 10px);
   left: 0;
   right: 0;
   z-index: 50;
+
   padding: 10px;
+
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.22);
+
   background: rgba(73, 70, 125, 0.98);
   box-shadow: 0 22px 55px rgba(0, 0, 0, 0.28);
+
   overflow: hidden;
 }
 
@@ -1322,15 +969,20 @@ body.blog-page .blog-custom-select.is-open .blog-custom-select-options {
 
 body.blog-page .blog-custom-select-options button {
   width: 100%;
+
+  padding: 16px 18px;
+
   border: none;
   border-radius: 12px;
-  padding: 16px 18px;
-  color: #ffffff;
+
   background: transparent;
+  color: white;
+
   font: inherit;
   font-size: 18px;
   font-weight: 700;
   text-align: left;
+
   cursor: pointer;
 }
 
@@ -1340,422 +992,50 @@ body.blog-page .blog-custom-select-options button:hover {
 
 body.blog-page .blog-custom-select-options button.is-selected {
   background: rgba(255, 255, 255, 0.14);
-  color: #ffffff;
+  color: white;
 }
 
-@media (max-width: 620px) {
-  body.blog-page .blog-custom-select-button {
-    height: 60px;
-    font-size: 17px;
-  }
 
-  body.blog-page .blog-custom-select-options button {
-    font-size: 17px;
-    padding: 14px 16px;
-  }
-}
-
-/* ============================= */
-/* Profilseite im Box-Design */
-/* ============================= */
+/* Profil */
 
 body.profil-page {
   min-height: 100vh;
-  margin: 0;
-  overflow-x: hidden;
-}
-
-.profil-container {
-  width: min(820px, calc(100% - 40px));
-  min-height: 100vh;
-  margin: 0 auto;
-  padding-top: 130px;
-  position: relative;
-  z-index: 2;
-}
-
-.profil-card {
-  width: 100%;
-  padding: 44px 48px;
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(92, 89, 137, 0.63);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 20px 55px rgba(0, 0, 0, 0.16);
-}
-
-.profil-title {
-  margin: 0 0 34px;
-  color: #ffffff;
-  font-size: 42px;
-  line-height: 1.1;
-  font-weight: 800;
-  text-align: left;
-}
-
-.profil-form {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  width: 100%;
-}
-
-.profil-form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.profil-form label {
-  color: #d7c9f4;
-  font-size: 17px;
-  font-weight: 800;
-}
-
-.profil-form input {
-  width: 100%;
-  height: 64px;
-  padding: 0 20px;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  outline: none;
-  background: rgba(255, 255, 255, 0.09);
-  color: #ffffff;
-  font-size: 18px;
-}
-
-.profil-form input:focus {
-  border-color: rgba(170, 90, 255, 0.75);
-  box-shadow: 0 0 0 4px rgba(170, 90, 255, 0.16);
-}
-
-.profil-button {
-  width: 100%;
-  height: 64px;
-  margin-top: 8px;
-  border: none;
-  border-radius: 14px;
-  color: #ffffff;
-  font-size: 20px;
-  font-weight: 900;
-  cursor: pointer;
-  background: linear-gradient(90deg, #a942f5 0%, #3287ff 100%);
-  box-shadow: 0 16px 32px rgba(79, 112, 255, 0.25);
-}
-
-.profil-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 20px 38px rgba(79, 112, 255, 0.34);
-}
-
-@media (max-width: 620px) {
-  .profil-container {
-    width: calc(100% - 24px);
-    padding-top: 80px;
-  }
-
-  .profil-card {
-    padding: 28px 24px;
-    border-radius: 20px;
-  }
-
-  .profil-title {
-    font-size: 34px;
-  }
-
-  .profil-form input {
-    height: 58px;
-    font-size: 16px;
-  }
-
-  .profil-button {
-    height: 58px;
-    font-size: 18px;
-  }
-}
-
-/* Profilformular mittig in der Box */
-
-.profil-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.profil-title {
-  width: min(720px, 100%);
-  text-align: left;
-}
-
-.profil-form {
-  width: min(720px, 100%);
-  margin: 0 auto;
-}
-
-.profil-form-group {
-  width: 100%;
-}
-
-.profil-form input,
-.profil-button {
-  width: 100%;
-}
-
-/* ============================= */
-/* Footer Navigation wie Dashboard */
-/* ============================= */
-
-.app-footer {
-  width: 100%;
-  height: 150px;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  z-index: 50;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 0 70px;
-
-  background: rgba(63, 50, 115, 0.62);
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(12px);
-}
-
-.app-footer-nav {
-  width: 100%;
-  max-width: 1500px;
-
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  align-items: center;
-  gap: 40px;
-}
-
-.app-footer-link {
-  position: relative;
-
-  min-width: 0;
-  height: 110px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: 900;
-
-  border-radius: 28px;
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    color 0.2s ease;
-}
-
-.app-footer-link span {
-  font-size: 34px;
-  line-height: 1;
-}
-
-.app-footer-link:hover {
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-4px);
-}
-
-.app-footer-link.is-active {
-  color: #ffffff;
-}
-
-.app-footer-link.is-active::before {
-  content: "";
-  position: absolute;
-  top: -42px;
-
-  width: 104px;
-  height: 104px;
-  border-radius: 50%;
-
-  background: linear-gradient(180deg, #f05de6 0%, #9d45ff 100%);
-  box-shadow: 0 18px 40px rgba(157, 69, 255, 0.38);
-  z-index: -1;
-}
-
-body.blog-page .blog-main {
-  padding-bottom: 210px !important;
-}
-
-@media (max-width: 800px) {
-  .app-footer {
-    height: 120px;
-    padding: 0 18px;
-  }
-
-  .app-footer-nav {
-    gap: 8px;
-  }
-
-  .app-footer-link {
-    height: 90px;
-    gap: 8px;
-    font-size: 13px;
-  }
-
-  .app-footer-link span {
-    font-size: 26px;
-  }
-
-  .app-footer-link.is-active::before {
-    top: -30px;
-    width: 82px;
-    height: 82px;
-  }
-
-  body.blog-page .blog-main {
-    padding-bottom: 170px !important;
-  }
-}
-
-/* =========================
-   HOME FOOTER FIX
-========================= */
-
-body.home-seite {
-  min-height: 100vh;
-  margin: 0;
-  padding-bottom: 90px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-}
-
-body.home-seite .bottom-nav {
-  position: fixed !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  top: auto !important;
-
-  width: 100% !important;
-  height: 90px !important;
-
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  gap: 200px;
-
-  background: rgba(91, 87, 135, 0.35);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-
-  z-index: 9999;
-  transform: none !important;
-}
-
-body.home-seite .nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-
-  color: #c7c1df;
-  text-decoration: none;
-
-  font-size: 14px;
-  font-weight: 600;
-}
-
-body.home-seite .nav-item.aktiv {
-  color: #ffffff;
-}
-
-body.home-seite .nav-icon {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-}
-
-body.home-seite .nav-item.icon-personalisierung {
-  position: relative;
-  transform: translateY(-28px);
-  margin: 0 12px;
-}
-
-body.home-seite .icon-personalisierung-kreis {
-  width: 78px;
-  height: 78px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border-radius: 50%;
-
-  background: linear-gradient(180deg, #ff66d9, #a64cff);
-  box-shadow: 0 12px 24px rgba(166, 76, 255, 0.35);
-}
-
-body.home-seite .icon-personalisierung-kreis img {
-  width: 42px;
-  height: 42px;
-  object-fit: contain;
-}
-
-/* Blogformular standardmässig verstecken */
-body.blog-page .blog-create-form {
-  display: none !important;
-}
-
-/* Nur anzeigen, wenn per JavaScript die Klasse is-visible gesetzt wird */
-body.blog-page .blog-create-form.is-visible {
-  display: block !important;
-}
-
-/* ============================= */
-/* Profilseite */
-/* ============================= */
-
-body.profil-page {
-  min-height: 100vh;
-  margin: 0;
-  overflow-x: hidden;
 
   display: block;
+  overflow-x: hidden;
 }
 
 .profil-container {
   width: min(900px, calc(100% - 48px));
-  margin: 0 auto;
-  padding-top: 120px;
-  padding-bottom: 120px;
+
   position: relative;
   z-index: 2;
+
+  margin: 0 auto;
+  padding-top: 90px;
+  padding-bottom: 120px;
 }
 
 .profil-title {
-  margin: 0 0 28px;
-  color: #ffffff;
-  font-size: 56px;
-  line-height: 1;
+  margin: 0 0 26px;
+
+  color: white;
+
+  font-size: 45px;
   font-weight: 900;
+  line-height: 1;
   text-align: left;
 }
 
 .profil-card {
   width: 100%;
-  padding: 56px 64px;
-  border-radius: 28px;
 
-  background: rgba(92, 89, 137, 0.63);
+  padding: 48px 56px;
+
+  border-radius: 26px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 
+  background: rgba(92, 89, 137, 0.63);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.1),
     0 20px 55px rgba(0, 0, 0, 0.16);
@@ -1764,12 +1044,14 @@ body.profil-page {
 }
 
 .profil-form {
-  width: min(620px, 100%);
-  margin: 0 auto;
+  width: 100%;
+  max-width: none;
 
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 26px;
+
+  margin: 0 auto;
 }
 
 .profil-form-group {
@@ -1777,29 +1059,34 @@ body.profil-page {
 
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+
+  margin-bottom: 28px;
 }
 
 .profil-form label {
-  margin: 0;
+  margin: 0 0 8px;
+
   color: #d7c9f4;
-  font-size: 18px;
+
+  font-size: 22px;
   font-weight: 800;
 }
 
 .profil-form input {
   width: 100%;
   height: 64px;
+
   padding: 0 22px;
 
-  border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 16px;
   outline: none;
 
   background: rgba(255, 255, 255, 0.09);
-  color: #ffffff;
+  color: white;
 
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .profil-form input:focus {
@@ -1810,19 +1097,20 @@ body.profil-page {
 .profil-button {
   width: 100%;
   height: 64px;
-  margin-top: 8px;
+
+  margin-top: 12px;
 
   border: none;
-  border-radius: 14px;
+  border-radius: 16px;
 
-  color: #ffffff;
   background: linear-gradient(90deg, #a942f5 0%, #3287ff 100%);
+  color: white;
+  box-shadow: 0 16px 32px rgba(79, 112, 255, 0.25);
 
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 900;
 
   cursor: pointer;
-  box-shadow: 0 16px 32px rgba(79, 112, 255, 0.25);
 }
 
 .profil-button:hover {
@@ -1830,119 +1118,769 @@ body.profil-page {
   box-shadow: 0 20px 38px rgba(79, 112, 255, 0.34);
 }
 
-@media (max-width: 700px) {
-  .profil-container {
-    width: calc(100% - 28px);
-    padding-top: 80px;
-  }
 
-  .profil-title {
-    font-size: 42px;
-  }
 
-  .profil-card {
-    padding: 32px 24px;
-    border-radius: 22px;
-  }
 
-  .profil-form input,
-  .profil-button {
-    height: 58px;
-  }
+
+
+
+.balken-diagramm {
+  position: relative;
+
+  height: 240px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+
+  margin-top: 36px;
+  padding: 36px 0 34px 36px;
+
+  border-left: 2px solid rgba(255, 255, 255, 0.25);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
 }
 
-/* Profilfelder grösser/breiter machen */
+.balken {
+  position: relative;
 
-.profil-card {
-  padding: 60px 70px;
+  width: 54px;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  border-radius: 18px 18px 8px 8px;
+
+  background: linear-gradient(180deg, #a64cff, #3f86ff);
+
+  cursor: pointer;
+
+  transition: 0.2s;
 }
 
-.profil-form {
+.balken:hover {
+  transform: translateY(-8px);
+}
+
+.balken::before {
+  content: attr(data-wert);
+
+  position: absolute;
+  top: -38px;
+
+  white-space: nowrap;
+
+  padding: 6px 10px;
+
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.14);
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  opacity: 0;
+
+  transition: 0.2s;
+}
+
+.balken:hover::before {
+  opacity: 1;
+}
+
+.balken span {
+  position: absolute;
+  bottom: -28px;
+
+  color: #c7c1df;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+
+
+/* =========================
+   HOME INHALT
+========================= */
+
+.hauptbereich {
   width: 100%;
-  max-width: none;
+  max-width: 1280px;
+
+  margin: 0 auto;
+
+  padding: 40px 32px 120px;
 }
 
-.profil-form input {
-  width: 100%;
-  height: 82px;
-  padding: 0 28px;
-  font-size: 26px;
-  border-radius: 22px;
-}
+/* Karten */
 
-.profil-form label {
-  font-size: 28px;
-  margin-bottom: 14px;
-}
-
-.profil-form-group {
-  gap: 16px;
-  margin-bottom: 42px;
-}
-
-.profil-button {
-  width: 100%;
-  height: 82px;
-  font-size: 30px;
-  border-radius: 22px;
-}
-
-/* Profilformular wieder kompakter machen */
-
-.profil-container {
-  width: min(900px, calc(100% - 48px));
-  padding-top: 90px;
-}
-
-.profil-title {
-  font-size: 45px;
-  margin-bottom: 26px;
-}
-
-.profil-card {
-  padding: 48px 56px;
-  border-radius: 26px;
-}
-
-.profil-form {
-  width: 100%;
-  max-width: none;
-  gap: 26px;
-}
-
-.profil-form-group {
-  gap: 10px;
+.gruss-bereich {
   margin-bottom: 28px;
 }
 
-.profil-form label {
-  font-size: 22px;
-  margin-bottom: 8px;
+.gruss-bereich h2 {
+  font-size: 36px;
+  font-weight: 700;
 }
-
-.profil-form input {
-  height: 64px;
-  padding: 0 22px;
-  font-size: 20px;
-  border-radius: 16px;
-}
-
-.profil-button {
-  height: 64px;
-  font-size: 24px;
-  border-radius: 16px;
-  margin-top: 12px;
-}
-
-/* Einstellungen: Felder breiter machen */
-
-.settings-page {
-  max-width: 980px;
-  width: min(980px, calc(100% - 80px));
-}
-
-.settings-profile-card,
-.settings-menu-card {
+.home-karte {
   width: 100%;
+
+  margin-bottom: 24px;
+
+  padding: 28px;
+
+  border-radius: 24px;
+
+  background: rgba(91, 87, 135, 0.65);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+}
+
+.gruss-karte h2,
+.home-karte h2 {
+  font-size: 28px;
+}
+
+/* Letzte Nacht */
+
+.nacht-inhalt {
+  display: grid;
+
+  grid-template-columns: 280px 1fr;
+
+  gap: 28px;
+
+  margin-top: 24px;
+}
+
+/* Einstellungen */
+
+.einstellung-box {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  padding: 24px;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.einstellung-box h3,
+.einstellung-box span {
+  font-size: 22px;
+
+  font-weight: 700;
+}
+
+.einstellung-box span {
+  color: #8fc4ff;
+}
+
+/* Aufwachliste */
+
+.aufwach-liste {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.aufwach-eintrag {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 16px 20px;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.aufwach-eintrag span {
+  color: #c7c1df;
+}
+
+/* Gesamt */
+
+.gesamt-box {
+  margin-top: 24px;
+
+  padding: 18px 20px;
+
+  border-radius: 14px;
+
+  background: rgba(166, 76, 255, 0.15);
+
+  font-size: 18px;
+}
+
+/* =========================
+   DIAGRAMM
+========================= */
+
+.balken-diagramm {
+  position: relative;
+
+  width: 100%;
+
+  height: 260px;
+
+  display: grid;
+
+  grid-template-columns: repeat(7, 1fr);
+
+  align-items: end;
+
+  margin-top: 32px;
+
+  padding: 20px 40px 35px 20px;
+
+  border-left: 2px solid rgba(255, 255, 255, 0.25);
+
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+
+.balken {
+  position: relative;
+
+  width: 70px;
+
+  border-radius: 18px 18px 8px 8px;
+
+  background: linear-gradient(180deg, #a64cff, #3f86ff);
+
+  transition: 0.2s;
+
+  cursor: pointer;
+
+  justify-self: center;
+}
+
+.balken:hover {
+  transform: translateY(-8px);
+}
+
+.balken::before {
+  content: attr(data-wert);
+
+  position: absolute;
+
+  top: -40px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  white-space: nowrap;
+
+  padding: 6px 12px;
+
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.15);
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  opacity: 0;
+
+  transition: 0.2s;
+}
+
+.balken:hover::before {
+  opacity: 1;
+}
+
+.balken span {
+  position: absolute;
+
+  bottom: -30px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  color: #c7c1df;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+
+.diagramm-wrapper {
+  display: flex;
+
+  align-items: flex-end;
+
+  gap: 16px;
+
+  margin-top: 30px;
+}
+
+.y-achse {
+  height: 260px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  color: #c7c1df;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+
+
+/* =========================
+   PERSONALISIERUNG
+========================= */
+
+.seitenkopf {
+  margin-bottom: 32px;
+}
+
+.seitenkopf h2 {
+  margin-bottom: 8px;
+  font-size: 40px;
+  font-weight: 800;
+}
+
+.seitenkopf p {
+  color: #c7c1df;
+  font-size: 18px;
+}
+
+.personalisierung-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.personalisierung-karte {
+  height: 100%;
+
+  padding: 28px;
+
+  border-radius: 24px;
+
+  background: rgba(91, 87, 135, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+}
+
+.karten-kopf {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  margin-bottom: 22px;
+}
+
+.kategorie-icon {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  background: linear-gradient(180deg, #ff66d9, #a64cff);
+
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.karten-kopf h3 {
+  font-size: 24px;
+}
+
+.track-liste {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auswahl-button {
+  width: 100%;
+
+  padding: 14px 16px;
+
+  border: 1px solid transparent;
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.09);
+
+  color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.auswahl-button:hover,
+.auswahl-button.aktiv {
+  background: rgba(166, 76, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.status-text {
+  margin-top: 20px;
+
+  color: #c7c1df;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.status-text strong {
+  color: white;
+}
+
+.licht-text {
+  margin-bottom: 24px;
+
+  color: #c7c1df;
+
+  font-size: 16px;
+}
+
+.licht-auswahl {
+  display: flex;
+  gap: 18px;
+
+  margin-bottom: 20px;
+}
+
+.licht-farbe {
+  width: 56px;
+  height: 56px;
+
+  border: none;
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.licht-farbe:hover {
+  transform: scale(1.08);
+}
+
+.licht-farbe.aktiv {
+  border: 3px solid white;
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.25);
+}
+
+.licht-blau {
+  background: #4d9cff;
+}
+
+.licht-gelb {
+  background: #ffd766;
+}
+
+.licht-rosa {
+  background: #ff79cf;
+}
+
+
+
+/* =========================
+   STATISTIK
+========================= */
+
+.statistik-kopf {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.monatswechsel {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 10px 14px;
+
+  border-radius: 14px;
+
+  background: rgba(91, 87, 135, 0.65);
+}
+
+.monatswechsel button {
+  width: 36px;
+  height: 36px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  color: white;
+
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.monatswechsel span {
+  font-weight: 700;
+}
+
+.durchschnitt-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  margin-top: 16px;
+}
+
+.durchschnitt-box strong {
+  font-size: 48px;
+}
+
+.durchschnitt-box span {
+  color: #c7c1df;
+}
+
+/* Monatsdiagramm */
+
+.monats-diagramm {
+  height: 280px;
+
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  align-items: end;
+  gap: 14px;
+
+  margin-top: 32px;
+  padding: 20px 0 38px 0;
+
+  border-left: 2px solid rgba(255, 255, 255, 0.25);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.monats-balken {
+  position: relative;
+
+  width: 32px;
+
+  justify-self: center;
+
+  border-radius: 14px 14px 6px 6px;
+
+  background: linear-gradient(180deg, #a64cff, #3f86ff);
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.monats-balken:hover {
+  transform: translateY(-8px);
+}
+
+.monats-balken::before {
+  content: attr(data-wert);
+
+  position: absolute;
+  top: -38px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  white-space: nowrap;
+
+  padding: 6px 10px;
+
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.15);
+
+  opacity: 0;
+  transition: 0.2s;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.monats-balken:hover::before {
+  opacity: 1;
+}
+
+.monats-balken span {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  color: #c7c1df;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Legende */
+
+.legende {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+
+  margin: 22px 0 28px;
+}
+
+.legende div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #c7c1df;
+
+  font-weight: 700;
+}
+
+.punkt {
+  width: 16px;
+  height: 16px;
+
+  display: inline-block;
+
+  border-radius: 50%;
+}
+
+.gruen {
+  background: rgba(120, 255, 190, 0.25);
+}
+
+.gelb {
+  background: rgba(180, 120, 255, 0.25);
+}
+
+.orange {
+  background: rgba(166, 76, 255, 0.35);
+}
+
+.rot {
+  background: rgba(255, 102, 217, 0.35);
+}
+
+/* Kalender */
+
+.kalender {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 14px;
+}
+
+.kalender-tag-name {
+  color: #c7c1df;
+
+  text-align: center;
+
+  font-weight: 800;
+}
+
+.kalender-tag {
+  aspect-ratio: 1;
+
+  border: none;
+  border-radius: 18px;
+
+  color: white;
+
+  font-size: 18px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.kalender-tag:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.24);
+}
+
+/* Overlay */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  padding: 24px;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  z-index: 20;
+}
+
+.overlay.aktiv {
+  display: flex;
+}
+
+.overlay-karte {
+  position: relative;
+
+  width: 100%;
+  max-width: 900px;
+
+  padding: 32px;
+
+  border-radius: 24px;
+
+  background: rgba(91, 87, 135, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.overlay-schliessen {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+
+  width: 36px;
+  height: 36px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  color: white;
+
+  font-size: 24px;
+  cursor: pointer;
 }
 

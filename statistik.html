@@ -9,11 +9,9 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body class="statistik-page home-seite">
+<body class="home-seite">
 
-  <!-- Obere Navigation -->
   <header class="topbar">
-
     <div class="logo-bereich">
       <div class="logo">🐑</div>
 
@@ -23,65 +21,178 @@
       </div>
     </div>
 
-    <button class="abmelden-button">
-      Abmelden
-    </button>
-
+    <button class="abmelden-button">Abmelden</button>
   </header>
 
-  <!-- Hauptbereich bleibt vorerst leer -->
-  <main class="statistik-main">
+  <main class="hauptbereich">
+
+    <section class="seitenkopf statistik-kopf">
+      <div>
+        <h2>Statistik</h2>
+        <p>Monatsübersicht zum Schlafverhalten deines Kindes.</p>
+      </div>
+
+      <div class="monatswechsel">
+        <button type="button">‹</button>
+        <span>Mai 2026</span>
+        <button type="button">›</button>
+      </div>
+    </section>
+
+    <section class="home-karte">
+      <h2>Durchschnitt im Monat</h2>
+
+      <div class="durchschnitt-box">
+        <strong>2.4x</strong>
+        <span>durchschnittlich pro Nacht aufgewacht</span>
+      </div>
+    </section>
+
+    <section class="home-karte">
+      <h2>Monatsdiagramm</h2>
+
+      <div class="monats-diagramm">
+        <div class="monats-balken" style="height: 20%;" data-wert="1x aufgewacht"><span>1</span></div>
+        <div class="monats-balken" style="height: 40%;" data-wert="2x aufgewacht"><span>2</span></div>
+        <div class="monats-balken" style="height: 60%;" data-wert="3x aufgewacht"><span>3</span></div>
+        <div class="monats-balken" style="height: 30%;" data-wert="1x aufgewacht"><span>4</span></div>
+        <div class="monats-balken" style="height: 80%;" data-wert="4x aufgewacht"><span>5</span></div>
+        <div class="monats-balken" style="height: 20%;" data-wert="1x aufgewacht"><span>6</span></div>
+        <div class="monats-balken" style="height: 50%;" data-wert="2x aufgewacht"><span>7</span></div>
+        <div class="monats-balken" style="height: 70%;" data-wert="3x aufgewacht"><span>8</span></div>
+        <div class="monats-balken" style="height: 40%;" data-wert="2x aufgewacht"><span>9</span></div>
+        <div class="monats-balken" style="height: 60%;" data-wert="3x aufgewacht"><span>10</span></div>
+        <div class="monats-balken" style="height: 30%;" data-wert="1x aufgewacht"><span>11</span></div>
+        <div class="monats-balken" style="height: 90%;" data-wert="5x aufgewacht"><span>12</span></div>
+        <div class="monats-balken" style="height: 50%;" data-wert="2x aufgewacht"><span>13</span></div>
+        <div class="monats-balken" style="height: 40%;" data-wert="2x aufgewacht"><span>14</span></div>
+      </div>
+    </section>
+
+    <section class="home-karte">
+      <h2>Wie hat mein Kind diesen Monat geschlafen?</h2>
+
+      <div class="legende">
+        <div><span class="punkt gruen"></span> Hervorragend</div>
+        <div><span class="punkt gelb"></span> Gut</div>
+        <div><span class="punkt orange"></span> Okay</div>
+        <div><span class="punkt rot"></span> Schlecht</div>
+      </div>
+
+      <div class="kalender">
+        <div class="kalender-tag-name">Mo</div>
+        <div class="kalender-tag-name">Di</div>
+        <div class="kalender-tag-name">Mi</div>
+        <div class="kalender-tag-name">Do</div>
+        <div class="kalender-tag-name">Fr</div>
+        <div class="kalender-tag-name">Sa</div>
+        <div class="kalender-tag-name">So</div>
+
+        <button class="kalender-tag gruen">1</button>
+        <button class="kalender-tag gelb">2</button>
+        <button class="kalender-tag orange">3</button>
+        <button class="kalender-tag gelb">4</button>
+        <button class="kalender-tag rot">5</button>
+        <button class="kalender-tag gruen">6</button>
+        <button class="kalender-tag gelb">7</button>
+
+        <button class="kalender-tag orange">8</button>
+        <button class="kalender-tag gelb">9</button>
+        <button class="kalender-tag gruen">10</button>
+        <button class="kalender-tag rot">11</button>
+        <button class="kalender-tag orange">12</button>
+        <button class="kalender-tag gelb">13</button>
+        <button class="kalender-tag gruen">14</button>
+
+        <button class="kalender-tag gelb">15</button>
+        <button class="kalender-tag orange">16</button>
+        <button class="kalender-tag rot">17</button>
+        <button class="kalender-tag gelb">18</button>
+        <button class="kalender-tag gruen">19</button>
+        <button class="kalender-tag gelb">20</button>
+        <button class="kalender-tag orange">21</button>
+
+        <button class="kalender-tag gruen">22</button>
+        <button class="kalender-tag gelb">23</button>
+        <button class="kalender-tag orange">24</button>
+        <button class="kalender-tag rot">25</button>
+        <button class="kalender-tag gelb">26</button>
+        <button class="kalender-tag gruen">27</button>
+        <button class="kalender-tag orange">28</button>
+
+        <button class="kalender-tag gelb">29</button>
+        <button class="kalender-tag gruen">30</button>
+        <button class="kalender-tag orange">31</button>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Untere Navigation -->
-  <nav class="bottom-nav">
+  <div class="overlay" id="tagOverlay">
+    <div class="overlay-karte">
+      <button class="overlay-schliessen" type="button">×</button>
 
+      <h2>Letzte Nacht</h2>
+
+      <div class="nacht-inhalt">
+        <div class="einstellung-box">
+          <h3>Hörspiel</h3>
+          <span>Blaues Licht</span>
+        </div>
+
+        <div class="aufwach-liste">
+          <div class="aufwach-eintrag">
+            <strong>23:15 Uhr</strong>
+            <span>Aufgewacht</span>
+          </div>
+
+          <div class="aufwach-eintrag">
+            <strong>01:20 Uhr</strong>
+            <span>Aufgewacht</span>
+          </div>
+
+          <div class="aufwach-eintrag">
+            <strong>03:00 Uhr</strong>
+            <span>Aufgewacht</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gesamt-box">
+        Gesamt: <strong>3x aufgewacht</strong>
+      </div>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
     <a class="nav-item" href="home.html">
-      <img 
-        class="nav-icon"
-        src="Bilder/icon_home.png" 
-        alt="Home"
-      >
+      <img class="nav-icon" src="bilder/icon_home.png" alt="Home">
       <p>Home</p>
     </a>
 
     <a class="nav-item aktiv" href="statistik.html">
-      <img 
-        class="nav-icon"
-        src="Bilder/icon_statistik.png" 
-        alt="Statistik"
-      >
+      <img class="nav-icon" src="bilder/icon_statistik.png" alt="Statistik">
       <p>Statistik</p>
     </a>
 
     <a class="nav-item icon-personalisierung" href="personalisierung.html">
       <div class="icon-personalisierung-kreis">
-        <img 
-          src="Bilder/Icon_Personalisierung.png" 
-          alt="Personalisierung"
-        >
+        <img src="bilder/Icon_Personalisierung.png" alt="Personalisierung">
       </div>
     </a>
 
     <a class="nav-item" href="blog.html">
-      <img 
-        class="nav-icon"
-        src="Bilder/icon_blog.png" 
-        alt="Blog"
-      >
+      <img class="nav-icon" src="bilder/icon_blog.png" alt="Blog">
       <p>Blog</p>
     </a>
 
-    <a class="nav-item" href="profil.html">
-      <img 
-        class="nav-icon"
-        src="Bilder/icon_profil.png" 
-        alt="Profil"
-      >
+    <a class="nav-item" href="einstellungen.html">
+      <img class="nav-icon" src="bilder/icon_profil.png" alt="Profil">
       <p>Profil</p>
     </a>
-
   </nav>
+
+  <script src="js/statistik.js"></script>
 
 </body>
 </html>

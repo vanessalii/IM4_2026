@@ -4,14 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Statistik</title>
+  <title>Personalisierung</title>
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body class="statistik-page home-seite">
+<body class="home-seite">
 
   <!-- Obere Navigation -->
+
   <header class="topbar">
 
     <div class="logo-bereich">
@@ -29,55 +30,114 @@
 
   </header>
 
-  <!-- Hauptbereich bleibt vorerst leer -->
-  <main class="statistik-main">
-  </main>
+  <!-- Hauptbereich -->
+
+ <main class="hauptbereich">
+
+  <section class="seitenkopf">
+    <h2>Personalisierung</h2>
+    <p>Lege fest, was abgespielt wird, wenn dein Kind nachts aufwacht.</p>
+  </section>
+
+  <section class="personalisierung-grid">
+
+    <article class="personalisierung-karte">
+      <div class="karten-kopf">
+        <div class="kategorie-icon">♪</div>
+        <h3>Musik</h3>
+      </div>
+
+      <div class="track-liste">
+        <button class="auswahl-button aktiv" type="button">Sanfte Klaviermusik</button>
+        <button class="auswahl-button" type="button">Naturgeräusche</button>
+        <button class="auswahl-button" type="button">Wiegenlied</button>
+      </div>
+
+      <p class="status-text">Aktuell ausgewählt: <strong>Sanfte Klaviermusik</strong></p>
+    </article>
+
+    <article class="personalisierung-karte">
+      <div class="karten-kopf">
+        <div class="kategorie-icon">☾</div>
+        <h3>Hörspiel</h3>
+      </div>
+
+      <div class="track-liste">
+        <button class="auswahl-button aktiv" type="button">Der kleine Prinz</button>
+        <button class="auswahl-button" type="button">Gute-Nacht-Geschichten</button>
+        <button class="auswahl-button" type="button">Traumreise</button>
+      </div>
+
+      <p class="status-text">Aktuell ausgewählt: <strong>Der kleine Prinz</strong></p>
+    </article>
+
+    <article class="personalisierung-karte">
+      <div class="karten-kopf">
+        <div class="kategorie-icon">●</div>
+        <h3>Sprachmemos</h3>
+      </div>
+
+      <div class="track-liste">
+        <button class="auswahl-button aktiv" type="button">Mamas Stimme</button>
+        <button class="auswahl-button" type="button">Papas Gute-Nacht-Lied</button>
+        <button class="auswahl-button" type="button">Eigene Aufnahme</button>
+      </div>
+
+      <p class="status-text">Aktuell ausgewählt: <strong>Mamas Stimme</strong></p>
+    </article>
+
+    <article class="personalisierung-karte">
+      <div class="karten-kopf">
+        <div class="kategorie-icon">✦</div>
+        <h3>Licht</h3>
+      </div>
+
+      <p class="licht-text">
+        Wähle die Lichtfarbe, die beim Aufwachen aktiviert werden soll.
+      </p>
+
+      <div class="licht-auswahl">
+        <button class="licht-farbe licht-blau aktiv" type="button" data-farbe="Blau" aria-label="Blaues Licht"></button>
+        <button class="licht-farbe licht-gelb" type="button" data-farbe="Gelb" aria-label="Gelbes Licht"></button>
+        <button class="licht-farbe licht-rosa" type="button" data-farbe="Rosa" aria-label="Rosa Licht"></button>
+      </div>
+
+      <p class="status-text">Aktuelle Lichtfarbe: <strong>Blau</strong></p>
+    </article>
+
+  </section>
+
+</main>
+
+<script src="js/personalisierung.js"></script>
 
   <!-- Untere Navigation -->
+
   <nav class="bottom-nav">
 
     <a class="nav-item" href="home.html">
-      <img 
-        class="nav-icon"
-        src="Bilder/icon_home.png" 
-        alt="Home"
-      >
+      <img class="nav-icon" src="bilder/icon_home.png" alt="Home">
       <p>Home</p>
     </a>
 
-    <a class="nav-item aktiv" href="statistik.html">
-      <img 
-        class="nav-icon"
-        src="Bilder/icon_statistik.png" 
-        alt="Statistik"
-      >
+    <a class="nav-item" href="statistik.html">
+      <img class="nav-icon" src="bilder/icon_statistik.png" alt="Statistik">
       <p>Statistik</p>
     </a>
 
-    <a class="nav-item icon-personalisierung" href="personalisierung.html">
+    <a class="nav-item icon-personalisierung aktiv" href="personalisierung.html">
       <div class="icon-personalisierung-kreis">
-        <img 
-          src="Bilder/Icon_Personalisierung.png" 
-          alt="Personalisierung"
-        >
+        <img src="bilder/Icon_Personalisierung.png" alt="Personalisierung">
       </div>
     </a>
 
     <a class="nav-item" href="blog.html">
-      <img 
-        class="nav-icon"
-        src="Bilder/icon_blog.png" 
-        alt="Blog"
-      >
+      <img class="nav-icon" src="bilder/icon_blog.png" alt="Blog">
       <p>Blog</p>
     </a>
 
-    <a class="nav-item" href="profil.html">
-      <img 
-        class="nav-icon"
-        src="Bilder/icon_profil.png" 
-        alt="Profil"
-      >
+    <a class="nav-item" href="einstellungen.html">
+      <img class="nav-icon" src="bilder/icon_profil.png" alt="Profil">
       <p>Profil</p>
     </a>
 
