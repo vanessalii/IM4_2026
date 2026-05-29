@@ -20,12 +20,10 @@ $input = json_decode($inputJSON, true);
 
 ###################################### receiving a post request from a HTML form, later from ESP
 
-$move = $input["move"];         // Hol den Wert an der Stelle "wert" aus dem JS-Objekt (ehemals JSON-String)
-$noise = $input["noise"];         // Hol den Wert an der Stelle "wert" aus dem JS-Objekt (ehemals JSON-String)
-$seralnr = $input["seralnr"];         // Hol den Wert an der Stelle "wert" aus dem JS-Objekt (ehemals JSON-String)
+$serialnr = $input["serialnr"];         // Hol den Wert an der Stelle "wert" aus dem JS-Objekt (ehemals JSON-String)
 # insert new user into db
-$sql = "INSERT INTO sensordaten (move, noise, serialnr) VALUES (?, ?, ?)";
+$sql = "INSERT INTO sensordaten (serialnr) VALUES (?)";
 $stmt = $pdo->prepare($sql);
-$stmt->execute([$move, $noise, $seralnr]);
+$stmt->execute([$serialnr]);
 
 ?>

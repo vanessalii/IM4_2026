@@ -45,17 +45,13 @@ try {
         e.calmtime,
         e.shuffle,
 
-        lc.colour AS lightcolour,
-
-        st.typename AS soundtype
+        lc.colour AS lightcolour
 
     FROM einstellungen e
 
     JOIN lightcolour lc
     ON e.lightcolour_id = lc.id
 
-    JOIN soundtype st
-    ON e.soundtype_id = st.id
 
     WHERE e.serialnr = ?
 
