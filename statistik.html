@@ -26,143 +26,102 @@
 
   <main class="hauptbereich">
 
-    <section class="seitenkopf statistik-kopf">
-      <div>
-        <h2>Statistik</h2>
-        <p>Monatsübersicht zum Schlafverhalten deines Kindes.</p>
-      </div>
+    <div class="statistik-kopf">
+  <div>
+    <h2>Statistik</h2>
+    <p>Monatsübersicht zum Schlafverhalten deines Kindes</p>
+  </div>
 
-      <div class="monatswechsel">
-        <button type="button">‹</button>
-        <span>Mai 2026</span>
-        <button type="button">›</button>
-      </div>
-    </section>
+  <div class="monatswechsel">
+    <button type="button" id="monatZurueck">‹</button>
+    <span id="aktuellerMonat">Mai 2026</span>
+    <button type="button" id="monatWeiter">›</button>
+  </div>
+</div>
 
-    <section class="home-karte">
-      <h2>Durchschnitt im Monat</h2>
+<section class="home-karte">
+  <h2>Durchschnitt im Monat</h2>
 
-      <div class="durchschnitt-box">
-        <strong>2.4x</strong>
-        <span>durchschnittlich pro Nacht aufgewacht</span>
-      </div>
-    </section>
+  <div class="durchschnitt-box">
+    <strong id="monatsDurchschnitt">0x</strong>
+    <span>durchschnittlich pro Nacht aufgewacht</span>
+  </div>
+</section>
 
-    <section class="home-karte">
-      <h2>Monatsdiagramm</h2>
+  <section class="home-karte">
+  <h2>Wie hat mein Kind diesen Monat geschlafen?</h2>
 
-      <div class="monats-diagramm">
-        <div class="monats-balken" style="height: 20%;" data-wert="1x aufgewacht"><span>1</span></div>
-        <div class="monats-balken" style="height: 40%;" data-wert="2x aufgewacht"><span>2</span></div>
-        <div class="monats-balken" style="height: 60%;" data-wert="3x aufgewacht"><span>3</span></div>
-        <div class="monats-balken" style="height: 30%;" data-wert="1x aufgewacht"><span>4</span></div>
-        <div class="monats-balken" style="height: 80%;" data-wert="4x aufgewacht"><span>5</span></div>
-        <div class="monats-balken" style="height: 20%;" data-wert="1x aufgewacht"><span>6</span></div>
-        <div class="monats-balken" style="height: 50%;" data-wert="2x aufgewacht"><span>7</span></div>
-        <div class="monats-balken" style="height: 70%;" data-wert="3x aufgewacht"><span>8</span></div>
-        <div class="monats-balken" style="height: 40%;" data-wert="2x aufgewacht"><span>9</span></div>
-        <div class="monats-balken" style="height: 60%;" data-wert="3x aufgewacht"><span>10</span></div>
-        <div class="monats-balken" style="height: 30%;" data-wert="1x aufgewacht"><span>11</span></div>
-        <div class="monats-balken" style="height: 90%;" data-wert="5x aufgewacht"><span>12</span></div>
-        <div class="monats-balken" style="height: 50%;" data-wert="2x aufgewacht"><span>13</span></div>
-        <div class="monats-balken" style="height: 40%;" data-wert="2x aufgewacht"><span>14</span></div>
-      </div>
-    </section>
+  <div class="schlaf-legende">
+    <span><i class="punkt hervorragend"></i> Hervorragend</span>
+    <span><i class="punkt gut"></i> Gut</span>
+    <span><i class="punkt okay"></i> Okay</span>
+    <span><i class="punkt schlecht"></i> Schlecht</span>
+  </div>
 
-    <section class="home-karte">
-      <h2>Wie hat mein Kind diesen Monat geschlafen?</h2>
-
-      <div class="legende">
-        <div><span class="punkt gruen"></span> Hervorragend</div>
-        <div><span class="punkt gelb"></span> Gut</div>
-        <div><span class="punkt orange"></span> Okay</div>
-        <div><span class="punkt rot"></span> Schlecht</div>
-      </div>
-
-      <div class="kalender">
-        <div class="kalender-tag-name">Mo</div>
-        <div class="kalender-tag-name">Di</div>
-        <div class="kalender-tag-name">Mi</div>
-        <div class="kalender-tag-name">Do</div>
-        <div class="kalender-tag-name">Fr</div>
-        <div class="kalender-tag-name">Sa</div>
-        <div class="kalender-tag-name">So</div>
-
-        <button class="kalender-tag gruen">1</button>
-        <button class="kalender-tag gelb">2</button>
-        <button class="kalender-tag orange">3</button>
-        <button class="kalender-tag gelb">4</button>
-        <button class="kalender-tag rot">5</button>
-        <button class="kalender-tag gruen">6</button>
-        <button class="kalender-tag gelb">7</button>
-
-        <button class="kalender-tag orange">8</button>
-        <button class="kalender-tag gelb">9</button>
-        <button class="kalender-tag gruen">10</button>
-        <button class="kalender-tag rot">11</button>
-        <button class="kalender-tag orange">12</button>
-        <button class="kalender-tag gelb">13</button>
-        <button class="kalender-tag gruen">14</button>
-
-        <button class="kalender-tag gelb">15</button>
-        <button class="kalender-tag orange">16</button>
-        <button class="kalender-tag rot">17</button>
-        <button class="kalender-tag gelb">18</button>
-        <button class="kalender-tag gruen">19</button>
-        <button class="kalender-tag gelb">20</button>
-        <button class="kalender-tag orange">21</button>
-
-        <button class="kalender-tag gruen">22</button>
-        <button class="kalender-tag gelb">23</button>
-        <button class="kalender-tag orange">24</button>
-        <button class="kalender-tag rot">25</button>
-        <button class="kalender-tag gelb">26</button>
-        <button class="kalender-tag gruen">27</button>
-        <button class="kalender-tag orange">28</button>
-
-        <button class="kalender-tag gelb">29</button>
-        <button class="kalender-tag gruen">30</button>
-        <button class="kalender-tag orange">31</button>
-      </div>
-    </section>
+  <div class="schlaf-kalender" id="monatsKalender">
+    <!-- Wird automatisch mit JavaScript gefüllt -->
+  </div>
+</section>
 
   </main>
 
-  <div class="overlay" id="tagOverlay">
-    <div class="overlay-karte">
-      <button class="overlay-schliessen" type="button">×</button>
+  <div class="tag-overlay" id="tagOverlay">
+  <div class="tag-overlay-card">
 
-      <h2>Letzte Nacht</h2>
+    <button class="tag-overlay-close" id="tagOverlayClose" type="button">
+      ×
+    </button>
 
-      <div class="nacht-inhalt">
-        <div class="einstellung-box">
-          <h3>Hörspiel</h3>
-          <span>Blaues Licht</span>
-        </div>
+    <h2 id="overlayTitel">Details zum Tag</h2>
 
-        <div class="aufwach-liste">
-          <div class="aufwach-eintrag">
-            <strong>23:15 Uhr</strong>
-            <span>Aufgewacht</span>
-          </div>
+    <div class="overlay-summary">
+      <p>
+        <strong>Bewertung:</strong>
+        <span id="overlayBewertung">-</span>
+      </p>
 
-          <div class="aufwach-eintrag">
-            <strong>01:20 Uhr</strong>
-            <span>Aufgewacht</span>
-          </div>
+      <p>
+        <strong>Gesamt:</strong>
+        <span id="overlayGesamt">0x aufgewacht</span>
+      </p>
+    </div>
 
-          <div class="aufwach-eintrag">
-            <strong>03:00 Uhr</strong>
-            <span>Aufgewacht</span>
-          </div>
-        </div>
-      </div>
+    <div class="overlay-section">
+      <h3>Ereignisse:</h3>
 
-      <div class="gesamt-box">
-        Gesamt: <strong>3x aufgewacht</strong>
+      <div class="overlay-events" id="overlayEreignisse">
+        <!-- Wird automatisch mit JavaScript gefüllt -->
       </div>
     </div>
+
+    <div class="overlay-section">
+      <h3>Aktive Einstellungen:</h3>
+
+      <div class="overlay-settings">
+        <p>
+          <strong>Licht:</strong>
+          <span id="overlayLicht">-</span>
+        </p>
+
+        <p>
+          <strong>Beruhigungsdauer:</strong>
+          <span id="overlayCalmtime">-</span>
+        </p>
+
+        <p>
+          <strong>Shuffle:</strong>
+          <span id="overlayShuffle">-</span>
+        </p>
+
+        <p>
+          <strong>Bedtime:</strong>
+          <span id="overlayBedtime">-</span>
+        </p>
+      </div>
+    </div>
+
   </div>
+</div>
 
   <nav class="bottom-nav">
     <a class="nav-item" href="home.html">
@@ -192,7 +151,70 @@
     </a>
   </nav>
 
-  <script src="js/statistik.js"></script>
+  <div class="tag-overlay" id="tagOverlay">
+  <div class="tag-overlay-card">
+
+    <button class="tag-overlay-close" id="tagOverlayClose" type="button">
+      ×
+    </button>
+
+    <h2 id="overlayTitel">Details zum Tag</h2>
+
+    <div class="overlay-summary">
+      <p>
+        <strong>Bewertung:</strong>
+        <span id="overlayBewertung">-</span>
+      </p>
+
+      <p>
+        <strong>Gesamt:</strong>
+        <span id="overlayGesamt">0x aufgewacht</span>
+      </p>
+    </div>
+
+    <div class="overlay-section">
+      <h3>Ereignisse:</h3>
+
+      <div class="overlay-events" id="overlayEreignisse">
+        <!-- Wird automatisch gefüllt -->
+      </div>
+    </div>
+
+    <div class="overlay-section">
+      <h3>Aktive Einstellungen:</h3>
+
+      <div class="overlay-settings">
+        <p>
+          <strong>Licht:</strong>
+          <span id="overlayLicht">-</span>
+        </p>
+
+        <p>
+          <strong>Beruhigungsdauer:</strong>
+          <span id="overlayCalmtime">-</span>
+        </p>
+
+        <p>
+          <strong>Shuffle:</strong>
+          <span id="overlayShuffle">-</span>
+        </p>
+
+        <p>
+          <strong>Bedtime:</strong>
+          <span id="overlayBedtime">-</span>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/monatsStatistik.js"></script>
+<script src="js/logout.js"></script>
 
 </body>
 </html>

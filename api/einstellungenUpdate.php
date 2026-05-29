@@ -1,0 +1,78 @@
+<?php
+
+session_start();
+header('Content-Type: application/json');
+
+require_once("../system/config.php");
+
+if (!isset($_SESSION['user_id'])) {
+    http_response_code(401);
+    echo json_encode([
+        "status" => "error",
+        "message" => "Nicht eingeloggt"
+    ]);
+    exit;
+}
+
+try {
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    if (!$data) {
+        throw new Exception("Keine Daten empfangen");
+    }
+
+    $userId = $_SESSION['user_id'];
+
+    // Seriennummer aus der Tabelle devices holen
+    $stmt = $pdo->prepare("SELECT serialnr FROM devices WHERE user_id = ?");
+    $stmt->execute([$userId]);
+    $device = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$device || empty($device['serialnr'])) {
+        throw new Exception("Keine Seriennummer für diesen User gefunden");
+    }
+
+    $serialnr = $device['serialnr'];
+
+    $bedtime = $data["bedtime"] ?? 13;
+    $calmtime = $data["calmtime"] ?? 1;
+    $shuffle = $data["shuffle"] ?? 1;
+    $lightcolour_id = $data["lightcolour_id"] ?? 3;
+
+    $sql = "
+        UPDATE einstellungen
+        SET 
+            bedtime = ?,
+            calmtime = ?,
+            shuffle = ?,
+            lightcolour_id = ?
+        WHERE serialnr = ?
+    ";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        $bedtime,
+        $calmtime,
+        $shuffle,
+        $lightcolour_id,
+        $serialnr
+    ]);
+
+    echo json_encode([
+        "status" => "success",
+        "message" => "Einstellungen gespeichert",
+        "serialnr" => $serialnr,
+        "bedtime" => $bedtime,
+        "calmtime" => $calmtime,
+        "shuffle" => $shuffle,
+        "lightcolour_id" => $lightcolour_id
+    ]);
+
+} catch (Exception $e) {
+    echo json_encode([
+        "status" => "error",
+        "message" => $e->getMessage()
+    ]);
+}
+
+?>

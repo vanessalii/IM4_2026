@@ -34,78 +34,145 @@
 
  <main class="hauptbereich">
 
-  <section class="seitenkopf">
+  <div class="seitenkopf">
     <h2>Personalisierung</h2>
-    <p>Lege fest, was abgespielt wird, wenn dein Kind nachts aufwacht.</p>
-  </section>
+    <p>Lege fest, wie dein SleepySheepy reagieren soll.</p>
+  </div>
 
-  <section class="personalisierung-grid">
+  <div class="personalisierung-grid">
 
-    <article class="personalisierung-karte">
+    <!-- Schlafenszeit -->
+    <section class="personalisierung-karte">
+  <div class="karten-kopf">
+    <div class="kategorie-icon">☾</div>
+    <h3>Schlafenszeit</h3>
+  </div>
+
+  <p class="licht-text">
+    Trage die gewünschte Schlafenszeit ein.
+  </p>
+
+  <div class="zeit-eingabe">
+    <input
+      type="number"
+      id="bedtimeInput"
+      min="0"
+      max="23"
+      step="1"
+      placeholder="z. B. 21"
+    >
+
+    <button type="button" class="zeit-speichern-button" id="bedtimeSaveButton">
+      Speichern
+    </button>
+  </div>
+
+  <p class="status-text">
+    Aktuell ausgewählt: <strong id="bedtimeStatus">-</strong>
+  </p>
+</section>
+
+    <!-- Beruhigungsdauer -->
+    <section class="personalisierung-karte">
       <div class="karten-kopf">
-        <div class="kategorie-icon">♪</div>
-        <h3>Musik</h3>
+        <div class="kategorie-icon">⏱</div>
+        <h3>Beruhigungsdauer</h3>
       </div>
 
       <div class="track-liste">
-        <button class="auswahl-button aktiv" type="button">Sanfte Klaviermusik</button>
-        <button class="auswahl-button" type="button">Naturgeräusche</button>
-        <button class="auswahl-button" type="button">Wiegenlied</button>
-      </div>
+  <button class="auswahl-button calmtime-button" data-calmtime="5" type="button">
+    5 Minuten
+  </button>
 
-      <p class="status-text">Aktuell ausgewählt: <strong>Sanfte Klaviermusik</strong></p>
-    </article>
+  <button class="auswahl-button calmtime-button" data-calmtime="10" type="button">
+    10 Minuten
+  </button>
 
-    <article class="personalisierung-karte">
-      <div class="karten-kopf">
-        <div class="kategorie-icon">☾</div>
-        <h3>Hörspiel</h3>
-      </div>
+  <button class="auswahl-button calmtime-button" data-calmtime="15" type="button">
+    15 Minuten
+  </button>
 
-      <div class="track-liste">
-        <button class="auswahl-button aktiv" type="button">Der kleine Prinz</button>
-        <button class="auswahl-button" type="button">Gute-Nacht-Geschichten</button>
-        <button class="auswahl-button" type="button">Traumreise</button>
-      </div>
+  <button class="auswahl-button calmtime-button" data-calmtime="20" type="button">
+    20 Minuten
+  </button>
+</div>
 
-      <p class="status-text">Aktuell ausgewählt: <strong>Der kleine Prinz</strong></p>
-    </article>
-
-    <article class="personalisierung-karte">
-      <div class="karten-kopf">
-        <div class="kategorie-icon">●</div>
-        <h3>Sprachmemos</h3>
-      </div>
-
-      <div class="track-liste">
-        <button class="auswahl-button aktiv" type="button">Mamas Stimme</button>
-        <button class="auswahl-button" type="button">Papas Gute-Nacht-Lied</button>
-        <button class="auswahl-button" type="button">Eigene Aufnahme</button>
-      </div>
-
-      <p class="status-text">Aktuell ausgewählt: <strong>Mamas Stimme</strong></p>
-    </article>
-
-    <article class="personalisierung-karte">
-      <div class="karten-kopf">
-        <div class="kategorie-icon">✦</div>
-        <h3>Licht</h3>
-      </div>
-
-      <p class="licht-text">
-        Wähle die Lichtfarbe, die beim Aufwachen aktiviert werden soll.
+      <p class="status-text">
+        Aktuell ausgewählt: <strong id="calmtimeStatus">5 Minute</strong>
       </p>
+    </section>
 
-      <div class="licht-auswahl">
-        <button class="licht-farbe licht-blau aktiv" type="button" data-farbe="Blau" aria-label="Blaues Licht"></button>
-        <button class="licht-farbe licht-gelb" type="button" data-farbe="Gelb" aria-label="Gelbes Licht"></button>
-        <button class="licht-farbe licht-rosa" type="button" data-farbe="Rosa" aria-label="Rosa Licht"></button>
+    <!-- Shuffle -->
+    <section class="personalisierung-karte">
+      <div class="karten-kopf">
+        <div class="kategorie-icon">↻</div>
+        <h3>Zufallsmodus</h3>
       </div>
 
-      <p class="status-text">Aktuelle Lichtfarbe: <strong>Blau</strong></p>
-    </article>
+      <div class="track-liste">
+        <button class="auswahl-button shuffle-button" data-shuffle="1">Ein</button>
+        <button class="auswahl-button shuffle-button" data-shuffle="0">Aus</button>
+      </div>
 
-  </section>
+      <p class="status-text">
+        Aktuell ausgewählt: <strong id="shuffleStatus">Ein</strong>
+      </p>
+    </section>
+
+    <!-- Licht -->
+    <section class="personalisierung-karte">
+  <div class="karten-kopf">
+    <div class="kategorie-icon">✦</div>
+    <h3>Licht</h3>
+  </div>
+
+  <p class="licht-text">
+    Wähle die Lichtfarbe, die beim Aufwachen aktiviert werden soll.
+  </p>
+
+  <div class="licht-auswahl">
+    <button
+      class="licht-farbe licht-yellow"
+      data-lightcolour="1"
+      data-farbe="Gelb"
+      type="button">
+    </button>
+
+    <button
+      class="licht-farbe licht-green"
+      data-lightcolour="2"
+      data-farbe="Grün"
+      type="button">
+    </button>
+
+    <button
+      class="licht-farbe licht-violet"
+      data-lightcolour="3"
+      data-farbe="Violett"
+      type="button">
+    </button>
+
+    <button
+      class="licht-farbe licht-pink"
+      data-lightcolour="4"
+      data-farbe="Pink"
+      type="button">
+    </button>
+
+    <button
+      class="licht-farbe licht-blue"
+      data-lightcolour="5"
+      data-farbe="Blau"
+      type="button">
+    </button>
+  </div>
+
+  <p class="status-text">
+    Aktuelle Lichtfarbe: <strong id="lichtStatus">Violett</strong>
+  </p>
+</section>
+
+  </div>
 
 </main>
 
@@ -142,6 +209,10 @@
     </a>
 
   </nav>
+
+<script src="js/personalisierung.js"></script>
+
+<script src="js/logout.js"></script>
 
 </body>
 </html>

@@ -24,9 +24,9 @@
       </div>
     </div>
 
-    <button class="abmelden-button">
-      Abmelden
-    </button>
+    <button class="abmelden-button" id="logoutBtn" type="button">
+  Abmelden
+</button>
 
   </header>
 
@@ -43,129 +43,35 @@
   <!-- Letzte Nacht -->
 
   <section class="home-karte">
+  <h2>Letzte Nacht</h2>
 
-    <h2>Letzte Nacht</h2>
+  <div class="nacht-inhalt">
 
-    <div class="nacht-inhalt">
+    <div class="einstellung-box">
+  <h3 id="homeSound">Hörspiel</h3>
+  <span id="homeLight">Licht wird geladen...</span>
+</div>
 
-      <div class="einstellung-box">
-
-        <h3>Hörspiel</h3>
-
-        <span>Blaues Licht</span>
-
-      </div>
-
-      <div class="aufwach-liste">
-
-        <div class="aufwach-eintrag">
-          <strong>23:15 Uhr</strong>
-          <span>Aufgewacht</span>
-        </div>
-
-        <div class="aufwach-eintrag">
-          <strong>01:20 Uhr</strong>
-          <span>Aufgewacht</span>
-        </div>
-
-        <div class="aufwach-eintrag">
-          <strong>03:00 Uhr</strong>
-          <span>Aufgewacht</span>
-        </div>
-
-      </div>
-
+    <div class="aufwach-liste" id="aufwachListe">
+      <!-- Hier werden die Aufwachzeiten automatisch eingefügt -->
     </div>
 
-    <div class="gesamt-box">
-      Gesamt: <strong>3x aufgewacht</strong>
-    </div>
+  </div>
 
-  </section>
+  <div class="gesamt-box" id="gesamtAufgewacht">
+    Gesamt: 0x aufgewacht
+  </div>
+</section>
 
   <!-- Diese Woche -->
 
   <section class="home-karte">
+  <h2>Diese Woche</h2>
 
-    <h2>Diese Woche</h2>
-
-    <div class="diagramm-wrapper">
-
-      <div class="y-achse">
-        <span>8</span>
-        <span>7</span>
-        <span>6</span>
-        <span>5</span>
-        <span>4</span>
-        <span>3</span>
-        <span>2</span>
-        <span>1</span>
-        <span>0</span>
-      </div>
-
-      <div class="balken-diagramm">
-
-        <div
-          class="balken"
-          style="height: 12.5%;"
-          data-wert="1x aufgewacht"
-        >
-          <span>Mo</span>
-        </div>
-
-        <div
-          class="balken"
-          style="height: 37.5%;"
-          data-wert="3x aufgewacht"
-        >
-          <span>Di</span>
-        </div>
-
-        <div
-          class="balken"
-          style="height: 25%;"
-          data-wert="2x aufgewacht"
-        >
-          <span>Mi</span>
-        </div>
-
-        <div
-          class="balken"
-          style="height: 12.5%;"
-          data-wert="1x aufgewacht"
-        >
-          <span>Do</span>
-        </div>
-
-        <div
-          class="balken"
-          style="height: 50%;"
-          data-wert="4x aufgewacht"
-        >
-          <span>Fr</span>
-        </div>
-
-        <div
-          class="balken"
-          style="height: 25%;"
-          data-wert="2x aufgewacht"
-        >
-          <span>Sa</span>
-        </div>
-
-        <div
-          class="balken"
-          style="height: 37.5%;"
-          data-wert="3x aufgewacht"
-        >
-          <span>So</span>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
+  <div class="chart-container">
+    <canvas id="wochenChart"></canvas>
+  </div>
+</section>
 
 </main>
 
@@ -238,6 +144,14 @@
     </a>
 
   </nav>
+
+<script src="js/letzteNacht.js"></script>
+
+<script src="js/homeEinstellungen.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/wochenChart.js"></script>
+<script src="js/logout.js"></script>
 
 </body>
 </html>

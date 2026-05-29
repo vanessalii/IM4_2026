@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   createForm.classList.remove("is-visible");
-createForm.style.display = "none";
+  createForm.style.display = "none";
 
   function resetForm() {
     form.reset();
@@ -115,43 +115,117 @@ createForm.style.display = "none";
     return "💭";
   }
 
-  function createBlogCard(title, category, content, date) {
+  function escapeHtml(text) {
+    return String(text)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function createBlogCard(title, category, content, date, author, id) {
     const newArticle = document.createElement("article");
     newArticle.classList.add("blog-card", "blog-card-own");
     newArticle.dataset.category = category;
+
+    if (id) {
+      newArticle.dataset.id = id;
+    }
 
     newArticle.innerHTML = `
       <div class="blog-card-icon">${getPostIcon(category)}</div>
 
       <div class="blog-card-content">
         <div class="blog-card-top">
-          <span class="blog-tag">${category}</span>
+          <span class="blog-tag">${escapeHtml(category)}</span>
 
           <button type="button" class="blog-delete-button">
             Löschen
           </button>
         </div>
 
-        <h3>${title}</h3>
+        <h3>${escapeHtml(title)}</h3>
 
-        <p>${content}</p>
+        <p>${escapeHtml(content)}</p>
 
         <div class="blog-meta">
           <div class="blog-meta-left">
             <span>◷ ${date}</span>
             <span>•</span>
-            <span>Du</span>
-          </div>
-
-          <div class="blog-meta-right">
-            <span>♡ 0</span>
-            <span>☁ 0</span>
+            <span>${escapeHtml(author)}</span>
           </div>
         </div>
       </div>
     `;
 
     return newArticle;
+  }
+
+  async function ladeBlogbeitraege() {
+    try {
+      const response = await fetch("/api/blogGet.php", {
+        credentials: "include"
+      });
+
+      const result = await response.json();
+      console.log("Blogbeiträge:", result);
+
+      if (result.status !== "success") {
+        console.error(result.message);
+        return;
+      }
+
+      blogPosts.innerHTML = "";
+
+      result.posts.forEach((post) => {
+        const date = new Date(post.created_at).toLocaleDateString("de-CH", {
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        });
+
+        const author =
+          `${post.Firstname || ""} ${post.Lastname || ""}`.trim() || "Unbekannt";
+
+        const article = createBlogCard(
+          post.title,
+          post.category,
+          post.content,
+          date,
+          author,
+          post.id
+        );
+
+        blogPosts.appendChild(article);
+      });
+
+      wendeAktivenFilterAn();
+
+    } catch (error) {
+      console.error("Fehler beim Laden der Blogbeiträge:", error);
+    }
+  }
+
+  function wendeAktivenFilterAn() {
+    const activeFilter = document.querySelector(".blog-filter.is-active");
+
+    if (!activeFilter) {
+      return;
+    }
+
+    const selectedCategory = activeFilter.dataset.category;
+    const allCards = document.querySelectorAll(".blog-card");
+
+    allCards.forEach((card) => {
+      const cardCategory = card.dataset.category;
+
+      if (selectedCategory === "Alle" || selectedCategory === cardCategory) {
+        card.style.display = "";
+      } else {
+        card.style.display = "none";
+      }
+    });
   }
 
   customSelectOptions[0].classList.add("is-selected");
@@ -188,7 +262,7 @@ createForm.style.display = "none";
     closeCreateFormAndGoBack();
   });
 
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const title = titleInput.value.trim();
@@ -200,61 +274,94 @@ createForm.style.display = "none";
       return;
     }
 
-    const today = new Date();
-    const formattedDate = today.toLocaleDateString("de-CH", {
-      day: "numeric",
-      month: "long",
-      year: "numeric"
-    });
-
-    const newArticle = createBlogCard(title, category, content, formattedDate);
-
-    blogPosts.prepend(newArticle);
-
-    closeCreateFormOnly();
-
-    setTimeout(() => {
-      newArticle.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
+    try {
+      const response = await fetch("/api/blogCreate.php", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          title: title,
+          category: category,
+          content: content
+        })
       });
-    }, 250);
+
+      const result = await response.json();
+      console.log("Blog speichern:", result);
+
+      if (result.status !== "success") {
+        alert(result.message || "Beitrag konnte nicht gespeichert werden.");
+        return;
+      }
+
+      closeCreateFormOnly();
+      await ladeBlogbeitraege();
+
+    } catch (error) {
+      console.error("Fehler beim Speichern des Beitrags:", error);
+      alert("Beim Speichern ist ein Fehler passiert.");
+    }
   });
 
-  blogPosts.addEventListener("click", (event) => {
+  blogPosts.addEventListener("click", async (event) => {
     if (!event.target.classList.contains("blog-delete-button")) {
       return;
     }
 
     const article = event.target.closest(".blog-card");
+    const postId = article.dataset.id;
+
+    if (!postId) {
+      alert("Dieser Beitrag kann nicht gelöscht werden, weil keine ID gefunden wurde.");
+      return;
+    }
 
     const shouldDelete = confirm("Möchtest du diesen Beitrag wirklich löschen?");
 
-    if (shouldDelete) {
+    if (!shouldDelete) {
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/blogDelete.php", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          id: postId
+        })
+      });
+
+      const result = await response.json();
+      console.log("Blog löschen:", result);
+
+      if (result.status !== "success") {
+        alert(result.message || "Beitrag konnte nicht gelöscht werden.");
+        return;
+      }
+
       article.remove();
+
+    } catch (error) {
+      console.error("Fehler beim Löschen:", error);
+      alert("Beim Löschen ist ein Fehler passiert.");
     }
   });
 
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      const selectedCategory = button.dataset.category;
-      const allCards = document.querySelectorAll(".blog-card");
-
       filterButtons.forEach((filterButton) => {
         filterButton.classList.remove("is-active");
       });
 
       button.classList.add("is-active");
-
-      allCards.forEach((card) => {
-        const cardCategory = card.dataset.category;
-
-        if (selectedCategory === "Alle" || selectedCategory === cardCategory) {
-          card.style.display = "";
-        } else {
-          card.style.display = "none";
-        }
-      });
+      wendeAktivenFilterAn();
     });
   });
+
+  ladeBlogbeitraege();
 });

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Gerät verbinden</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="home-seite">
+
+  <header class="topbar">
+    <div class="logo-bereich">
+      <div class="logo">🐑</div>
+
+      <div>
+        <h1>SleepySheepy</h1>
+        <p>Schlaf-Tracker für Kinder</p>
+      </div>
+    </div>
+
+    <button class="abmelden-button" id="logoutBtn" type="button">
+      Abmelden
+    </button>
+  </header>
+
+  <main class="hauptbereich">
+
+    <section class="home-karte geraet-card">
+      <div class="seitenkopf">
+        <h2>Schaf verbinden</h2>
+        <p>Trage hier die Seriennummer deines Plüschtiers ein.</p>
+      </div>
+
+      <form id="geraetForm" class="geraet-form">
+        <label for="serialnr">Seriennummer</label>
+
+        <input
+          type="text"
+          id="serialnr"
+          name="serialnr"
+          placeholder="z. B. SleShe1"
+          required
+        >
+
+        <button type="submit" class="profil-button">
+          Speichern
+        </button>
+      </form>
+
+      <p class="status-text">
+        Aktuell verbunden: <strong id="aktuelleSerialnr">Wird geladen...</strong>
+      </p>
+    </section>
+
+  </main>
+
+  <script src="/js/auth.js"></script>
+  <script src="/js/logout.js"></script>
+  <script src="/js/geraet.js"></script>
+</body>
+</html>
