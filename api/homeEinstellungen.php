@@ -17,7 +17,7 @@ if (!isset($_SESSION['user_id'])) {
 try {
     $userId = $_SESSION['user_id'];
 
-    // Seriennummer aus devices holen
+    // Seriennummer des eingeloggten Users aus devices holen
     $stmt = $pdo->prepare("SELECT serialnr FROM devices WHERE user_id = ?");
     $stmt->execute([$userId]);
     $device = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -28,7 +28,7 @@ try {
 
     $serialnr = $device['serialnr'];
 
-    // Einstellungen + Lichtfarbe holen
+    // Einstellungen inkl. Lichtfarbe und Sound holen
     $sql = "
         SELECT 
             e.serialnr,
@@ -36,12 +36,19 @@ try {
             e.calmtime,
             e.shuffle,
             e.lightcolour_id,
-            lc.name AS lightcolour_name,
-            lc.colour AS lightcolour_hex
+            e.soundtype_id,
+
+            lc.name AS light_name,
+            lc.colour AS light_hex,
+
+            st.typename AS soundtype
         FROM einstellungen e
-        JOIN lightcolour lc
+        LEFT JOIN lightcolour lc
             ON e.lightcolour_id = lc.id
+        LEFT JOIN soundtype st
+            ON e.soundtype_id = st.id
         WHERE e.serialnr = ?
+        LIMIT 1
     ";
 
     $stmt = $pdo->prepare($sql);

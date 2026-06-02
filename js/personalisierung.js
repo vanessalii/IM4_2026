@@ -2,7 +2,8 @@ let aktuelleEinstellungen = {
   bedtime: 13,
   calmtime: 5,
   shuffle: 1,
-  lightcolour_id: 3
+  lightcolour_id: 5,
+  soundtype_id: 7
 };
 
 async function ladeEinstellungen() {
@@ -16,6 +17,7 @@ async function ladeEinstellungen() {
 
     if (result.status !== "success") {
       console.error(result.message);
+      aktualisiereAnzeige();
       return;
     }
 
@@ -26,10 +28,15 @@ async function ladeEinstellungen() {
     aktuelleEinstellungen.shuffle = Number(daten.shuffle);
     aktuelleEinstellungen.lightcolour_id = Number(daten.lightcolour_id);
 
+    if (daten.soundtype_id !== undefined && daten.soundtype_id !== null) {
+      aktuelleEinstellungen.soundtype_id = Number(daten.soundtype_id);
+    }
+
     aktualisiereAnzeige();
 
   } catch (error) {
     console.error("Fehler beim Laden der Einstellungen:", error);
+    aktualisiereAnzeige();
   }
 }
 
@@ -48,9 +55,9 @@ async function speichereEinstellungen() {
     console.log("Gespeichert:", result);
 
     if (result.status !== "success") {
-  console.error("Fehler vom Server:", result);
-  alert(result.message || "Einstellungen konnten nicht gespeichert werden.");
-}
+      alert(result.message || "Einstellungen konnten nicht gespeichert werden.");
+      return;
+    }
 
   } catch (error) {
     console.error("Fehler beim Speichern:", error);
@@ -59,26 +66,64 @@ async function speichereEinstellungen() {
 }
 
 function aktualisiereAnzeige() {
-  document.getElementById("bedtimeStatus").textContent =
-  `${aktuelleEinstellungen.bedtime}:00 Uhr`;
+  const bedtimeStatus = document.getElementById("bedtimeStatus");
+  const bedtimeInput = document.getElementById("bedtimeInput");
 
-if (bedtimeInput) {
-  bedtimeInput.value = aktuelleEinstellungen.bedtime;
-}
-  document.getElementById("calmtimeStatus").textContent = `${aktuelleEinstellungen.calmtime} Minute${aktuelleEinstellungen.calmtime === 1 ? "" : "n"}`;
-  document.getElementById("shuffleStatus").textContent = aktuelleEinstellungen.shuffle === 1 ? "Ein" : "Aus";
+  if (bedtimeStatus) {
+    bedtimeStatus.textContent = `${aktuelleEinstellungen.bedtime}:00 Uhr`;
+  }
 
-const farbNamen = {
-  1: "Gelb",
-  2: "Grün",
-  3: "Violett",
-  4: "Pink",
-  5: "Blau"
-};
+  if (bedtimeInput) {
+    bedtimeInput.value = aktuelleEinstellungen.bedtime;
+  }
 
-  document.getElementById("lichtStatus").textContent = farbNamen[aktuelleEinstellungen.lightcolour_id];
+  const calmtimeStatus = document.getElementById("calmtimeStatus");
 
+  if (calmtimeStatus) {
+    calmtimeStatus.textContent =
+      `${aktuelleEinstellungen.calmtime} Minuten`;
+  }
 
+  const shuffleStatus = document.getElementById("shuffleStatus");
+
+  if (shuffleStatus) {
+    shuffleStatus.textContent =
+      aktuelleEinstellungen.shuffle === 1 ? "Ein" : "Aus";
+  }
+
+  const farbNamen = {
+    1: "Gelb",
+    2: "Grün",
+    3: "Violett",
+    4: "Pink",
+    5: "Blau"
+  };
+
+  const lichtStatus = document.getElementById("lichtStatus");
+
+  if (lichtStatus) {
+    lichtStatus.textContent =
+      farbNamen[aktuelleEinstellungen.lightcolour_id] || "-";
+  }
+
+  const soundNamen = {
+    1: "voice_1",
+    2: "voice_2",
+    3: "voice_2",
+    4: "story_1",
+    5: "story_2",
+    6: "story_3",
+    7: "music_1",
+    8: "music_2",
+    9: "music_3"
+  };
+
+  const soundtypeStatus = document.getElementById("soundtypeStatus");
+
+  if (soundtypeStatus) {
+    soundtypeStatus.textContent =
+      soundNamen[aktuelleEinstellungen.soundtype_id] || "-";
+  }
 
   document.querySelectorAll(".calmtime-button").forEach((button) => {
     button.classList.toggle(
@@ -98,6 +143,13 @@ const farbNamen = {
     button.classList.toggle(
       "aktiv",
       Number(button.dataset.lightcolour) === aktuelleEinstellungen.lightcolour_id
+    );
+  });
+
+  document.querySelectorAll(".soundtype-button").forEach((button) => {
+    button.classList.toggle(
+      "aktiv",
+      Number(button.dataset.soundtype) === aktuelleEinstellungen.soundtype_id
     );
   });
 }
@@ -124,6 +176,7 @@ if (bedtimeSaveButton && bedtimeInput) {
 document.querySelectorAll(".calmtime-button").forEach((button) => {
   button.addEventListener("click", () => {
     aktuelleEinstellungen.calmtime = Number(button.dataset.calmtime);
+
     aktualisiereAnzeige();
     speichereEinstellungen();
   });
@@ -132,6 +185,7 @@ document.querySelectorAll(".calmtime-button").forEach((button) => {
 document.querySelectorAll(".shuffle-button").forEach((button) => {
   button.addEventListener("click", () => {
     aktuelleEinstellungen.shuffle = Number(button.dataset.shuffle);
+
     aktualisiereAnzeige();
     speichereEinstellungen();
   });
@@ -140,6 +194,16 @@ document.querySelectorAll(".shuffle-button").forEach((button) => {
 document.querySelectorAll(".licht-farbe").forEach((button) => {
   button.addEventListener("click", () => {
     aktuelleEinstellungen.lightcolour_id = Number(button.dataset.lightcolour);
+
+    aktualisiereAnzeige();
+    speichereEinstellungen();
+  });
+});
+
+document.querySelectorAll(".soundtype-button").forEach((button) => {
+  button.addEventListener("click", () => {
+    aktuelleEinstellungen.soundtype_id = Number(button.dataset.soundtype);
+
     aktualisiereAnzeige();
     speichereEinstellungen();
   });

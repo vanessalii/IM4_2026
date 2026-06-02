@@ -13,27 +13,54 @@ async function ladeHomeEinstellungen() {
     }
 
     const daten = result.daten;
+
+    const soundElement = document.getElementById("homeSound");
     const lightElement = document.getElementById("homeLight");
 
-    if (!lightElement) {
-      console.error("Element #homeLight wurde nicht gefunden.");
+    if (!soundElement || !lightElement) {
+      console.error("Element #homeSound oder #homeLight wurde nicht gefunden.");
       return;
     }
 
-    const farbNamen = {
-      yellow: "Gelbes Licht",
-      green: "Grünes Licht",
-      violet: "Violettes Licht",
-      pink: "Pinkes Licht",
-      blue: "Blaues Licht"
-    };
+    soundElement.textContent = uebersetzeSound(daten.soundtype);
 
-    const lightName = daten.lightcolour_name;
-    lightElement.textContent = farbNamen[lightName] || `${lightName} Licht`;
+    const lichtText = `${uebersetzeLicht(daten.light_name)}es Licht`;
+    lightElement.textContent = lichtText;
+
+    if (daten.light_hex) {
+      lightElement.style.color = `#${daten.light_hex}`;
+    }
 
   } catch (error) {
     console.error("Fehler beim Laden der Home-Einstellungen:", error);
   }
+}
+
+function uebersetzeSound(soundtype) {
+  const soundNamen = {
+    voice_1: "voice 1",
+    voice_2: "voice 2",
+    story_1: "story 1",
+    story_2: "story 2",
+    story_3: "story 3",
+    music_1: "music 1",
+    music_2: "music 2",
+    music_3: "music 3"
+  };
+
+  return soundNamen[soundtype] || soundtype || "Kein Sound";
+}
+
+function uebersetzeLicht(lightName) {
+  const lichtNamen = {
+    yellow: "Gelb",
+    green: "Grün",
+    violet: "Violett",
+    pink: "Pink",
+    blue: "Blau"
+  };
+
+  return lichtNamen[lightName] || lightName || "Unbekannt";
 }
 
 ladeHomeEinstellungen();

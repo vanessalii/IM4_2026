@@ -35,28 +35,31 @@ try {
     $serialnr = $device['serialnr'];
 
     $bedtime = $data["bedtime"] ?? 13;
-    $calmtime = $data["calmtime"] ?? 1;
-    $shuffle = $data["shuffle"] ?? 1;
-    $lightcolour_id = $data["lightcolour_id"] ?? 3;
+$calmtime = $data["calmtime"] ?? 5;
+$shuffle = $data["shuffle"] ?? 1;
+$lightcolour_id = $data["lightcolour_id"] ?? 5;
+$soundtype_id = $data["soundtype_id"] ?? 7;
 
     $sql = "
-        UPDATE einstellungen
-        SET 
-            bedtime = ?,
-            calmtime = ?,
-            shuffle = ?,
-            lightcolour_id = ?
-        WHERE serialnr = ?
-    ";
+    UPDATE einstellungen
+    SET 
+        bedtime = ?,
+        calmtime = ?,
+        shuffle = ?,
+        lightcolour_id = ?,
+        soundtype_id = ?
+    WHERE serialnr = ?
+";
 
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-        $bedtime,
-        $calmtime,
-        $shuffle,
-        $lightcolour_id,
-        $serialnr
-    ]);
+$stmt = $pdo->prepare($sql);
+$stmt->execute([
+    $bedtime,
+    $calmtime,
+    $shuffle,
+    $lightcolour_id,
+    $soundtype_id,
+    $serialnr
+]);
 
     echo json_encode([
         "status" => "success",
@@ -65,7 +68,8 @@ try {
         "bedtime" => $bedtime,
         "calmtime" => $calmtime,
         "shuffle" => $shuffle,
-        "lightcolour_id" => $lightcolour_id
+        "lightcolour_id" => $lightcolour_id,
+        "soundtype_id" => $soundtype_id
     ]);
 
 } catch (Exception $e) {

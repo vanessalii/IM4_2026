@@ -30,13 +30,14 @@ try {
 
     $stmt = $pdo->prepare("
         SELECT 
-            serialnr,
-            bedtime,
-            calmtime,
-            shuffle,
-            lightcolour_id
-        FROM einstellungen
-        WHERE serialnr = ?
+    serialnr,
+    bedtime,
+    calmtime,
+    shuffle,
+    lightcolour_id,
+    soundtype_id
+FROM einstellungen
+WHERE serialnr = ?
     ");
 
     $stmt->execute([$serialnr]);
