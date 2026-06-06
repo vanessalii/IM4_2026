@@ -6,6 +6,8 @@ let aktuelleEinstellungen = {
   soundtype_id: 7
 };
 
+let hatUngespeicherteAenderungen = false;
+
 async function ladeEinstellungen() {
   try {
     const response = await fetch("/api/einstellungenGet.php", {
@@ -32,7 +34,9 @@ async function ladeEinstellungen() {
       aktuelleEinstellungen.soundtype_id = Number(daten.soundtype_id);
     }
 
+    hatUngespeicherteAenderungen = false;
     aktualisiereAnzeige();
+    aktualisiereSpeicherStatus();
 
   } catch (error) {
     console.error("Fehler beim Laden der Einstellungen:", error);
@@ -41,7 +45,19 @@ async function ladeEinstellungen() {
 }
 
 async function speichereEinstellungen() {
+  const speichernStatus = document.getElementById("speichernStatus");
+  const speichernButton = document.getElementById("einstellungenSpeichernButton");
+
   try {
+    if (speichernStatus) {
+      speichernStatus.textContent = "Einstellungen werden gespeichert...";
+    }
+
+    if (speichernButton) {
+      speichernButton.disabled = true;
+      speichernButton.textContent = "Speichern...";
+    }
+
     const response = await fetch("/api/einstellungenUpdate.php", {
       method: "POST",
       credentials: "include",
@@ -55,13 +71,45 @@ async function speichereEinstellungen() {
     console.log("Gespeichert:", result);
 
     if (result.status !== "success") {
-      alert(result.message || "Einstellungen konnten nicht gespeichert werden.");
+      if (speichernStatus) {
+        speichernStatus.textContent = result.message || "Einstellungen konnten nicht gespeichert werden.";
+      }
       return;
     }
 
+    hatUngespeicherteAenderungen = false;
+    aktualisiereSpeicherStatus();
+
   } catch (error) {
     console.error("Fehler beim Speichern:", error);
-    alert("Fehler beim Speichern der Einstellungen.");
+
+    if (speichernStatus) {
+      speichernStatus.textContent = "Fehler beim Speichern der Einstellungen.";
+    }
+  } finally {
+    if (speichernButton) {
+      speichernButton.disabled = false;
+      speichernButton.textContent = "Einstellungen speichern";
+    }
+  }
+}
+
+function markiereAlsUngespeichert() {
+  hatUngespeicherteAenderungen = true;
+  aktualisiereSpeicherStatus();
+}
+
+function aktualisiereSpeicherStatus() {
+  const speichernStatus = document.getElementById("speichernStatus");
+
+  if (!speichernStatus) {
+    return;
+  }
+
+  if (hatUngespeicherteAenderungen) {
+    speichernStatus.textContent = "Du hast ungespeicherte Änderungen.";
+  } else {
+    speichernStatus.textContent = "Alle Einstellungen sind gespeichert.";
   }
 }
 
@@ -80,8 +128,7 @@ function aktualisiereAnzeige() {
   const calmtimeStatus = document.getElementById("calmtimeStatus");
 
   if (calmtimeStatus) {
-    calmtimeStatus.textContent =
-      `${aktuelleEinstellungen.calmtime} Minuten`;
+    calmtimeStatus.textContent = `${aktuelleEinstellungen.calmtime} Minuten`;
   }
 
   const shuffleStatus = document.getElementById("shuffleStatus");
@@ -167,46 +214,49 @@ if (bedtimeSaveButton && bedtimeInput) {
     }
 
     aktuelleEinstellungen.bedtime = wert;
-
     aktualisiereAnzeige();
-    speichereEinstellungen();
+    markiereAlsUngespeichert();
   });
 }
 
 document.querySelectorAll(".calmtime-button").forEach((button) => {
   button.addEventListener("click", () => {
     aktuelleEinstellungen.calmtime = Number(button.dataset.calmtime);
-
     aktualisiereAnzeige();
-    speichereEinstellungen();
+    markiereAlsUngespeichert();
   });
 });
 
 document.querySelectorAll(".shuffle-button").forEach((button) => {
   button.addEventListener("click", () => {
     aktuelleEinstellungen.shuffle = Number(button.dataset.shuffle);
-
     aktualisiereAnzeige();
-    speichereEinstellungen();
+    markiereAlsUngespeichert();
   });
 });
 
 document.querySelectorAll(".licht-farbe").forEach((button) => {
   button.addEventListener("click", () => {
     aktuelleEinstellungen.lightcolour_id = Number(button.dataset.lightcolour);
-
     aktualisiereAnzeige();
-    speichereEinstellungen();
+    markiereAlsUngespeichert();
   });
 });
 
 document.querySelectorAll(".soundtype-button").forEach((button) => {
   button.addEventListener("click", () => {
     aktuelleEinstellungen.soundtype_id = Number(button.dataset.soundtype);
-
     aktualisiereAnzeige();
-    speichereEinstellungen();
+    markiereAlsUngespeichert();
   });
 });
+
+const speichernButton = document.getElementById("einstellungenSpeichernButton");
+
+if (speichernButton) {
+  speichernButton.addEventListener("click", () => {
+    speichereEinstellungen();
+  });
+}
 
 ladeEinstellungen();

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body class="home-seite">
+<body class="home-seite statistik-seite">
 
   <header class="topbar">
     <div class="logo-bereich">
@@ -21,108 +21,108 @@
       </div>
     </div>
 
-    <button class="abmelden-button">Abmelden</button>
+    <button class="abmelden-button" id="logoutBtn" type="button">
+      Abmelden
+    </button>
   </header>
 
   <main class="hauptbereich">
 
     <div class="statistik-kopf">
-  <div>
-    <h2>Statistik</h2>
-    <p>Monatsübersicht zum Schlafverhalten deines Kindes</p>
-  </div>
+      <div>
+        <h2>Statistik</h2>
+        <p>Monatsübersicht zum Schlafverhalten deines Kindes</p>
+      </div>
 
-  <div class="monatswechsel">
-    <button type="button" id="monatZurueck">‹</button>
-    <span id="aktuellerMonat">Mai 2026</span>
-    <button type="button" id="monatWeiter">›</button>
-  </div>
-</div>
+      <div class="monatswechsel">
+        <button type="button" id="monatZurueck">‹</button>
+        <span id="aktuellerMonat">Mai 2026</span>
+        <button type="button" id="monatWeiter">›</button>
+      </div>
+    </div>
 
-<section class="home-karte">
-  <h2>Durchschnitt im Monat</h2>
+    <section class="home-karte">
+      <h2>Durchschnitt im Monat</h2>
 
-  <div class="durchschnitt-box">
-    <strong id="monatsDurchschnitt">0x</strong>
-    <span>durchschnittlich pro Nacht aufgewacht</span>
-  </div>
-</section>
+      <div class="durchschnitt-box">
+        <strong id="monatsDurchschnitt">0x</strong>
+        <span>durchschnittlich pro Nacht aufgewacht</span>
+      </div>
+    </section>
 
-  <section class="home-karte">
-  <h2>Wie hat mein Kind diesen Monat geschlafen?</h2>
+    <section class="home-karte">
+      <h2>Wie hat mein Kind diesen Monat geschlafen?</h2>
 
-  <div class="schlaf-legende">
-    <span><i class="punkt hervorragend"></i> Hervorragend</span>
-    <span><i class="punkt gut"></i> Gut</span>
-    <span><i class="punkt okay"></i> Okay</span>
-    <span><i class="punkt schlecht"></i> Schlecht</span>
-  </div>
+      <div class="schlaf-legende">
+        <span><i class="punkt hervorragend"></i> Hervorragend</span>
+        <span><i class="punkt gut"></i> Gut</span>
+        <span><i class="punkt okay"></i> Okay</span>
+        <span><i class="punkt schlecht"></i> Schlecht</span>
+      </div>
 
-  <div class="schlaf-kalender" id="monatsKalender">
-    <!-- Wird automatisch mit JavaScript gefüllt -->
-  </div>
-</section>
+      <div class="schlaf-kalender" id="monatsKalender">
+        <!-- Wird automatisch mit JavaScript gefüllt -->
+      </div>
+    </section>
 
   </main>
 
+  <!-- Tages-Overlay -->
   <div class="tag-overlay" id="tagOverlay">
-  <div class="tag-overlay-card">
+    <div class="tag-overlay-card">
 
-    <button class="tag-overlay-close" id="tagOverlayClose" type="button">
-      ×
-    </button>
+      <button class="tag-overlay-close" id="tagOverlayClose" type="button">
+        ×
+      </button>
 
-    <h2 id="overlayTitel">Details zum Tag</h2>
+      <h2 id="overlayTitel">Details zum Tag</h2>
 
-    <div class="overlay-summary">
-      <p>
-        <strong>Bewertung:</strong>
-        <span id="overlayBewertung">-</span>
-      </p>
-
-      <p>
-        <strong>Gesamt:</strong>
-        <span id="overlayGesamt">0x aufgewacht</span>
-      </p>
-    </div>
-
-    <div class="overlay-section">
-      <h3>Ereignisse:</h3>
-
-      <div class="overlay-events" id="overlayEreignisse">
-        <!-- Wird automatisch mit JavaScript gefüllt -->
-      </div>
-    </div>
-
-    <div class="overlay-section">
-      <h3>Aktive Einstellungen:</h3>
-
-      <div class="overlay-settings">
+      <div class="overlay-summary">
         <p>
-          <strong>Licht:</strong>
-          <span id="overlayLicht">-</span>
+          <strong>Bewertung:</strong>
+          <span id="overlayBewertung">-</span>
         </p>
 
         <p>
-          <strong>Beruhigungsdauer:</strong>
-          <span id="overlayCalmtime">-</span>
-        </p>
-
-        <p>
-          <strong>Shuffle:</strong>
-          <span id="overlayShuffle">-</span>
-        </p>
-
-        <p>
-          <strong>Bedtime:</strong>
-          <span id="overlayBedtime">-</span>
+          <strong>Gesamt:</strong>
+          <span id="overlayGesamt">0x aufgewacht</span>
         </p>
       </div>
-    </div>
 
+      <div class="overlay-section">
+        <h3>Ereignisse:</h3>
+
+        <div class="overlay-events" id="overlayEreignisse">
+          <!-- Wird automatisch mit JavaScript gefüllt -->
+        </div>
+      </div>
+
+      <div class="overlay-section">
+        <h3>Einstellungen an diesem Tag</h3>
+
+        <div class="history-box">
+
+          <p class="history-subtitle">Aktiv um 23:59 Uhr</p>
+
+          <div id="historyLatestSettings">
+            <!-- Wird mit JavaScript gefüllt -->
+          </div>
+
+          <p class="history-subtitle history-subtitle-second">
+            Änderungen an diesem Tag
+          </p>
+
+          <div id="historyChanges">
+            <!-- Wird mit JavaScript gefüllt -->
+          </div>
+
+        </div>
+      </div>
+
+    </div>
   </div>
-</div>
 
+  <!-- Bottom Navigation: ausserhalb vom Overlay -->
   <nav class="bottom-nav">
     <a class="nav-item" href="home.html">
       <img class="nav-icon" src="Bilder/Icon_Home.png" alt="Home">
@@ -151,70 +151,8 @@
     </a>
   </nav>
 
-  <div class="tag-overlay" id="tagOverlay">
-  <div class="tag-overlay-card">
-
-    <button class="tag-overlay-close" id="tagOverlayClose" type="button">
-      ×
-    </button>
-
-    <h2 id="overlayTitel">Details zum Tag</h2>
-
-    <div class="overlay-summary">
-      <p>
-        <strong>Bewertung:</strong>
-        <span id="overlayBewertung">-</span>
-      </p>
-
-      <p>
-        <strong>Gesamt:</strong>
-        <span id="overlayGesamt">0x aufgewacht</span>
-      </p>
-    </div>
-
-    <div class="overlay-section">
-      <h3>Ereignisse:</h3>
-
-      <div class="overlay-events" id="overlayEreignisse">
-        <!-- Wird automatisch gefüllt -->
-      </div>
-    </div>
-
-    <div class="overlay-section">
-      <h3>Aktive Einstellungen:</h3>
-
-      <div class="overlay-settings">
-        <p>
-          <strong>Licht:</strong>
-          <span id="overlayLicht">-</span>
-        </p>
-
-        <p>
-          <strong>Beruhigungsdauer:</strong>
-          <span id="overlayCalmtime">-</span>
-        </p>
-
-        <p>
-          <strong>Shuffle:</strong>
-          <span id="overlayShuffle">-</span>
-        </p>
-
-        <p>
-          <strong>Bedtime:</strong>
-          <span id="overlayBedtime">-</span>
-        </p>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-
-
- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="js/monatsStatistik.js"></script>
-<script src="js/logout.js"></script>
+  <script src="js/monatsStatistik.js"></script>
+  <script src="js/logout.js"></script>
 
 </body>
 </html>

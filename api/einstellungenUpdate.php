@@ -23,7 +23,7 @@ try {
 
     $userId = $_SESSION['user_id'];
 
-    // Seriennummer aus der Tabelle devices holen
+    // Seriennummer aus devices holen
     $stmt = $pdo->prepare("SELECT serialnr FROM devices WHERE user_id = ?");
     $stmt->execute([$userId]);
     $device = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -35,31 +35,49 @@ try {
     $serialnr = $device['serialnr'];
 
     $bedtime = $data["bedtime"] ?? 13;
-$calmtime = $data["calmtime"] ?? 5;
-$shuffle = $data["shuffle"] ?? 1;
-$lightcolour_id = $data["lightcolour_id"] ?? 5;
-$soundtype_id = $data["soundtype_id"] ?? 7;
+    $calmtime = $data["calmtime"] ?? 5;
+    $shuffle = $data["shuffle"] ?? 1;
+    $lightcolour_id = $data["lightcolour_id"] ?? 5;
+    $soundtype_id = $data["soundtype_id"] ?? 7;
 
+    // Aktuelle Einstellungen aktualisieren
     $sql = "
-    UPDATE einstellungen
-    SET 
-        bedtime = ?,
-        calmtime = ?,
-        shuffle = ?,
-        lightcolour_id = ?,
-        soundtype_id = ?
-    WHERE serialnr = ?
-";
+        UPDATE einstellungen
+        SET 
+            bedtime = ?,
+            calmtime = ?,
+            shuffle = ?,
+            lightcolour_id = ?,
+            soundtype_id = ?
+        WHERE serialnr = ?
+    ";
 
-$stmt = $pdo->prepare($sql);
-$stmt->execute([
-    $bedtime,
-    $calmtime,
-    $shuffle,
-    $lightcolour_id,
-    $soundtype_id,
-    $serialnr
-]);
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        $bedtime,
+        $calmtime,
+        $shuffle,
+        $lightcolour_id,
+        $soundtype_id,
+        $serialnr
+    ]);
+
+    // Einstellung zusätzlich im Verlauf speichern
+    $historySql = "
+        INSERT INTO einstellungen_history
+        (serialnr, bedtime, calmtime, shuffle, lightcolour_id, soundtype_id)
+        VALUES (?, ?, ?, ?, ?, ?)
+    ";
+
+    $historyStmt = $pdo->prepare($historySql);
+    $historyStmt->execute([
+        $serialnr,
+        $bedtime,
+        $calmtime,
+        $shuffle,
+        $lightcolour_id,
+        $soundtype_id
+    ]);
 
     echo json_encode([
         "status" => "success",

@@ -1,5 +1,4 @@
 let ausgewaehltesDatum = new Date();
-let monatsChart = null;
 
 const monatNamen = [
   "Januar",
@@ -20,11 +19,14 @@ async function ladeMonatsStatistik() {
   const year = ausgewaehltesDatum.getFullYear();
   const month = ausgewaehltesDatum.getMonth() + 1;
 
-  document.getElementById("aktuellerMonat").textContent =
-    `${monatNamen[month - 1]} ${year}`;
+  const aktuellerMonat = document.getElementById("aktuellerMonat");
+
+  if (aktuellerMonat) {
+    aktuellerMonat.textContent = `${monatNamen[month - 1]} ${year}`;
+  }
 
   await ladeMonatsDurchschnitt(year, month);
-  await ladeMonatsDiagramm(year, month);
+  await ladeMonatsKalender(year, month);
 }
 
 async function ladeMonatsDurchschnitt(year, month) {
@@ -41,22 +43,25 @@ async function ladeMonatsDurchschnitt(year, month) {
       return;
     }
 
-    document.getElementById("monatsDurchschnitt").textContent =
-      `${result.average}x`;
+    const monatsDurchschnitt = document.getElementById("monatsDurchschnitt");
+
+    if (monatsDurchschnitt) {
+      monatsDurchschnitt.textContent = `${result.average}x`;
+    }
 
   } catch (error) {
     console.error("Fehler beim Laden des Monatsdurchschnitts:", error);
   }
 }
 
-async function ladeMonatsDiagramm(year, month) {
+async function ladeMonatsKalender(year, month) {
   try {
     const response = await fetch(`/api/monatsDiagramm.php?year=${year}&month=${month}`, {
       credentials: "include"
     });
 
     const result = await response.json();
-    console.log("Monatsdiagramm:", result);
+    console.log("Monatskalender:", result);
 
     if (result.status !== "success") {
       console.error(result.message);
@@ -66,125 +71,9 @@ async function ladeMonatsDiagramm(year, month) {
     zeichneMonatsKalender(year, month, result.daten);
 
   } catch (error) {
-    console.error("Fehler beim Laden des Monatsdiagramms:", error);
+    console.error("Fehler beim Laden des Monatskalenders:", error);
   }
 }
-
-function erstelleTageImMonat(year, month) {
-  const letzterTag = new Date(year, month, 0).getDate();
-  const tage = [];
-
-  for (let tag = 1; tag <= letzterTag; tag++) {
-    tage.push(tag);
-  }
-
-  return tage;
-}
-
-function erstelleMonatsWerte(labels, datenbankDaten) {
-  return labels.map((tag) => {
-    const eintrag = datenbankDaten.find((item) => {
-      return Number(item.tag_nummer) === tag;
-    });
-
-    return eintrag ? Number(eintrag.anzahl) : 0;
-  });
-}
-
-function zeichneMonatsChart(labels, werte) {
-  const canvas = document.getElementById("monatsChart");
-
-  if (!canvas) {
-    console.error("Canvas #monatsChart wurde nicht gefunden.");
-    return;
-  }
-
-  if (monatsChart) {
-    monatsChart.destroy();
-  }
-
-  monatsChart = new Chart(canvas, {
-    type: "bar",
-    data: {
-      labels: labels,
-      datasets: [
-        {
-          label: "Aufgewacht",
-          data: werte,
-          backgroundColor: "rgba(130, 90, 255, 0.85)",
-          borderColor: "rgba(160, 100, 255, 1)",
-          borderWidth: 1,
-          borderRadius: 12,
-          borderSkipped: false
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-
-      plugins: {
-        legend: {
-          display: false
-        },
-        tooltip: {
-          callbacks: {
-            title: function (context) {
-              return `Tag ${context[0].label}`;
-            },
-            label: function (context) {
-              return `${context.raw}x aufgewacht`;
-            }
-          }
-        }
-      },
-
-      scales: {
-        x: {
-          grid: {
-            display: false
-          },
-          ticks: {
-            color: "#c7c1df",
-            font: {
-              size: 14,
-              weight: "bold"
-            },
-            maxRotation: 0,
-            minRotation: 0
-          }
-        },
-        y: {
-          beginAtZero: true,
-          suggestedMax: 8,
-          ticks: {
-            stepSize: 1,
-            color: "#c7c1df",
-            font: {
-              size: 14,
-              weight: "bold"
-            }
-          },
-          grid: {
-            color: "rgba(255, 255, 255, 0.12)"
-          }
-        }
-      }
-    }
-  });
-}
-
-document.getElementById("monatZurueck").addEventListener("click", () => {
-  ausgewaehltesDatum.setMonth(ausgewaehltesDatum.getMonth() - 1);
-  ladeMonatsStatistik();
-});
-
-document.getElementById("monatWeiter").addEventListener("click", () => {
-  ausgewaehltesDatum.setMonth(ausgewaehltesDatum.getMonth() + 1);
-  ladeMonatsStatistik();
-});
-
-ladeMonatsStatistik();
 
 function zeichneMonatsKalender(year, month, datenbankDaten) {
   const kalender = document.getElementById("monatsKalender");
@@ -230,18 +119,18 @@ function zeichneMonatsKalender(year, month, datenbankDaten) {
 
     const datumString = `${year}-${String(month).padStart(2, "0")}-${String(tag).padStart(2, "0")}`;
 
-button.dataset.date = datumString;
+    button.dataset.date = datumString;
 
-button.innerHTML = `
-  <strong>${tag}</strong>
-  <span>${anzahl}x</span>
-`;
+    button.innerHTML = `
+      <strong>${tag}</strong>
+      <span>${anzahl}x</span>
+    `;
 
-button.addEventListener("click", () => {
-  ladeTagesDetails(datumString);
-});
+    button.addEventListener("click", () => {
+      ladeTagesDetails(datumString);
+    });
 
-kalender.appendChild(button);
+    kalender.appendChild(button);
   }
 }
 
@@ -286,71 +175,234 @@ async function ladeTagesDetails(date) {
 function zeigeTagesOverlay(data) {
   const overlay = document.getElementById("tagOverlay");
 
-  document.getElementById("overlayTitel").textContent =
-    `Details zum ${formatiereDatumDeutsch(data.date)}`;
+  if (!overlay) {
+    console.error("Overlay #tagOverlay wurde nicht gefunden.");
+    return;
+  }
 
-  document.getElementById("overlayBewertung").textContent =
-    data.bewertung;
-
-  document.getElementById("overlayGesamt").textContent =
-    `${data.gesamt}x aufgewacht`;
-
+  const overlayTitel = document.getElementById("overlayTitel");
+  const overlayBewertung = document.getElementById("overlayBewertung");
+  const overlayGesamt = document.getElementById("overlayGesamt");
   const ereignisseContainer = document.getElementById("overlayEreignisse");
-  ereignisseContainer.innerHTML = "";
 
-  if (!data.ereignisse || data.ereignisse.length === 0) {
-    const div = document.createElement("div");
-    div.classList.add("overlay-event");
-    div.textContent = "Keine Aufwachereignisse an diesem Tag.";
-    ereignisseContainer.appendChild(div);
-  } else {
-    data.ereignisse.forEach((ereignis) => {
+  if (overlayTitel) {
+    overlayTitel.textContent = `Details zum ${formatiereDatumDeutsch(data.date)}`;
+  }
+
+  if (overlayBewertung) {
+    overlayBewertung.textContent = data.bewertung;
+  }
+
+  if (overlayGesamt) {
+    overlayGesamt.textContent = `${data.gesamt}x aufgewacht`;
+  }
+
+  if (ereignisseContainer) {
+    ereignisseContainer.innerHTML = "";
+
+    if (!data.ereignisse || data.ereignisse.length === 0) {
       const div = document.createElement("div");
       div.classList.add("overlay-event");
-
-      div.textContent =
-        `${formatiereUhrzeit(ereignis.timestamp)} Uhr — Aufwachereignis erkannt`;
-
+      div.textContent = "Keine Aufwachereignisse an diesem Tag.";
       ereignisseContainer.appendChild(div);
-    });
+    } else {
+      data.ereignisse.forEach((ereignis) => {
+        const div = document.createElement("div");
+        div.classList.add("overlay-event");
+
+        div.textContent =
+          `${formatiereUhrzeit(ereignis.timestamp)} Uhr — Aufwachereignis erkannt`;
+
+        ereignisseContainer.appendChild(div);
+      });
+    }
   }
 
-  const settings = data.settings || {};
-
-  document.getElementById("overlayLicht").textContent =
-    uebersetzeLicht(settings.light_name);
-
-  document.getElementById("overlayCalmtime").textContent =
-    settings.calmtime
-      ? `${settings.calmtime} Minute${Number(settings.calmtime) === 1 ? "" : "n"}`
-      : "-";
-
-  document.getElementById("overlayShuffle").textContent =
-    Number(settings.shuffle) === 1 ? "Ein" : "Aus";
-
-  document.getElementById("overlayBedtime").textContent =
-    settings.bedtime ? settings.bedtime : "-";
+  zeigeEinstellungenHistory(data);
 
   overlay.classList.add("aktiv");
+
+  document.body.classList.add("overlay-offen");
 }
 
-function beschreibeEreignis(move, noise) {
-  const bewegung = Number(move);
-  const geraeusch = Number(noise);
+function zeigeEinstellungenHistory(data) {
+  const latestBox = document.getElementById("historyLatestSettings");
+  const changesBox = document.getElementById("historyChanges");
 
-  if (bewegung === 1 && geraeusch === 1) {
-    return "Bewegung + Geräusch erkannt";
+  if (!latestBox || !changesBox) {
+    console.error("History-Elemente wurden nicht gefunden.");
+    return;
   }
 
-  if (bewegung === 1) {
-    return "Bewegung erkannt";
+  const latest = data.latestSettings;
+
+  if (!latest) {
+    latestBox.innerHTML = `
+      <div class="history-empty">
+        Keine gespeicherten Einstellungen für diesen Tag gefunden.
+      </div>
+    `;
+  } else {
+    latestBox.innerHTML = `
+      <div class="history-settings-grid">
+        <div class="history-setting-row">
+          <span>Licht</span>
+          <strong>${uebersetzeLicht(latest.light_name)}</strong>
+        </div>
+
+        <div class="history-setting-row">
+          <span>Sound</span>
+          <strong>${latest.soundtype || "-"}</strong>
+        </div>
+
+        <div class="history-setting-row">
+          <span>Beruhigungsdauer</span>
+          <strong>${latest.calmtime ? `${latest.calmtime} Minuten` : "-"}</strong>
+        </div>
+
+        <div class="history-setting-row">
+          <span>Shuffle</span>
+          <strong>${Number(latest.shuffle) === 1 ? "Ein" : "Aus"}</strong>
+        </div>
+
+        <div class="history-setting-row">
+          <span>Bedtime</span>
+          <strong>${latest.bedtime ? `${latest.bedtime}:00 Uhr` : "-"}</strong>
+        </div>
+      </div>
+    `;
   }
 
-  if (geraeusch === 1) {
-    return "Geräusch erkannt";
+  const changes = data.settingsChanges || [];
+
+  if (changes.length === 0) {
+    changesBox.innerHTML = `
+      <div class="history-empty">
+        An diesem Tag wurden keine Einstellungen geändert.
+      </div>
+    `;
+    return;
   }
 
-  return "Aufwachereignis erkannt";
+  changesBox.innerHTML = "";
+
+  changes.forEach((change, index) => {
+    const vorherigeEinstellung = index > 0 ? changes[index - 1] : null;
+    const unterschiede = ermittleGeaenderteWerte(vorherigeEinstellung, change);
+
+    if (unterschiede.length === 0) {
+      return;
+    }
+
+    const item = document.createElement("div");
+    item.classList.add("history-change-item");
+
+    item.innerHTML = `
+      <div class="history-change-time">
+        ${formatiereUhrzeit(change.created_at)} Uhr
+      </div>
+
+      <div class="history-change-content">
+        ${unterschiede.join("")}
+      </div>
+    `;
+
+    changesBox.appendChild(item);
+  });
+
+  if (changesBox.innerHTML.trim() === "") {
+    changesBox.innerHTML = `
+      <div class="history-empty">
+        Keine sichtbaren Änderungen gefunden.
+      </div>
+    `;
+  }
+}
+
+function ermittleGeaenderteWerte(vorher, aktuell) {
+  const unterschiede = [];
+
+  if (!vorher) {
+    unterschiede.push(`
+      <div class="history-change-value">
+        <span>Licht</span>
+        <strong>${uebersetzeLicht(aktuell.light_name)}</strong>
+      </div>
+    `);
+
+    unterschiede.push(`
+      <div class="history-change-value">
+        <span>Beruhigungsdauer</span>
+        <strong>${aktuell.calmtime} Minuten</strong>
+      </div>
+    `);
+
+    unterschiede.push(`
+      <div class="history-change-value">
+        <span>Sound</span>
+        <strong>${aktuell.soundtype || "-"}</strong>
+      </div>
+    `);
+
+    return unterschiede;
+  }
+
+  if (Number(vorher.lightcolour_id) !== Number(aktuell.lightcolour_id)) {
+    unterschiede.push(`
+      <div class="history-change-value">
+        <span>Licht</span>
+        <strong>${uebersetzeLicht(aktuell.light_name)}</strong>
+      </div>
+    `);
+  }
+
+  if (Number(vorher.calmtime) !== Number(aktuell.calmtime)) {
+    unterschiede.push(`
+      <div class="history-change-value">
+        <span>Beruhigungsdauer</span>
+        <strong>${aktuell.calmtime} Minuten</strong>
+      </div>
+    `);
+  }
+
+  if (Number(vorher.shuffle) !== Number(aktuell.shuffle)) {
+    unterschiede.push(`
+      <div class="history-change-value">
+        <span>Shuffle</span>
+        <strong>${Number(aktuell.shuffle) === 1 ? "Ein" : "Aus"}</strong>
+      </div>
+    `);
+  }
+
+  if (Number(vorher.soundtype_id) !== Number(aktuell.soundtype_id)) {
+    unterschiede.push(`
+      <div class="history-change-value">
+        <span>Sound</span>
+        <strong>${aktuell.soundtype || "-"}</strong>
+      </div>
+    `);
+  }
+
+  if (Number(vorher.bedtime) !== Number(aktuell.bedtime)) {
+    unterschiede.push(`
+      <div class="history-change-value">
+        <span>Bedtime</span>
+        <strong>${aktuell.bedtime}:00 Uhr</strong>
+      </div>
+    `);
+  }
+
+  return unterschiede;
+}
+
+function formatiereFeld(text, laenge) {
+  const wert = String(text || "-");
+
+  if (wert.length > laenge) {
+    return wert.slice(0, laenge - 1);
+  }
+
+  return wert.padEnd(laenge, " ");
 }
 
 function formatiereUhrzeit(timestamp) {
@@ -384,12 +436,40 @@ function uebersetzeLicht(lightName) {
   return farben[lightName] || lightName || "-";
 }
 
-document.getElementById("tagOverlayClose").addEventListener("click", () => {
-  document.getElementById("tagOverlay").classList.remove("aktiv");
-});
+const monatZurueckButton = document.getElementById("monatZurueck");
+const monatWeiterButton = document.getElementById("monatWeiter");
 
-document.getElementById("tagOverlay").addEventListener("click", (event) => {
-  if (event.target.id === "tagOverlay") {
-    document.getElementById("tagOverlay").classList.remove("aktiv");
-  }
-});
+if (monatZurueckButton) {
+  monatZurueckButton.addEventListener("click", () => {
+    ausgewaehltesDatum.setMonth(ausgewaehltesDatum.getMonth() - 1);
+    ladeMonatsStatistik();
+  });
+}
+
+if (monatWeiterButton) {
+  monatWeiterButton.addEventListener("click", () => {
+    ausgewaehltesDatum.setMonth(ausgewaehltesDatum.getMonth() + 1);
+    ladeMonatsStatistik();
+  });
+}
+
+const tagOverlayClose = document.getElementById("tagOverlayClose");
+const tagOverlay = document.getElementById("tagOverlay");
+
+if (tagOverlayClose && tagOverlay) {
+  tagOverlayClose.addEventListener("click", () => {
+    tagOverlay.classList.remove("aktiv");
+    document.body.classList.remove("overlay-offen");
+  });
+}
+
+if (tagOverlay) {
+  tagOverlay.addEventListener("click", (event) => {
+    if (event.target.id === "tagOverlay") {
+      tagOverlay.classList.remove("aktiv");
+      document.body.classList.remove("overlay-offen");
+    }
+  });
+}
+
+ladeMonatsStatistik();
