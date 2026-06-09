@@ -7,7 +7,7 @@
 **************************/
 
 
-require_once("../system/config.php");
+require_once("./config.php");
 // echo "This script receives HTTP POST messages and pushes their content into the database.";
 
 
@@ -20,10 +20,10 @@ $input = json_decode($inputJSON, true);
 
 ###################################### receiving a post request from a HTML form, later from ESP
 
-$serialnr = $input["serialnr"];         // Hol den Wert an der Stelle "wert" aus dem JS-Objekt (ehemals JSON-String)
+$wert = $input["wert"];         // Hol den Wert an der Stelle "wert" aus dem JS-Objekt (ehemals JSON-String)
 # insert new user into db
-$sql = "INSERT INTO sensordaten (serialnr) VALUES (?)";
+$sql = "INSERT INTO sensordaten (wert) VALUES (?)";
 $stmt = $pdo->prepare($sql);
-$stmt->execute([$serialnr]);
+$stmt->execute([$wert]);
 
 ?>
