@@ -259,16 +259,6 @@ function zeigeEinstellungenHistory(data) {
           <span>Beruhigungsdauer</span>
           <strong>${latest.calmtime ? `${latest.calmtime} Minuten` : "-"}</strong>
         </div>
-
-        <div class="history-setting-row">
-          <span>Shuffle</span>
-          <strong>${Number(latest.shuffle) === 1 ? "Ein" : "Aus"}</strong>
-        </div>
-
-        <div class="history-setting-row">
-          <span>Bedtime</span>
-          <strong>${latest.bedtime ? `${latest.bedtime}:00 Uhr` : "-"}</strong>
-        </div>
       </div>
     `;
   }
@@ -365,29 +355,11 @@ function ermittleGeaenderteWerte(vorher, aktuell) {
     `);
   }
 
-  if (Number(vorher.shuffle) !== Number(aktuell.shuffle)) {
-    unterschiede.push(`
-      <div class="history-change-value">
-        <span>Shuffle</span>
-        <strong>${Number(aktuell.shuffle) === 1 ? "Ein" : "Aus"}</strong>
-      </div>
-    `);
-  }
-
   if (Number(vorher.soundtype_id) !== Number(aktuell.soundtype_id)) {
     unterschiede.push(`
       <div class="history-change-value">
         <span>Sound</span>
         <strong>${aktuell.soundtype || "-"}</strong>
-      </div>
-    `);
-  }
-
-  if (Number(vorher.bedtime) !== Number(aktuell.bedtime)) {
-    unterschiede.push(`
-      <div class="history-change-value">
-        <span>Bedtime</span>
-        <strong>${aktuell.bedtime}:00 Uhr</strong>
       </div>
     `);
   }

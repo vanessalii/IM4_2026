@@ -2466,3 +2466,32 @@ body.profil-page {
   font-size: 16px;
   font-weight: 800;
 }
+
+/* Licht und Sound nebeneinander */
+.personalisierung-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* Karten sollen sauber die gleiche Breite nutzen */
+.personalisierung-karte {
+  width: 100%;
+}
+
+/* Lichtkarte und Soundkarte gleich hoch wirken lassen */
+.personalisierung-karte .track-liste {
+  width: 100%;
+}
+
+/* Auf kleineren Screens wieder untereinander */
+@media (max-width: 900px) {
+  .personalisierung-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.personalisierung-karte-breit {
+  grid-column: 1 / -1;
+}

@@ -34,9 +34,9 @@ try {
 
     $serialnr = $device['serialnr'];
 
-    $bedtime = $data["bedtime"] ?? 13;
+    $bedtime = 21;
     $calmtime = $data["calmtime"] ?? 5;
-    $shuffle = $data["shuffle"] ?? 1;
+    $shuffle = 0;
     $lightcolour_id = $data["lightcolour_id"] ?? 5;
     $soundtype_id = $data["soundtype_id"] ?? 7;
 

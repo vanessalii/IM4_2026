@@ -1,7 +1,5 @@
 let aktuelleEinstellungen = {
-  bedtime: 13,
   calmtime: 5,
-  shuffle: 1,
   lightcolour_id: 5,
   soundtype_id: 7
 };
@@ -25,9 +23,7 @@ async function ladeEinstellungen() {
 
     const daten = result.daten;
 
-    aktuelleEinstellungen.bedtime = Number(daten.bedtime);
     aktuelleEinstellungen.calmtime = Number(daten.calmtime);
-    aktuelleEinstellungen.shuffle = Number(daten.shuffle);
     aktuelleEinstellungen.lightcolour_id = Number(daten.lightcolour_id);
 
     if (daten.soundtype_id !== undefined && daten.soundtype_id !== null) {
@@ -114,16 +110,6 @@ function aktualisiereSpeicherStatus() {
 }
 
 function aktualisiereAnzeige() {
-  const bedtimeStatus = document.getElementById("bedtimeStatus");
-  const bedtimeInput = document.getElementById("bedtimeInput");
-
-  if (bedtimeStatus) {
-    bedtimeStatus.textContent = `${aktuelleEinstellungen.bedtime}:00 Uhr`;
-  }
-
-  if (bedtimeInput) {
-    bedtimeInput.value = aktuelleEinstellungen.bedtime;
-  }
 
   const calmtimeStatus = document.getElementById("calmtimeStatus");
 
@@ -131,12 +117,6 @@ function aktualisiereAnzeige() {
     calmtimeStatus.textContent = `${aktuelleEinstellungen.calmtime} Minuten`;
   }
 
-  const shuffleStatus = document.getElementById("shuffleStatus");
-
-  if (shuffleStatus) {
-    shuffleStatus.textContent =
-      aktuelleEinstellungen.shuffle === 1 ? "Ein" : "Aus";
-  }
 
   const farbNamen = {
     1: "Gelb",
@@ -179,13 +159,6 @@ function aktualisiereAnzeige() {
     );
   });
 
-  document.querySelectorAll(".shuffle-button").forEach((button) => {
-    button.classList.toggle(
-      "aktiv",
-      Number(button.dataset.shuffle) === aktuelleEinstellungen.shuffle
-    );
-  });
-
   document.querySelectorAll(".licht-farbe").forEach((button) => {
     button.classList.toggle(
       "aktiv",
@@ -201,24 +174,6 @@ function aktualisiereAnzeige() {
   });
 }
 
-const bedtimeInput = document.getElementById("bedtimeInput");
-const bedtimeSaveButton = document.getElementById("bedtimeSaveButton");
-
-if (bedtimeSaveButton && bedtimeInput) {
-  bedtimeSaveButton.addEventListener("click", () => {
-    const wert = Number(bedtimeInput.value);
-
-    if (!Number.isInteger(wert) || wert < 0 || wert > 23) {
-      alert("Bitte gib eine Stunde zwischen 0 und 23 ein.");
-      return;
-    }
-
-    aktuelleEinstellungen.bedtime = wert;
-    aktualisiereAnzeige();
-    markiereAlsUngespeichert();
-  });
-}
-
 document.querySelectorAll(".calmtime-button").forEach((button) => {
   button.addEventListener("click", () => {
     aktuelleEinstellungen.calmtime = Number(button.dataset.calmtime);
@@ -227,13 +182,6 @@ document.querySelectorAll(".calmtime-button").forEach((button) => {
   });
 });
 
-document.querySelectorAll(".shuffle-button").forEach((button) => {
-  button.addEventListener("click", () => {
-    aktuelleEinstellungen.shuffle = Number(button.dataset.shuffle);
-    aktualisiereAnzeige();
-    markiereAlsUngespeichert();
-  });
-});
 
 document.querySelectorAll(".licht-farbe").forEach((button) => {
   button.addEventListener("click", () => {
