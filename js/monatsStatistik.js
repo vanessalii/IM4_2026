@@ -63,15 +63,35 @@ async function ladeMonatsKalender(year, month) {
     const result = await response.json();
     console.log("Monatskalender:", result);
 
+    const schafHinweis = document.getElementById("schafHinweis");
+
     if (result.status !== "success") {
-      console.error(result.message);
+      console.warn(result.message);
+
+      if (schafHinweis) {
+        schafHinweis.classList.add("aktiv");
+      }
+
+      zeichneMonatsKalender(year, month, []);
       return;
     }
 
-    zeichneMonatsKalender(year, month, result.daten);
+    if (schafHinweis) {
+      schafHinweis.classList.remove("aktiv");
+    }
+
+    zeichneMonatsKalender(year, month, result.daten || []);
 
   } catch (error) {
     console.error("Fehler beim Laden des Monatskalenders:", error);
+
+    const schafHinweis = document.getElementById("schafHinweis");
+
+    if (schafHinweis) {
+      schafHinweis.classList.add("aktiv");
+    }
+
+    zeichneMonatsKalender(year, month, []);
   }
 }
 
@@ -112,19 +132,25 @@ function zeichneMonatsKalender(year, month, datenbankDaten) {
     });
 
     const anzahl = eintrag ? Number(eintrag.anzahl) : 0;
+const hatDaten = Boolean(eintrag);
 
-    const button = document.createElement("button");
-    button.type = "button";
-    button.classList.add("schlaf-tag", ermittleSchlafKlasse(anzahl));
+const button = document.createElement("button");
+button.type = "button";
+
+if (hatDaten) {
+  button.classList.add("schlaf-tag", ermittleSchlafKlasse(anzahl));
+} else {
+  button.classList.add("schlaf-tag", "schlaf-keine-daten");
+}
 
     const datumString = `${year}-${String(month).padStart(2, "0")}-${String(tag).padStart(2, "0")}`;
 
     button.dataset.date = datumString;
 
-    button.innerHTML = `
-      <strong>${tag}</strong>
-      <span>${anzahl}x</span>
-    `;
+   button.innerHTML = `
+  <strong>${tag}</strong>
+  <span>${hatDaten ? `${anzahl}x` : ""}</span>
+`;
 
     button.addEventListener("click", () => {
       ladeTagesDetails(datumString);
