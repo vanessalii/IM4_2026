@@ -1,4 +1,6 @@
-/* Grundregeln */
+/* ==============================
+   GRUNDREGELN
+============================== */
 
 * {
   margin: 0;
@@ -24,31 +26,429 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
 a {
   color: white;
   font-weight: 700;
   text-decoration: none;
 }
 
-
 a:hover {
   text-decoration: underline;
 }
 
 
-/* Login und Registrierung */
 
-body.login-page,
-body.register-page {
+/* ==============================
+   FORMULARE
+============================== */
+
+form {
+  width: 100%;
+  max-width: 360px;
+}
+
+form div {
+  margin-bottom: 24px;
+}
+
+label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: #ddd7f1;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+input {
+  width: 100%;
+
+  padding: 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  outline: none;
+
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+
+  font-size: 15px;
+}
+
+input::placeholder {
+  color: #a9a3bf;
+}
+
+input:focus {
+  border-color: #7d8cff;
+  box-shadow: 0 0 0 3px rgba(125, 140, 255, 0.2);
+}
+
+form button {
+  width: 100%;
+
+  padding: 16px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(90deg, #a64cff, #3f86ff);
+  color: white;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+form button:hover {
+  opacity: 0.92;
+}
+
+
+
+/* ==============================
+   APP-LAYOUT
+============================== */
+
+body.home-seite {
+  min-height: 100vh;
+  padding-bottom: 90px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.hauptbereich {
+  flex: 1;
+}
+
+
+
+/* ==============================
+   OBERE NAVIGATION
+============================== */
+
+.topbar {
+  height: 90px;
+  position: sticky;
+  top: 0;
+  z-index: 9998;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 32px;
+
+  background: rgba(39, 37, 82, 0.98);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logo-bereich {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo {
+  font-size: 34px;
+}
+
+.logo-bereich h1 {
+  margin: 0;
+
+  font-size: 30px;
+}
+
+.logo-bereich p {
+  color: #c7c1df;
+  font-size: 14px;
+}
+
+.abmelden-button {
+  padding: 12px 18px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+
+/* ==============================
+   UNTERE NAVIGATION
+============================== */
+
+.bottom-nav {
+  width: 100%;
+  height: 90px;
+
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 200px;
+
+  background: rgba(58, 50, 103, 0.96);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(8px);
+}
+
+body.home-seite .bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+
+  color: #c7c1df;
+
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nav-item:hover {
+  text-decoration: none;
+}
+
+.nav-item.aktiv {
+  color: white;
+}
+
+.nav-icon {
+  width: 50px;
+  height: 50px;
+
+  display: block;
+  object-fit: contain;
+}
+
+.nav-item.icon-personalisierung {
+  position: relative;
+  transform: translateY(-28px);
+
+  margin: 0 12px;
+}
+
+.icon-personalisierung-kreis {
+  width: 78px;
+  height: 78px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  background: linear-gradient(180deg, #ff66d9, #a64cff);
+  box-shadow: 0 12px 24px rgba(166, 76, 255, 0.35);
+}
+
+.icon-personalisierung-kreis img {
+  width: 42px;
+  height: 42px;
+
+  display: block;
+  object-fit: contain;
+}
+
+
+
+/* ==============================
+   ALLGEMEIN RESPONSIVE
+============================== */
+
+@media (max-width: 1300px) {
+  .bottom-nav {
+    gap: 150px;
+  }
+}
+
+/* Tablets und kleinere Laptops */
+
+@media (max-width: 1100px) {
+  .bottom-nav {
+    gap: 120px;
+  }
+}
+
+
+
+/* Tablets */
+
+@media (max-width: 900px) {
+  .bottom-nav {
+    gap: 70px;
+  }
+}
+
+/* Grosse Smartphones */
+
+@media (max-width: 650px) {
+  .bottom-nav {
+    justify-content: space-around;
+    gap: 0;
+
+    padding: 0 18px;
+  }
+}
+
+
+
+/* Smartphones */
+
+@media (max-width: 600px) {
+  .topbar {
+    height: 78px;
+    padding: 0 18px;
+  }
+
+  .logo-bereich {
+    gap: 10px;
+  }
+
+  .logo {
+    font-size: 28px;
+  }
+
+  .logo-bereich h1 {
+    font-size: 22px;
+  }
+
+  .logo-bereich p {
+    font-size: 12px;
+  }
+
+  .abmelden-button {
+    padding: 10px 12px;
+
+    font-size: 12px;
+  }
+
+  .bottom-nav {
+    height: 78px;
+    gap: 22px;
+  }
+
+  .nav-item {
+    gap: 4px;
+
+    font-size: 11px;
+  }
+
+  .nav-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .nav-item.icon-personalisierung {
+    transform: translateY(-22px);
+
+    margin: 0 4px;
+  }
+
+  .icon-personalisierung-kreis {
+    width: 62px;
+    height: 62px;
+  }
+
+  .icon-personalisierung-kreis img {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+
+
+/* Sehr kleine Smartphones */
+
+@media (max-width: 380px) {
+  .topbar {
+    padding: 0 14px;
+  }
+
+  .logo-bereich h1 {
+    font-size: 20px;
+  }
+
+  .logo-bereich p {
+    display: none;
+  }
+
+  .abmelden-button {
+    padding: 9px 10px;
+
+    font-size: 11px;
+  }
+
+  .bottom-nav {
+    gap: 14px;
+  }
+
+  .nav-item {
+    font-size: 10px;
+  }
+
+  .nav-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .icon-personalisierung-kreis {
+    width: 56px;
+    height: 56px;
+  }
+
+  .icon-personalisierung-kreis img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+
+
+/* ==============================
+   LOGIN UND REGISTRIERUNG
+============================== */
+
+body.login-page,
+body.register-page {
+  width: 100%;
+   height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 24px;
 }
 
 .login-box {
   width: 100%;
   max-width: 600px;
+
+  margin: auto;
 
   padding: 48px 40px;
 
@@ -120,222 +520,146 @@ body.register-page {
   background: linear-gradient(90deg, #a64cff, #3f86ff);
 }
 
-form {
-  width: 100%;
-  max-width: 360px;
-}
 
-form div {
-  margin-bottom: 24px;
-}
+/* ==============================
+   LOGIN Responsive
+============================== */
+/* Login und Registrierung responsive */
 
-label {
-  display: block;
+@media (max-width: 700px) {
+  body.login-page,
+  body.register-page {
+    padding: 20px;
+  }
 
-  margin-bottom: 10px;
+  .login-box {
+    width: min(100%, 560px);
+    max-width: none;
 
-  color: #ddd7f1;
+    padding: 44px 36px;
+  }
 
-  font-size: 14px;
-  font-weight: 700;
-}
+  .login-box form,
+  .login-box .umschalter {
+    width: 100%;
+    max-width: 440px;
+  }
 
-input {
-  width: 100%;
+  .login-box h1 {
+    font-size: 30px;
+  }
 
-  padding: 16px;
-
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
-  outline: none;
-
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-
-  font-size: 15px;
-}
-
-input::placeholder {
-  color: #a9a3bf;
-}
-
-input:focus {
-  border-color: #7d8cff;
-  box-shadow: 0 0 0 3px rgba(125, 140, 255, 0.2);
-}
-
-form button {
-  width: 100%;
-
-  padding: 16px;
-
-  border: none;
-  border-radius: 10px;
-
-  background: linear-gradient(90deg, #a64cff, #3f86ff);
-  color: white;
-
-  font-size: 16px;
-  font-weight: 700;
-
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-form button:hover {
-  opacity: 0.92;
+  .untertitel {
+    font-size: 15px;
+  }
 }
 
 
-/* App-Layout */
 
-body.home-seite {
-  min-height: 100vh;
-  padding-bottom: 90px;
+/* Smartphones */
 
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-}
+@media (max-width: 480px) {
+  body.login-page,
+  body.register-page {
+    padding: 16px;
+  }
 
-.hauptbereich {
-  flex: 1;
-}
+  .login-box {
+    width: 100%;
 
-.topbar {
-  height: 90px;
+    padding: 40px 28px;
+    border-radius: 28px;
+  }
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  .login-box form,
+  .login-box .umschalter {
+    width: 100%;
+    max-width: none;
+  }
 
-  padding: 0 32px;
+  .login-box h1 {
+    margin-bottom: 20px;
 
-  background: rgba(91, 87, 135, 0.35);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
+    font-size: 28px;
+  }
 
-.logo-bereich {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
+  .untertitel {
+    margin-bottom: 24px;
 
-.logo {
-  font-size: 34px;
-}
+    font-size: 15px;
+  }
 
-.logo-bereich h1 {
-  margin: 0;
+  .umschalter {
+    margin-bottom: 22px;
+  }
 
-  font-size: 30px;
-}
+  .umschalter-button {
+    padding: 14px 12px;
 
-.logo-bereich p {
-  color: #c7c1df;
-  font-size: 14px;
-}
+    font-size: 14px;
+  }
 
-.abmelden-button {
-  padding: 12px 18px;
+  form div {
+    margin-bottom: 22px;
+  }
 
-  border: none;
-  border-radius: 10px;
+  label {
+    font-size: 14px;
+  }
 
-  background: rgba(255, 255, 255, 0.12);
-  color: white;
+  input {
+    padding: 16px;
 
-  font-size: 14px;
-  font-weight: 700;
+    font-size: 15px;
+  }
 
-  cursor: pointer;
-}
+  form button {
+    padding: 16px;
 
-
-/* Untere Navigation */
-
-.bottom-nav {
-  width: 100%;
-  height: 90px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 200px;
-
-  background: rgba(91, 87, 135, 0.35);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-body.home-seite .bottom-nav {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 9999;
-}
-
-.nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-
-  color: #c7c1df;
-
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.nav-item:hover {
-  text-decoration: none;
-}
-
-.nav-item.aktiv {
-  color: white;
-}
-
-.nav-icon {
-  width: 50px;
-  height: 50px;
-
-  display: block;
-  object-fit: contain;
-}
-
-.nav-item.icon-personalisierung {
-  position: relative;
-  transform: translateY(-28px);
-
-  margin: 0 12px;
-}
-
-.icon-personalisierung-kreis {
-  width: 78px;
-  height: 78px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border-radius: 50%;
-
-  background: linear-gradient(180deg, #ff66d9, #a64cff);
-  box-shadow: 0 12px 24px rgba(166, 76, 255, 0.35);
-}
-
-.icon-personalisierung-kreis img {
-  width: 42px;
-  height: 42px;
-
-  display: block;
-  object-fit: contain;
+    font-size: 15px;
+  }
 }
 
 
-/* Einstellungen */
+
+/* Sehr kleine Smartphones */
+
+@media (max-width: 380px) {
+  body.login-page,
+  body.register-page {
+    padding: 12px;
+  }
+
+  .login-box {
+    padding: 36px 22px;
+    border-radius: 24px;
+  }
+
+  .login-box h1 {
+    font-size: 26px;
+  }
+
+  .untertitel {
+    font-size: 14px;
+  }
+
+  .umschalter-button {
+    padding: 13px 10px;
+
+    font-size: 13px;
+  }
+
+  input,
+  form button {
+    padding: 15px;
+  }
+}
+
+
+
+/* ==============================
+   EINSTELLUNGEN
+============================== */
 
 .settings-main {
   flex: 1;
@@ -513,7 +837,2556 @@ body.home-seite .bottom-nav {
 }
 
 
-/* Blog */
+
+
+/* ==============================
+   PROFIL
+============================== */
+
+/* Seitenlayout */
+
+body.profil-page {
+  min-height: 100vh;
+
+  display: block;
+  overflow-x: hidden;
+}
+
+
+
+/* Container */
+
+.profil-container {
+  width: min(900px, calc(100% - 48px));
+
+  position: relative;
+  z-index: 2;
+
+  margin: 0 auto;
+  padding-top: 90px;
+  padding-bottom: 120px;
+}
+
+
+
+/* Titel */
+
+.profil-title {
+  margin: 0 0 26px;
+
+  color: white;
+
+  font-size: 45px;
+  font-weight: 900;
+  line-height: 1;
+  text-align: left;
+}
+
+
+
+/* Karte */
+
+.profil-card {
+  width: 100%;
+
+  padding: 48px 56px;
+
+  border-radius: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  background: rgba(92, 89, 137, 0.63);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 20px 55px rgba(0, 0, 0, 0.16);
+
+  backdrop-filter: blur(10px);
+}
+
+
+
+/* Formular */
+
+.profil-form {
+  width: 100%;
+  max-width: none;
+
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+
+  margin: 0 auto;
+}
+
+.profil-form-group {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  margin-bottom: 28px;
+}
+
+.profil-form label {
+  margin: 0 0 8px;
+
+  color: #d7c9f4;
+
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.profil-form input {
+  width: 100%;
+  height: 64px;
+
+  padding: 0 22px;
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 16px;
+  outline: none;
+
+  background: rgba(255, 255, 255, 0.09);
+  color: white;
+
+  font-size: 20px;
+}
+
+.profil-form input:focus {
+  border-color: rgba(170, 90, 255, 0.75);
+  box-shadow: 0 0 0 4px rgba(170, 90, 255, 0.16);
+}
+
+
+
+/* Button */
+
+.profil-button {
+  width: 100%;
+  height: 64px;
+
+  margin-top: 12px;
+
+  border: none;
+  border-radius: 16px;
+
+  background: linear-gradient(90deg, #a942f5 0%, #3287ff 100%);
+  color: white;
+  box-shadow: 0 16px 32px rgba(79, 112, 255, 0.25);
+
+  font-size: 24px;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+.profil-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 20px 38px rgba(79, 112, 255, 0.34);
+}
+
+
+
+/* ==============================
+   EINSTELLUNGS-UNTERSEITEN
+============================== */
+
+/* Gerät */
+
+.geraet-card {
+  max-width: 760px;
+  margin: 60px auto 120px;
+}
+
+.geraet-form {
+  width: 100%;
+  max-width: none;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  margin-top: 28px;
+}
+
+.geraet-form label {
+  color: #d7c9f4;
+
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.geraet-form input {
+  width: 100%;
+  height: 64px;
+
+  padding: 0 22px;
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 16px;
+  outline: none;
+
+  background: rgba(255, 255, 255, 0.09);
+  color: white;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.geraet-form input:focus {
+  border-color: rgba(170, 90, 255, 0.75);
+  box-shadow: 0 0 0 4px rgba(170, 90, 255, 0.16);
+}
+
+
+
+/* Speichern */
+
+.einstellungen-speichern-bereich {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 40px 0 120px;
+}
+
+.einstellungen-speichern-button {
+  min-width: 280px;
+  padding: 18px 32px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: linear-gradient(90deg, #a64cff, #3f86ff);
+  color: white;
+
+  font-size: 20px;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  box-shadow: 0 16px 34px rgba(70, 80, 255, 0.28);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.einstellungen-speichern-button:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+.speichern-status {
+  min-height: 24px;
+  margin-top: 14px;
+
+  color: #d7d0ee;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+
+
+/* Verlauf */
+
+.history-box {
+  padding: 22px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.history-subtitle {
+  margin: 0 0 16px;
+
+  color: white;
+
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.history-subtitle-second {
+  margin-top: 34px;
+}
+
+.history-settings-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.history-setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+
+  padding: 14px 18px;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.history-setting-row span {
+  color: #d7d0ee;
+
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.history-setting-row strong {
+  color: white;
+
+  font-size: 17px;
+  font-weight: 900;
+  text-align: right;
+}
+
+.history-change-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 22px;
+  align-items: start;
+
+  margin-bottom: 14px;
+  padding: 18px 20px;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.history-change-time {
+  padding-top: 6px;
+
+  color: white;
+
+  font-size: 18px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.history-change-content {
+  display: grid;
+  gap: 10px;
+}
+
+.history-change-value {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+
+  padding: 12px 16px;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.history-change-value span {
+  color: #d7d0ee;
+
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.history-change-value strong {
+  color: white;
+
+  font-size: 16px;
+  font-weight: 900;
+  text-align: right;
+}
+
+.history-empty {
+  padding: 16px 18px;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.08);
+  color: #d7d0ee;
+
+  font-size: 16px;
+  font-weight: 800;
+}
+
+
+/* ==============================
+   Einstellungen Responsive
+============================== */
+
+/* Einstellungen und Profil responsive */
+
+@media (max-width: 900px) {
+  .settings-page {
+    width: min(100%, calc(100% - 48px));
+    padding: 30px 0 120px;
+  }
+
+  .settings-title {
+    font-size: 30px;
+  }
+
+  .settings-profile-card {
+    padding: 24px 26px;
+  }
+
+  .profil-container {
+    width: min(100%, calc(100% - 48px));
+    padding-top: 60px;
+    padding-bottom: 120px;
+  }
+
+  .profil-title {
+    font-size: 38px;
+  }
+
+  .profil-card {
+    padding: 40px 42px;
+  }
+
+  .geraet-card {
+    margin: 40px auto 120px;
+  }
+
+  .history-change-item {
+    grid-template-columns: 100px 1fr;
+    gap: 18px;
+  }
+}
+
+
+
+/* Kleine Tablets und Smartphones */
+
+@media (max-width: 700px) {
+  .settings-page {
+    width: min(100%, calc(100% - 32px));
+    padding: 26px 0 120px;
+  }
+
+  .settings-title {
+    font-size: 28px;
+  }
+
+  .settings-subtitle {
+    font-size: 15px;
+  }
+
+  .settings-profile-card {
+    align-items: flex-start;
+    padding: 22px;
+  }
+
+  .settings-profile-card h2 {
+    font-size: 24px;
+  }
+
+  .settings-profile-card p {
+    font-size: 15px;
+  }
+
+  .settings-menu-item {
+    min-height: 70px;
+    padding: 16px 20px;
+  }
+
+  .settings-icon {
+    width: 44px;
+    height: 44px;
+
+    font-size: 19px;
+  }
+
+  .settings-menu-item span:nth-child(2) {
+    font-size: 17px;
+  }
+
+  .settings-arrow {
+    font-size: 28px;
+  }
+
+  .profil-container {
+    width: min(100%, calc(100% - 32px));
+    padding-top: 44px;
+    padding-bottom: 120px;
+  }
+
+  .profil-title {
+    font-size: 34px;
+  }
+
+  .profil-card {
+    padding: 34px 28px;
+  }
+
+  .profil-form label {
+    font-size: 19px;
+  }
+
+  .profil-form input {
+    height: 58px;
+
+    font-size: 18px;
+  }
+
+  .profil-button {
+    height: 58px;
+
+    font-size: 21px;
+  }
+
+  .geraet-card {
+    margin: 34px auto 120px;
+  }
+
+  .geraet-form label {
+    font-size: 18px;
+  }
+
+  .geraet-form input {
+    height: 58px;
+
+    font-size: 18px;
+  }
+
+  .einstellungen-speichern-button {
+    min-width: 240px;
+    padding: 16px 28px;
+
+    font-size: 18px;
+  }
+
+  .history-change-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .history-change-time {
+    padding-top: 0;
+  }
+}
+
+
+
+/* Smartphones */
+
+@media (max-width: 480px) {
+  .settings-page {
+    width: min(100%, calc(100% - 24px));
+    padding: 22px 0 110px;
+  }
+
+  .settings-title {
+    font-size: 25px;
+  }
+
+  .settings-subtitle {
+    font-size: 14px;
+  }
+
+  .settings-profile-card {
+    gap: 16px;
+
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .settings-profile-card h2 {
+    font-size: 22px;
+  }
+
+  .settings-profile-card p {
+    font-size: 14px;
+  }
+
+  .settings-section h3 {
+    margin-left: 6px;
+
+    font-size: 15px;
+  }
+
+  .settings-menu-card {
+    border-radius: 22px;
+  }
+
+  .settings-menu-item {
+    min-height: 64px;
+    gap: 14px;
+
+    padding: 14px 18px;
+  }
+
+  .settings-icon {
+    width: 40px;
+    height: 40px;
+
+    font-size: 18px;
+  }
+
+  .settings-menu-item span:nth-child(2) {
+    font-size: 16px;
+  }
+
+  .settings-arrow {
+    font-size: 24px;
+  }
+
+  .profil-container {
+    width: min(100%, calc(100% - 24px));
+    padding-top: 34px;
+    padding-bottom: 110px;
+  }
+
+  .profil-title {
+    margin-bottom: 20px;
+
+    font-size: 30px;
+  }
+
+  .profil-card {
+    padding: 28px 22px;
+    border-radius: 22px;
+  }
+
+  .profil-form {
+    gap: 20px;
+  }
+
+  .profil-form-group {
+    margin-bottom: 20px;
+  }
+
+  .profil-form label {
+    font-size: 17px;
+  }
+
+  .profil-form input {
+    height: 54px;
+    padding: 0 18px;
+
+    font-size: 16px;
+  }
+
+  .profil-button {
+    height: 54px;
+
+    font-size: 18px;
+  }
+
+  .geraet-card {
+    margin: 28px auto 110px;
+  }
+
+  .geraet-form input {
+    height: 54px;
+    padding: 0 18px;
+
+    font-size: 16px;
+  }
+
+  .einstellungen-speichern-bereich {
+    margin: 34px 0 110px;
+  }
+
+  .einstellungen-speichern-button {
+    width: 100%;
+    min-width: 0;
+
+    font-size: 17px;
+  }
+
+  .history-box {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .history-setting-row,
+  .history-change-value {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .history-setting-row strong,
+  .history-change-value strong {
+    text-align: left;
+  }
+}
+
+
+
+/* ==============================
+   HOME
+============================== */
+
+.hauptbereich {
+  width: 100%;
+  max-width: 1280px;
+
+  margin: 0 auto;
+
+  padding: 40px 32px 120px;
+}
+
+
+
+/* Begrüssung */
+
+.gruss-bereich {
+  margin-bottom: 28px;
+}
+
+.gruss-bereich h2 {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+
+
+/* Karten */
+
+.home-karte {
+  width: 100%;
+
+  margin-bottom: 24px;
+
+  padding: 28px;
+
+  border-radius: 24px;
+
+  background: rgba(91, 87, 135, 0.65);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+}
+
+.gruss-karte h2,
+.home-karte h2 {
+  font-size: 28px;
+}
+
+
+
+/* Letzte Nacht */
+
+.nacht-inhalt {
+  display: grid;
+
+  grid-template-columns: 280px 1fr;
+
+  gap: 28px;
+
+  margin-top: 24px;
+}
+
+
+
+/* Einstellungen letzte Nacht */
+
+.einstellung-box {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  padding: 24px;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.einstellung-box h3,
+.einstellung-box span {
+  font-size: 22px;
+
+  font-weight: 700;
+}
+
+.einstellung-box span {
+  color: #8fc4ff;
+}
+
+/* Licht-Badge in Letzte Nacht */
+
+.licht-badge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 170px;
+  padding: 12px 18px;
+
+  border-radius: 14px;
+
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.licht-badge.gelb {
+  background: rgba(255, 254, 209, 0.28);
+  color: #fff6a8;
+}
+
+.licht-badge.gruen {
+  background: rgba(145, 255, 149, 0.22);
+  color: #baffbc;
+}
+
+.licht-badge.violett {
+  background: rgba(127, 0, 255, 0.28);
+  color: #d7b3ff;
+}
+
+.licht-badge.pink {
+  background: rgba(255, 145, 251, 0.24);
+  color: #ffb8fc;
+}
+
+.licht-badge.blau {
+  background: rgba(145, 250, 254, 0.22);
+  color: #bafcff;
+}
+
+/* Sound-Badge */
+
+.sound-badge {
+  width: fit-content;
+  min-width: 160px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 12px 18px;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.10);
+  color: white;
+
+  font-size: 18px;
+  font-weight: 800;
+  text-align: center;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 10px 22px rgba(0, 0, 0, 0.18);
+}
+
+/* Aufwachliste */
+
+.aufwach-liste {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.aufwach-eintrag {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 16px 20px;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.aufwach-eintrag span {
+  color: #c7c1df;
+}
+
+
+
+/* Gesamt */
+
+.gesamt-box {
+  margin-top: 24px;
+
+  padding: 18px 20px;
+
+  border-radius: 14px;
+
+  background: rgba(166, 76, 255, 0.15);
+
+  font-size: 18px;
+}
+
+
+
+/* Diagramm */
+
+.balken-diagramm {
+  position: relative;
+
+  width: 100%;
+
+  height: 260px;
+
+  display: grid;
+
+  grid-template-columns: repeat(7, 1fr);
+
+  align-items: end;
+
+  margin-top: 32px;
+
+  padding: 20px 40px 35px 20px;
+
+  border-left: 2px solid rgba(255, 255, 255, 0.25);
+
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.balken {
+  position: relative;
+
+  width: 70px;
+
+  border-radius: 18px 18px 8px 8px;
+
+  background: linear-gradient(180deg, #a64cff, #3f86ff);
+
+  transition: 0.2s;
+
+  cursor: pointer;
+
+  justify-self: center;
+}
+
+.balken:hover {
+  transform: translateY(-8px);
+}
+
+.balken::before {
+  content: attr(data-wert);
+
+  position: absolute;
+
+  top: -40px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  white-space: nowrap;
+
+  padding: 6px 12px;
+
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.15);
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  opacity: 0;
+
+  transition: 0.2s;
+}
+
+.balken:hover::before {
+  opacity: 1;
+}
+
+.balken span {
+  position: absolute;
+
+  bottom: -30px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  color: #c7c1df;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.diagramm-wrapper {
+  display: flex;
+
+  align-items: flex-end;
+
+  gap: 16px;
+
+  margin-top: 30px;
+}
+
+.y-achse {
+  height: 260px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  color: #c7c1df;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+
+/* ==============================
+    HOME Responsive
+============================== */
+
+@media (max-width: 900px) {
+  .hauptbereich {
+    padding: 34px 28px 120px;
+  }
+
+  .gruss-bereich h2 {
+    font-size: 32px;
+  }
+
+  .home-karte {
+    padding: 24px;
+  }
+
+  .nacht-inhalt {
+    grid-template-columns: 240px 1fr;
+    gap: 22px;
+  }
+
+  .einstellung-box {
+    padding: 22px;
+  }
+
+  .einstellung-box h3,
+  .einstellung-box span {
+    font-size: 20px;
+  }
+
+  .balken {
+    width: 58px;
+  }
+}
+
+
+
+/* Kleine Tablets und Smartphones */
+
+@media (max-width: 700px) {
+  .hauptbereich {
+    padding: 30px 22px 115px;
+  }
+
+  .gruss-bereich h2 {
+    font-size: 30px;
+  }
+
+  .home-karte {
+    padding: 22px;
+    border-radius: 22px;
+  }
+
+  .gruss-karte h2,
+  .home-karte h2 {
+    font-size: 24px;
+  }
+
+  .nacht-inhalt {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .einstellung-box {
+    align-items: flex-start;
+  }
+
+  .aufwach-eintrag {
+    padding: 15px 18px;
+  }
+
+  .gesamt-box {
+    font-size: 17px;
+  }
+
+  .diagramm-wrapper {
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .balken-diagramm {
+    min-width: 560px;
+  }
+}
+
+
+
+/* Smartphones */
+
+@media (max-width: 480px) {
+  .hauptbereich {
+    padding: 24px 16px 110px;
+  }
+
+  .gruss-bereich {
+    margin-bottom: 22px;
+  }
+
+  .gruss-bereich h2 {
+    font-size: 26px;
+  }
+
+  .home-karte {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .gruss-karte h2,
+  .home-karte h2 {
+    font-size: 22px;
+  }
+
+  .nacht-inhalt {
+    margin-top: 20px;
+  }
+
+  .einstellung-box {
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .einstellung-box h3,
+  .einstellung-box span {
+    font-size: 18px;
+  }
+
+  .aufwach-eintrag {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+
+    padding: 14px 16px;
+  }
+
+  .gesamt-box {
+    padding: 16px 18px;
+
+    font-size: 16px;
+  }
+
+  .diagramm-wrapper {
+    gap: 12px;
+  }
+
+  .balken-diagramm {
+    height: 240px;
+    min-width: 520px;
+  }
+
+  .y-achse {
+    height: 240px;
+    font-size: 12px;
+  }
+
+  .balken {
+    width: 52px;
+  }
+}
+
+
+
+/* Sehr kleine Smartphones */
+
+@media (max-width: 380px) {
+  .hauptbereich {
+    padding: 22px 14px 105px;
+  }
+
+  .gruss-bereich h2 {
+    font-size: 24px;
+  }
+
+  .home-karte {
+    padding: 18px;
+  }
+
+  .gruss-karte h2,
+  .home-karte h2 {
+    font-size: 20px;
+  }
+
+  .einstellung-box h3,
+  .einstellung-box span {
+    font-size: 16px;
+  }
+
+  .balken-diagramm {
+    min-width: 500px;
+  }
+
+  .balken {
+    width: 46px;
+  }
+}
+
+
+
+/* ==============================
+   STATISTIK
+============================== */
+
+/* Kopfbereich */
+
+.statistik-kopf {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 24px;
+}
+
+
+/* Monatswechsel */
+
+.monatswechsel {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 10px 14px;
+
+  border-radius: 14px;
+
+  background: rgba(91, 87, 135, 0.65);
+}
+
+.monatswechsel button {
+  width: 36px;
+  height: 36px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  color: white;
+
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.monatswechsel span {
+  font-weight: 700;
+}
+
+
+
+/* Durchschnitt */
+
+.durchschnitt-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  margin-top: 16px;
+}
+
+.durchschnitt-box strong {
+  font-size: 48px;
+}
+
+.durchschnitt-box span {
+  color: #c7c1df;
+}
+
+
+
+/* Monatsdiagramm */
+
+.monats-diagramm {
+  height: 280px;
+
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  align-items: end;
+  gap: 14px;
+
+  margin-top: 32px;
+  padding: 20px 0 38px 0;
+
+  border-left: 2px solid rgba(255, 255, 255, 0.25);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.monats-balken {
+  position: relative;
+
+  width: 32px;
+
+  justify-self: center;
+
+  border-radius: 14px 14px 6px 6px;
+
+  background: linear-gradient(180deg, #a64cff, #3f86ff);
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.monats-balken:hover {
+  transform: translateY(-8px);
+}
+
+.monats-balken::before {
+  content: attr(data-wert);
+
+  position: absolute;
+  top: -38px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  white-space: nowrap;
+
+  padding: 6px 10px;
+
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.15);
+
+  opacity: 0;
+  transition: 0.2s;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.monats-balken:hover::before {
+  opacity: 1;
+}
+
+.monats-balken span {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  color: #c7c1df;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+
+/* Kalender-Legende */
+
+.legende {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+
+  margin: 22px 0 28px;
+}
+
+.legende div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #c7c1df;
+
+  font-weight: 700;
+}
+
+.punkt {
+  width: 16px;
+  height: 16px;
+
+  display: inline-block;
+
+  border-radius: 50%;
+}
+
+.gruen {
+  background: rgba(120, 255, 190, 0.25);
+}
+
+.gelb {
+  background: rgba(180, 120, 255, 0.25);
+}
+
+.orange {
+  background: rgba(166, 76, 255, 0.35);
+}
+
+.rot {
+  background: rgba(255, 102, 217, 0.35);
+}
+
+
+
+/* Einfacher Kalender */
+
+.kalender {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 14px;
+}
+
+.kalender-tag-name {
+  color: #c7c1df;
+
+  text-align: center;
+
+  font-weight: 800;
+}
+
+.kalender-tag {
+  aspect-ratio: 1;
+
+  border: none;
+  border-radius: 18px;
+
+  color: white;
+
+  font-size: 18px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.kalender-tag:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.24);
+}
+
+
+
+/* Tages-Overlay */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  padding: 24px;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  z-index: 20;
+}
+
+.overlay.aktiv {
+  display: flex;
+}
+
+.overlay-karte {
+  position: relative;
+
+  width: 100%;
+  max-width: 900px;
+
+  padding: 32px;
+
+  border-radius: 24px;
+
+  background: rgba(91, 87, 135, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.overlay-schliessen {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+
+  width: 36px;
+  height: 36px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  color: white;
+
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
+
+/* Chart */
+
+.chart-container {
+  width: 100%;
+  height: 420px;
+
+  margin-top: 32px;
+  padding: 24px 24px 12px;
+
+  border-radius: 20px;
+}
+
+
+
+/* Schlaf-Legende */
+
+.schlaf-legende {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+
+  margin: 24px 0 34px;
+
+  color: #c7c1df;
+
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.schlaf-legende span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.punkt {
+  width: 18px;
+  height: 18px;
+
+  display: inline-block;
+
+  border-radius: 50%;
+}
+
+.punkt.hervorragend {
+  background: rgba(145, 250, 254, 0.45);
+}
+
+.punkt.gut {
+  background: rgba(120, 95, 180, 0.85);
+}
+
+.punkt.okay {
+  background: rgba(166, 76, 255, 0.65);
+}
+
+.punkt.schlecht {
+  background: rgba(255, 102, 217, 0.55);
+}
+
+
+
+/* Schlaf-Kalender */
+
+.schlaf-kalender {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 18px;
+}
+
+.kalender-tag-name {
+  margin-bottom: 4px;
+
+  color: #c7c1df;
+
+  text-align: center;
+
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.schlaf-tag {
+  min-height: 120px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  border: none;
+  border-radius: 20px;
+
+  color: white;
+
+  font-family: inherit;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.schlaf-tag:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.24);
+}
+
+.schlaf-tag strong {
+  font-size: 26px;
+}
+
+.schlaf-tag span {
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.kalender-leer {
+  min-height: 120px;
+}
+
+.schlaf-hervorragend {
+  background: rgba(145, 250, 254, 0.32);
+}
+
+.schlaf-gut {
+  background: rgba(120, 95, 180, 0.75);
+}
+
+.schlaf-okay {
+  background: rgba(166, 76, 255, 0.55);
+}
+
+.schlaf-schlecht {
+  background: rgba(255, 102, 217, 0.42);
+}
+
+
+
+/* Schlaf-Overlay */
+
+/* Schlaf-Overlay */
+
+.tag-overlay {
+  position: fixed;
+  inset: 0;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  padding: 32px;
+
+  background: rgba(8, 7, 28, 0.72);
+
+  z-index: 99999;
+}
+
+.tag-overlay.aktiv {
+  display: flex;
+}
+
+.tag-overlay-card {
+  position: relative;
+
+  width: min(820px, 100%);
+  max-height: 88vh;
+
+  overflow-y: auto;
+
+  padding: 38px 42px;
+
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  background: rgba(68, 64, 115, 0.98);
+  color: white;
+
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(14px);
+}
+
+.tag-overlay-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+
+  width: 44px;
+  height: 44px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+
+  font-size: 30px;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.tag-overlay-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.tag-overlay-card h2 {
+  margin: 0 60px 28px 0;
+
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+
+
+/* Overlay-Zusammenfassung */
+
+.overlay-summary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+
+  margin-bottom: 34px;
+}
+
+.overlay-summary p {
+  margin: 0;
+  padding: 18px 20px;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.09);
+
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.overlay-summary span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #cfc8eb;
+
+  font-size: 14px;
+  font-weight: 800;
+}
+
+
+
+/* Overlay-Abschnitte */
+
+.overlay-section {
+  margin-top: 34px;
+}
+
+.overlay-section h3 {
+  margin: 0 0 16px;
+
+  font-size: 24px;
+  font-weight: 900;
+}
+
+
+
+/* Ereignisse */
+
+.overlay-events {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  max-height: 300px;
+  overflow-y: auto;
+
+  padding-right: 8px;
+}
+
+.overlay-event {
+  padding: 14px 18px;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.08);
+  color: #f7f4ff;
+
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.overlay-event:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+
+
+/* Einstellungen im Overlay */
+
+.overlay-settings {
+  display: grid;
+  gap: 12px;
+
+  padding: 18px;
+
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  font-size: 18px;
+}
+
+.overlay-settings p {
+  margin: 0;
+  padding: 14px 18px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.overlay-settings span {
+  color: #cfc8eb;
+  font-weight: 800;
+}
+
+.overlay-settings strong {
+  color: white;
+  font-weight: 900;
+  text-align: right;
+}
+
+
+
+/* Zeit-Eingabe */
+
+.zeit-eingabe {
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 16px;
+
+  margin-top: 22px;
+}
+
+.zeit-eingabe input {
+  height: 60px;
+
+  padding: 0 20px;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  outline: none;
+
+  background: rgba(255, 255, 255, 0.09);
+  color: white;
+
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.zeit-eingabe input:focus {
+  border-color: rgba(170, 90, 255, 0.75);
+  box-shadow: 0 0 0 4px rgba(170, 90, 255, 0.16);
+}
+
+.zeit-speichern-button {
+  height: 60px;
+
+  border: none;
+  border-radius: 16px;
+
+  background: linear-gradient(90deg, #a64cff, #3f86ff);
+  color: white;
+
+  font-size: 17px;
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+.zeit-speichern-button:hover {
+  opacity: 0.92;
+}
+
+/* ==============================
+   STATISTIK Responsive
+============================== */
+/* Statistik responsive */
+
+@media (max-width: 900px) {
+  .statistik-kopf {
+    gap: 20px;
+  }
+
+  .durchschnitt-box strong {
+    font-size: 42px;
+  }
+
+  .monats-diagramm {
+    gap: 10px;
+  }
+
+  .monats-balken {
+    width: 28px;
+  }
+
+  .chart-container {
+    height: 380px;
+    padding: 20px 18px 10px;
+  }
+
+  .schlaf-kalender {
+    gap: 14px;
+  }
+
+  .schlaf-tag,
+  .kalender-leer {
+    min-height: 100px;
+  }
+
+  .schlaf-tag strong {
+    font-size: 24px;
+  }
+}
+
+
+
+/* Kleine Tablets und Smartphones */
+
+@media (max-width: 700px) {
+  .statistik-kopf {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .monatswechsel {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .durchschnitt-box strong {
+    font-size: 38px;
+  }
+
+  .monats-diagramm {
+    min-width: 720px;
+  }
+
+  .home-karte:has(.monats-diagramm) {
+    overflow-x: auto;
+  }
+
+  .legende,
+  .schlaf-legende {
+    gap: 12px;
+  }
+
+  .schlaf-legende {
+    font-size: 15px;
+  }
+
+  .schlaf-kalender {
+    gap: 10px;
+  }
+
+  .kalender-tag-name {
+    font-size: 15px;
+  }
+
+  .schlaf-tag,
+  .kalender-leer {
+    min-height: 82px;
+  }
+
+  .schlaf-tag strong {
+    font-size: 21px;
+  }
+
+  .schlaf-tag span {
+    font-size: 13px;
+  }
+
+  .tag-overlay-card {
+    padding: 30px 28px;
+  }
+
+  .tag-overlay-card h2 {
+    font-size: 28px;
+  }
+
+  .overlay-summary {
+    font-size: 19px;
+  }
+
+  .zeit-eingabe {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* Smartphones */
+
+@media (max-width: 480px) {
+  .monatswechsel {
+    gap: 10px;
+    padding: 9px 12px;
+  }
+
+  .monatswechsel button {
+    width: 34px;
+    height: 34px;
+
+    font-size: 22px;
+  }
+
+  .durchschnitt-box strong {
+    font-size: 34px;
+  }
+
+  .monats-diagramm {
+    min-width: 680px;
+    height: 250px;
+  }
+
+  .monats-balken {
+    width: 26px;
+  }
+
+  .legende,
+  .schlaf-legende {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .chart-container {
+    height: 330px;
+    margin-top: 24px;
+    padding: 14px 10px 8px;
+  }
+
+  .schlaf-kalender {
+    gap: 7px;
+  }
+
+  .kalender-tag-name {
+    font-size: 12px;
+  }
+
+  .schlaf-tag,
+  .kalender-leer {
+    min-height: 64px;
+    border-radius: 14px;
+  }
+
+  .schlaf-tag strong {
+    font-size: 18px;
+  }
+
+  .schlaf-tag span {
+    display: none;
+  }
+
+  .tag-overlay {
+    padding: 14px;
+    align-items: flex-end;
+  }
+
+  .tag-overlay-card {
+    max-height: 86vh;
+    padding: 28px 22px;
+    border-radius: 24px 24px 0 0;
+  }
+
+  .tag-overlay-close {
+    width: 38px;
+    height: 38px;
+
+    font-size: 26px;
+  }
+
+  .tag-overlay-card h2 {
+    margin-right: 44px;
+
+    font-size: 24px;
+  }
+
+  .overlay-summary {
+    font-size: 17px;
+  }
+
+  .overlay-section h3 {
+    font-size: 21px;
+  }
+
+  .overlay-event,
+  .overlay-settings {
+    font-size: 16px;
+  }
+
+  .zeit-eingabe input,
+  .zeit-speichern-button {
+    height: 56px;
+  }
+
+  .zeit-eingabe input {
+    font-size: 18px;
+  }
+}
+
+
+
+/* Sehr kleine Smartphones */
+
+@media (max-width: 380px) {
+  .durchschnitt-box strong {
+    font-size: 30px;
+  }
+
+  .monats-diagramm {
+    min-width: 640px;
+  }
+
+  .schlaf-kalender {
+    gap: 5px;
+  }
+
+  .kalender-tag-name {
+    font-size: 11px;
+  }
+
+  .schlaf-tag,
+  .kalender-leer {
+    min-height: 56px;
+    border-radius: 12px;
+  }
+
+  .schlaf-tag strong {
+    font-size: 16px;
+  }
+
+  .tag-overlay-card {
+    padding: 26px 18px;
+  }
+}
+
+
+
+/* ==============================
+   PERSONALISIERUNG
+============================== */
+
+/* Seitenkopf */
+
+.seitenkopf {
+  margin-bottom: 32px;
+}
+
+.seitenkopf h2 {
+  margin-bottom: 8px;
+  font-size: 40px;
+  font-weight: 800;
+}
+
+.seitenkopf p {
+  color: #c7c1df;
+  font-size: 18px;
+}
+
+
+
+/* Kartenraster */
+
+.personalisierung-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.personalisierung-karte {
+  width: 100%;
+  height: 100%;
+
+  padding: 28px;
+
+  border-radius: 24px;
+
+  background: rgba(91, 87, 135, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+}
+
+.personalisierung-karte-breit {
+  grid-column: 1 / -1;
+}
+
+
+
+/* Kartenkopf */
+
+.karten-kopf {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  margin-bottom: 22px;
+}
+
+.kategorie-icon {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  background: linear-gradient(180deg, #ff66d9, #a64cff);
+
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.karten-kopf h3 {
+  font-size: 24px;
+}
+
+
+
+/* Auswahl */
+
+.track-liste {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auswahl-button {
+  width: 100%;
+
+  padding: 14px 16px;
+
+  border: 1px solid transparent;
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.09);
+
+  color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.auswahl-button:hover,
+.auswahl-button.aktiv {
+  background: rgba(166, 76, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+
+
+/* Status */
+
+.status-text {
+  margin-top: 20px;
+
+  color: #c7c1df;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.status-text strong {
+  color: white;
+}
+
+
+
+/* Lichtauswahl */
+
+.licht-text {
+  margin-bottom: 24px;
+
+  color: #c7c1df;
+
+  font-size: 16px;
+}
+
+.licht-auswahl {
+  display: flex;
+  gap: 18px;
+
+  margin-bottom: 20px;
+}
+
+.licht-farbe {
+  width: 56px;
+  height: 56px;
+
+  border: none;
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.licht-farbe:hover {
+  transform: scale(1.08);
+}
+
+.licht-farbe.aktiv {
+  border: 3px solid white;
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.25);
+}
+
+.licht-yellow {
+  background: #FFFED1;
+}
+
+.licht-green {
+  background: #91FF95;
+}
+
+.licht-violet {
+  background: #7F00FF;
+}
+
+.licht-pink {
+  background: #FF91FB;
+}
+
+.licht-blue {
+  background: #91FAFE;
+}
+
+
+/* ==============================
+    PERSONALISIERUNG Responsive
+============================== */
+
+@media (max-width: 900px) {
+  .seitenkopf h2 {
+    font-size: 34px;
+  }
+
+  .seitenkopf p {
+    font-size: 16px;
+  }
+
+  .personalisierung-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .personalisierung-karte {
+    padding: 24px;
+  }
+
+  .personalisierung-karte-breit {
+    grid-column: auto;
+  }
+}
+
+
+
+/* Kleine Tablets und Smartphones */
+
+@media (max-width: 700px) {
+  .seitenkopf {
+    margin-bottom: 26px;
+  }
+
+  .seitenkopf h2 {
+    font-size: 31px;
+  }
+
+  .personalisierung-grid {
+    gap: 20px;
+  }
+
+  .karten-kopf {
+    margin-bottom: 18px;
+  }
+
+  .kategorie-icon {
+    width: 40px;
+    height: 40px;
+
+    font-size: 20px;
+  }
+
+  .karten-kopf h3 {
+    font-size: 22px;
+  }
+
+  .auswahl-button {
+    padding: 13px 15px;
+
+    font-size: 14px;
+  }
+
+  .licht-auswahl {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .licht-farbe {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+
+
+/* Smartphones */
+
+@media (max-width: 480px) {
+  .seitenkopf {
+    margin-bottom: 22px;
+  }
+
+  .seitenkopf h2 {
+    font-size: 28px;
+  }
+
+  .seitenkopf p {
+    font-size: 15px;
+  }
+
+  .personalisierung-grid {
+    gap: 18px;
+  }
+
+  .personalisierung-karte {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .karten-kopf {
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .kategorie-icon {
+    width: 38px;
+    height: 38px;
+
+    font-size: 18px;
+  }
+
+  .karten-kopf h3 {
+    font-size: 20px;
+  }
+
+  .track-liste {
+    gap: 10px;
+  }
+
+  .auswahl-button {
+    padding: 12px 14px;
+
+    font-size: 14px;
+  }
+
+  .status-text {
+    margin-top: 16px;
+
+    font-size: 13px;
+  }
+
+  .licht-text {
+    margin-bottom: 18px;
+
+    font-size: 14px;
+  }
+
+  .licht-auswahl {
+    gap: 12px;
+  }
+
+  .licht-farbe {
+    width: 48px;
+    height: 48px;
+  }
+
+  .einstellungen-speichern-bereich {
+    margin: 32px 0 110px;
+  }
+}
+
+
+
+/* Sehr kleine Smartphones */
+
+@media (max-width: 380px) {
+  .seitenkopf h2 {
+    font-size: 25px;
+  }
+
+  .seitenkopf p {
+    font-size: 14px;
+  }
+
+  .personalisierung-karte {
+    padding: 18px;
+  }
+
+  .kategorie-icon {
+    width: 34px;
+    height: 34px;
+
+    font-size: 16px;
+  }
+
+  .karten-kopf h3 {
+    font-size: 18px;
+  }
+
+  .licht-farbe {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+
+
+/* ==============================
+   BLOG
+============================== */
+
+/* Seitenlayout */
 
 body.blog-page {
   min-height: 100vh;
@@ -547,6 +3420,10 @@ body.blog-page {
   margin: 0 auto;
   padding: 56px 0 80px;
 }
+
+
+
+/* Kopfbereich */
 
 .blog-hero {
   display: flex;
@@ -606,6 +3483,10 @@ body.blog-page {
   opacity: 0.9;
 }
 
+
+
+/* Filter */
+
 .blog-filter-bar {
   display: flex;
   flex-wrap: wrap;
@@ -638,6 +3519,10 @@ body.blog-page {
   transform: translateY(-1px);
 }
 
+
+
+/* Beiträge */
+
 .blog-posts {
   display: grid;
   gap: 18px;
@@ -647,6 +3532,8 @@ body.blog-page {
 
 .blog-card {
   min-height: auto;
+
+  position: relative;
 
   display: grid;
   grid-template-columns: 70px 1fr;
@@ -688,6 +3575,10 @@ body.blog-page {
 
 .blog-card-content {
   min-width: 0;
+
+  position: relative;
+  padding-right: 220px;
+  padding-bottom: 80px;
 }
 
 .blog-tag {
@@ -732,6 +3623,10 @@ body.blog-page {
   line-height: 1.5;
 }
 
+
+
+/* Beitrag-Metadaten */
+
 .blog-meta {
   display: flex;
   justify-content: space-between;
@@ -755,6 +3650,7 @@ body.blog-page {
 .blog-meta span {
   line-height: 1.3;
 }
+
 
 
 /* Blogformular */
@@ -850,6 +3746,10 @@ body.blog-page .blog-create-form textarea:focus {
   box-shadow: 0 0 0 4px rgba(170, 90, 255, 0.16);
 }
 
+
+
+/* Formular-Aktionen */
+
 body.blog-page .blog-form-actions {
   width: 100%;
 
@@ -885,6 +3785,7 @@ body.blog-page .blog-publish-button {
 body.blog-page .blog-cancel-button {
   background: rgba(255, 255, 255, 0.14);
 }
+
 
 
 /* Kategorie-Auswahl */
@@ -997,1245 +3898,8 @@ body.blog-page .blog-custom-select-options button.is-selected {
 }
 
 
-/* Profil */
 
-body.profil-page {
-  min-height: 100vh;
-
-  display: block;
-  overflow-x: hidden;
-}
-
-.profil-container {
-  width: min(900px, calc(100% - 48px));
-
-  position: relative;
-  z-index: 2;
-
-  margin: 0 auto;
-  padding-top: 90px;
-  padding-bottom: 120px;
-}
-
-.profil-title {
-  margin: 0 0 26px;
-
-  color: white;
-
-  font-size: 45px;
-  font-weight: 900;
-  line-height: 1;
-  text-align: left;
-}
-
-.profil-card {
-  width: 100%;
-
-  padding: 48px 56px;
-
-  border-radius: 26px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-
-  background: rgba(92, 89, 137, 0.63);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 20px 55px rgba(0, 0, 0, 0.16);
-
-  backdrop-filter: blur(10px);
-}
-
-.profil-form {
-  width: 100%;
-  max-width: none;
-
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
-
-  margin: 0 auto;
-}
-
-.profil-form-group {
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-
-  margin-bottom: 28px;
-}
-
-.profil-form label {
-  margin: 0 0 8px;
-
-  color: #d7c9f4;
-
-  font-size: 22px;
-  font-weight: 800;
-}
-
-.profil-form input {
-  width: 100%;
-  height: 64px;
-
-  padding: 0 22px;
-
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 16px;
-  outline: none;
-
-  background: rgba(255, 255, 255, 0.09);
-  color: white;
-
-  font-size: 20px;
-}
-
-.profil-form input:focus {
-  border-color: rgba(170, 90, 255, 0.75);
-  box-shadow: 0 0 0 4px rgba(170, 90, 255, 0.16);
-}
-
-.profil-button {
-  width: 100%;
-  height: 64px;
-
-  margin-top: 12px;
-
-  border: none;
-  border-radius: 16px;
-
-  background: linear-gradient(90deg, #a942f5 0%, #3287ff 100%);
-  color: white;
-  box-shadow: 0 16px 32px rgba(79, 112, 255, 0.25);
-
-  font-size: 24px;
-  font-weight: 900;
-
-  cursor: pointer;
-}
-
-.profil-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 20px 38px rgba(79, 112, 255, 0.34);
-}
-
-
-
-
-
-
-
-.balken-diagramm {
-  position: relative;
-
-  height: 240px;
-
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 18px;
-
-  margin-top: 36px;
-  padding: 36px 0 34px 36px;
-
-  border-left: 2px solid rgba(255, 255, 255, 0.25);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
-}
-
-.balken {
-  position: relative;
-
-  width: 54px;
-
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-
-  border-radius: 18px 18px 8px 8px;
-
-  background: linear-gradient(180deg, #a64cff, #3f86ff);
-
-  cursor: pointer;
-
-  transition: 0.2s;
-}
-
-.balken:hover {
-  transform: translateY(-8px);
-}
-
-.balken::before {
-  content: attr(data-wert);
-
-  position: absolute;
-  top: -38px;
-
-  white-space: nowrap;
-
-  padding: 6px 10px;
-
-  border-radius: 10px;
-
-  background: rgba(255, 255, 255, 0.14);
-
-  color: white;
-
-  font-size: 14px;
-  font-weight: 700;
-
-  opacity: 0;
-
-  transition: 0.2s;
-}
-
-.balken:hover::before {
-  opacity: 1;
-}
-
-.balken span {
-  position: absolute;
-  bottom: -28px;
-
-  color: #c7c1df;
-
-  font-size: 14px;
-  font-weight: 700;
-}
-
-
-
-/* =========================
-   HOME INHALT
-========================= */
-
-.hauptbereich {
-  width: 100%;
-  max-width: 1280px;
-
-  margin: 0 auto;
-
-  padding: 40px 32px 120px;
-}
-
-/* Karten */
-
-.gruss-bereich {
-  margin-bottom: 28px;
-}
-
-.gruss-bereich h2 {
-  font-size: 36px;
-  font-weight: 700;
-}
-.home-karte {
-  width: 100%;
-
-  margin-bottom: 24px;
-
-  padding: 28px;
-
-  border-radius: 24px;
-
-  background: rgba(91, 87, 135, 0.65);
-
-  border: 1px solid rgba(255, 255, 255, 0.12);
-
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
-}
-
-.gruss-karte h2,
-.home-karte h2 {
-  font-size: 28px;
-}
-
-/* Letzte Nacht */
-
-.nacht-inhalt {
-  display: grid;
-
-  grid-template-columns: 280px 1fr;
-
-  gap: 28px;
-
-  margin-top: 24px;
-}
-
-/* Einstellungen */
-
-.einstellung-box {
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: center;
-
-  gap: 12px;
-
-  padding: 24px;
-
-  border-radius: 18px;
-
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.einstellung-box h3,
-.einstellung-box span {
-  font-size: 22px;
-
-  font-weight: 700;
-}
-
-.einstellung-box span {
-  color: #8fc4ff;
-}
-
-/* Aufwachliste */
-
-.aufwach-liste {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 12px;
-}
-
-.aufwach-eintrag {
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-
-  padding: 16px 20px;
-
-  border-radius: 14px;
-
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.aufwach-eintrag span {
-  color: #c7c1df;
-}
-
-/* Gesamt */
-
-.gesamt-box {
-  margin-top: 24px;
-
-  padding: 18px 20px;
-
-  border-radius: 14px;
-
-  background: rgba(166, 76, 255, 0.15);
-
-  font-size: 18px;
-}
-
-/* =========================
-   DIAGRAMM
-========================= */
-
-.balken-diagramm {
-  position: relative;
-
-  width: 100%;
-
-  height: 260px;
-
-  display: grid;
-
-  grid-template-columns: repeat(7, 1fr);
-
-  align-items: end;
-
-  margin-top: 32px;
-
-  padding: 20px 40px 35px 20px;
-
-  border-left: 2px solid rgba(255, 255, 255, 0.25);
-
-  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
-}
-
-
-.balken {
-  position: relative;
-
-  width: 70px;
-
-  border-radius: 18px 18px 8px 8px;
-
-  background: linear-gradient(180deg, #a64cff, #3f86ff);
-
-  transition: 0.2s;
-
-  cursor: pointer;
-
-  justify-self: center;
-}
-
-.balken:hover {
-  transform: translateY(-8px);
-}
-
-.balken::before {
-  content: attr(data-wert);
-
-  position: absolute;
-
-  top: -40px;
-
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  white-space: nowrap;
-
-  padding: 6px 12px;
-
-  border-radius: 10px;
-
-  background: rgba(255, 255, 255, 0.15);
-
-  font-size: 14px;
-
-  font-weight: 700;
-
-  opacity: 0;
-
-  transition: 0.2s;
-}
-
-.balken:hover::before {
-  opacity: 1;
-}
-
-.balken span {
-  position: absolute;
-
-  bottom: -30px;
-
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  color: #c7c1df;
-
-  font-size: 14px;
-
-  font-weight: 700;
-}
-
-
-.diagramm-wrapper {
-  display: flex;
-
-  align-items: flex-end;
-
-  gap: 16px;
-
-  margin-top: 30px;
-}
-
-.y-achse {
-  height: 260px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: space-between;
-
-  color: #c7c1df;
-
-  font-size: 13px;
-
-  font-weight: 600;
-}
-
-
-
-/* =========================
-   PERSONALISIERUNG
-========================= */
-
-.seitenkopf {
-  margin-bottom: 32px;
-}
-
-.seitenkopf h2 {
-  margin-bottom: 8px;
-  font-size: 40px;
-  font-weight: 800;
-}
-
-.seitenkopf p {
-  color: #c7c1df;
-  font-size: 18px;
-}
-
-.personalisierung-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-
-.personalisierung-karte {
-  height: 100%;
-
-  padding: 28px;
-
-  border-radius: 24px;
-
-  background: rgba(91, 87, 135, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
-}
-
-.karten-kopf {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-
-  margin-bottom: 22px;
-}
-
-.kategorie-icon {
-  width: 44px;
-  height: 44px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border-radius: 50%;
-
-  background: linear-gradient(180deg, #ff66d9, #a64cff);
-
-  font-size: 22px;
-  font-weight: 700;
-}
-
-.karten-kopf h3 {
-  font-size: 24px;
-}
-
-.track-liste {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.auswahl-button {
-  width: 100%;
-
-  padding: 14px 16px;
-
-  border: 1px solid transparent;
-  border-radius: 12px;
-
-  background: rgba(255, 255, 255, 0.09);
-
-  color: white;
-
-  font-size: 15px;
-  font-weight: 600;
-  text-align: left;
-
-  cursor: pointer;
-}
-
-.auswahl-button:hover,
-.auswahl-button.aktiv {
-  background: rgba(166, 76, 255, 0.35);
-  border-color: rgba(255, 255, 255, 0.25);
-}
-
-.status-text {
-  margin-top: 20px;
-
-  color: #c7c1df;
-
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.status-text strong {
-  color: white;
-}
-
-.licht-text {
-  margin-bottom: 24px;
-
-  color: #c7c1df;
-
-  font-size: 16px;
-}
-
-.licht-auswahl {
-  display: flex;
-  gap: 18px;
-
-  margin-bottom: 20px;
-}
-
-.licht-farbe {
-  width: 56px;
-  height: 56px;
-
-  border: none;
-  border-radius: 50%;
-
-  cursor: pointer;
-
-  transition: 0.2s;
-}
-
-.licht-farbe:hover {
-  transform: scale(1.08);
-}
-
-.licht-farbe.aktiv {
-  border: 3px solid white;
-  box-shadow: 0 0 18px rgba(255, 255, 255, 0.25);
-}
-
-.licht-yellow {
-  background: #FFFED1;
-}
-
-.licht-green {
-  background: #91FF95;
-}
-
-.licht-violet {
-  background: #7F00FF;
-}
-
-.licht-pink {
-  background: #FF91FB;
-}
-
-.licht-blue {
-  background: #91FAFE;
-}
-
-
-
-/* =========================
-   STATISTIK
-========================= */
-
-.statistik-kopf {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.monatswechsel {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-
-  padding: 10px 14px;
-
-  border-radius: 14px;
-
-  background: rgba(91, 87, 135, 0.65);
-}
-
-.monatswechsel button {
-  width: 36px;
-  height: 36px;
-
-  border: none;
-  border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.12);
-
-  color: white;
-
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.monatswechsel span {
-  font-weight: 700;
-}
-
-.durchschnitt-box {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-
-  margin-top: 16px;
-}
-
-.durchschnitt-box strong {
-  font-size: 48px;
-}
-
-.durchschnitt-box span {
-  color: #c7c1df;
-}
-
-/* Monatsdiagramm */
-
-.monats-diagramm {
-  height: 280px;
-
-  display: grid;
-  grid-template-columns: repeat(14, 1fr);
-  align-items: end;
-  gap: 14px;
-
-  margin-top: 32px;
-  padding: 20px 0 38px 0;
-
-  border-left: 2px solid rgba(255, 255, 255, 0.25);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
-}
-
-.monats-balken {
-  position: relative;
-
-  width: 32px;
-
-  justify-self: center;
-
-  border-radius: 14px 14px 6px 6px;
-
-  background: linear-gradient(180deg, #a64cff, #3f86ff);
-
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.monats-balken:hover {
-  transform: translateY(-8px);
-}
-
-.monats-balken::before {
-  content: attr(data-wert);
-
-  position: absolute;
-  top: -38px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  white-space: nowrap;
-
-  padding: 6px 10px;
-
-  border-radius: 10px;
-
-  background: rgba(255, 255, 255, 0.15);
-
-  opacity: 0;
-  transition: 0.2s;
-
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.monats-balken:hover::before {
-  opacity: 1;
-}
-
-.monats-balken span {
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  color: #c7c1df;
-
-  font-size: 13px;
-  font-weight: 700;
-}
-
-/* Legende */
-
-.legende {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-
-  margin: 22px 0 28px;
-}
-
-.legende div {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  color: #c7c1df;
-
-  font-weight: 700;
-}
-
-.punkt {
-  width: 16px;
-  height: 16px;
-
-  display: inline-block;
-
-  border-radius: 50%;
-}
-
-.gruen {
-  background: rgba(120, 255, 190, 0.25);
-}
-
-.gelb {
-  background: rgba(180, 120, 255, 0.25);
-}
-
-.orange {
-  background: rgba(166, 76, 255, 0.35);
-}
-
-.rot {
-  background: rgba(255, 102, 217, 0.35);
-}
-
-/* Kalender */
-
-.kalender {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 14px;
-}
-
-.kalender-tag-name {
-  color: #c7c1df;
-
-  text-align: center;
-
-  font-weight: 800;
-}
-
-.kalender-tag {
-  aspect-ratio: 1;
-
-  border: none;
-  border-radius: 18px;
-
-  color: white;
-
-  font-size: 18px;
-  font-weight: 800;
-
-  cursor: pointer;
-
-  transition: 0.2s;
-}
-
-.kalender-tag:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.24);
-}
-
-/* Overlay */
-
-.overlay {
-  position: fixed;
-  inset: 0;
-
-  display: none;
-  justify-content: center;
-  align-items: center;
-
-  padding: 24px;
-
-  background: rgba(0, 0, 0, 0.55);
-
-  z-index: 20;
-}
-
-.overlay.aktiv {
-  display: flex;
-}
-
-.overlay-karte {
-  position: relative;
-
-  width: 100%;
-  max-width: 900px;
-
-  padding: 32px;
-
-  border-radius: 24px;
-
-  background: rgba(91, 87, 135, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-}
-
-.overlay-schliessen {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-
-  width: 36px;
-  height: 36px;
-
-  border: none;
-  border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.12);
-
-  color: white;
-
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.chart-container {
-  width: 100%;
-  height: 420px;
-
-  margin-top: 32px;
-  padding: 24px 24px 12px;
-
-  border-radius: 20px;
-}
-
-.schlaf-legende {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 22px;
-
-  margin: 24px 0 34px;
-
-  color: #c7c1df;
-
-  font-size: 17px;
-  font-weight: 800;
-}
-
-.schlaf-legende span {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.punkt {
-  width: 18px;
-  height: 18px;
-
-  display: inline-block;
-
-  border-radius: 50%;
-}
-
-.punkt.hervorragend {
-  background: rgba(145, 250, 254, 0.45);
-}
-
-.punkt.gut {
-  background: rgba(120, 95, 180, 0.85);
-}
-
-.punkt.okay {
-  background: rgba(166, 76, 255, 0.65);
-}
-
-.punkt.schlecht {
-  background: rgba(255, 102, 217, 0.55);
-}
-
-.schlaf-kalender {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 18px;
-}
-
-.kalender-tag-name {
-  margin-bottom: 4px;
-
-  color: #c7c1df;
-
-  text-align: center;
-
-  font-size: 18px;
-  font-weight: 900;
-}
-
-.schlaf-tag {
-  min-height: 120px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-
-  border: none;
-  border-radius: 20px;
-
-  color: white;
-
-  font-family: inherit;
-  font-weight: 900;
-
-  cursor: pointer;
-
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.schlaf-tag:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.24);
-}
-
-.schlaf-tag strong {
-  font-size: 26px;
-}
-
-.schlaf-tag span {
-  color: rgba(255, 255, 255, 0.82);
-
-  font-size: 15px;
-  font-weight: 800;
-}
-
-.kalender-leer {
-  min-height: 120px;
-}
-
-.schlaf-hervorragend {
-  background: rgba(145, 250, 254, 0.32);
-}
-
-.schlaf-gut {
-  background: rgba(120, 95, 180, 0.75);
-}
-
-.schlaf-okay {
-  background: rgba(166, 76, 255, 0.55);
-}
-
-.schlaf-schlecht {
-  background: rgba(255, 102, 217, 0.42);
-}
-
-.tag-overlay {
-  position: fixed;
-  inset: 0;
-
-  display: none;
-  justify-content: center;
-  align-items: center;
-
-  padding: 24px;
-
-  background: rgba(0, 0, 0, 0.55);
-
-  z-index: 99999;
-}
-
-.tag-overlay.aktiv {
-  display: flex;
-}
-
-.tag-overlay-card {
-  position: relative;
-
-  width: min(760px, 100%);
-  max-height: 88vh;
-
-  overflow-y: auto;
-
-  padding: 34px 36px;
-
-  border-radius: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-
-  background: rgba(91, 87, 135, 0.96);
-  color: white;
-
-  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(12px);
-}
-
-.tag-overlay-close {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-
-  width: 42px;
-  height: 42px;
-
-  border: none;
-  border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.14);
-  color: white;
-
-  font-size: 30px;
-  line-height: 1;
-
-  cursor: pointer;
-}
-
-.tag-overlay-card h2 {
-  margin: 0 50px 24px 0;
-
-  font-size: 32px;
-  font-weight: 900;
-}
-
-.overlay-summary {
-  display: grid;
-  gap: 10px;
-
-  margin-bottom: 28px;
-
-  font-size: 21px;
-}
-
-.overlay-summary p,
-.overlay-settings p {
-  margin: 0;
-}
-
-.overlay-summary span,
-.overlay-settings span {
-  color: #d7d0ee;
-  font-weight: 800;
-}
-
-.overlay-section {
-  margin-top: 28px;
-}
-
-.overlay-section h3 {
-  margin: 0 0 16px;
-
-  font-size: 24px;
-  font-weight: 900;
-}
-
-.overlay-events {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-
-  max-height: 260px;
-  overflow-y: auto;
-}
-
-.overlay-event {
-  padding: 14px 18px;
-
-  border-radius: 14px;
-
-  background: rgba(255, 255, 255, 0.1);
-
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.overlay-settings {
-  display: grid;
-  gap: 12px;
-
-  padding: 18px;
-
-  border-radius: 16px;
-
-  background: rgba(255, 255, 255, 0.09);
-
-  font-size: 18px;
-}
-
-.zeit-eingabe {
-  display: grid;
-  grid-template-columns: 1fr 180px;
-  gap: 16px;
-
-  margin-top: 20px;
-}
-
-.zeit-eingabe input {
-  height: 64px;
-
-  padding: 0 20px;
-
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 16px;
-  outline: none;
-
-  background: rgba(255, 255, 255, 0.09);
-  color: white;
-
-  font-size: 22px;
-  font-weight: 800;
-}
-
-.zeit-speichern-button {
-  height: 64px;
-
-  border: none;
-  border-radius: 16px;
-
-  background: linear-gradient(90deg, #a64cff, #3f86ff);
-  color: white;
-
-  font-size: 18px;
-  font-weight: 900;
-
-  cursor: pointer;
-}
-
-.zeit-speichern-button:hover {
-  opacity: 0.92;
-}
-
-.blog-delete-button {
-  padding: 8px 14px;
-
-  border: none;
-  border-radius: 999px;
-
-  background: rgba(255, 102, 130, 0.18);
-  color: #ffb8c6;
-
-  font-size: 14px;
-  font-weight: 800;
-
-  cursor: pointer;
-
-  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
-}
-
-.blog-delete-button:hover {
-  background: rgba(255, 102, 130, 0.32);
-  color: white;
-
-  transform: translateY(-1px);
-}
-
-.blog-delete-button:active {
-  transform: translateY(0);
-}
-
-.blog-card {
-  position: relative;
-}
-
-.blog-card {
-  position: relative;
-}
-
-.blog-card-content {
-  position: relative;
-  padding-right: 220px;
-  padding-bottom: 80px;
-}
+/* Beitrag löschen */
 
 .blog-delete-button {
   position: absolute;
@@ -2264,234 +3928,298 @@ body.profil-page {
   transform: translateY(-1px);
 }
 
-.geraet-card {
-  max-width: 760px;
-  margin: 60px auto 120px;
+.blog-delete-button:active {
+  transform: translateY(0);
 }
 
-.geraet-form {
-  width: 100%;
-  max-width: none;
+/* ==============================
+   BLOG Responsive
+============================== */
 
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-
-  margin-top: 28px;
-}
-
-.geraet-form label {
-  color: #d7c9f4;
-
-  font-size: 20px;
-  font-weight: 800;
-}
-
-.geraet-form input {
-  width: 100%;
-  height: 64px;
-
-  padding: 0 22px;
-
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 16px;
-  outline: none;
-
-  background: rgba(255, 255, 255, 0.09);
-  color: white;
-
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.geraet-form input:focus {
-  border-color: rgba(170, 90, 255, 0.75);
-  box-shadow: 0 0 0 4px rgba(170, 90, 255, 0.16);
-}
-
-.einstellungen-speichern-bereich {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  margin: 40px 0 120px;
-}
-
-.einstellungen-speichern-button {
-  min-width: 280px;
-  padding: 18px 32px;
-
-  border: none;
-  border-radius: 999px;
-
-  background: linear-gradient(90deg, #a64cff, #3f86ff);
-  color: white;
-
-  font-size: 20px;
-  font-weight: 900;
-
-  cursor: pointer;
-
-  box-shadow: 0 16px 34px rgba(70, 80, 255, 0.28);
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.einstellungen-speichern-button:hover {
-  transform: translateY(-2px);
-  opacity: 0.95;
-}
-
-.speichern-status {
-  min-height: 24px;
-  margin-top: 14px;
-
-  color: #d7d0ee;
-  font-size: 16px;
-  font-weight: 800;
-}
-
-.history-box {
-  padding: 22px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.history-subtitle {
-  margin: 0 0 16px;
-  color: white;
-  font-size: 18px;
-  font-weight: 900;
-}
-
-.history-subtitle-second {
-  margin-top: 34px;
-}
-
-.history-settings-grid {
-  display: grid;
-  gap: 12px;
-}
-
-.history-setting-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 18px;
-
-  padding: 14px 18px;
-  border-radius: 14px;
-
-  background: rgba(255, 255, 255, 0.09);
-}
-
-.history-setting-row span {
-  color: #d7d0ee;
-  font-size: 16px;
-  font-weight: 800;
-}
-
-.history-setting-row strong {
-  color: white;
-  font-size: 17px;
-  font-weight: 900;
-  text-align: right;
-}
-
-.history-change-item {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 22px;
-  align-items: start;
-
-  padding: 18px 20px;
-  margin-bottom: 14px;
-
-  border-radius: 18px;
-
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.history-change-time {
-  color: white;
-
-  font-size: 18px;
-  font-weight: 900;
-
-  white-space: nowrap;
-  padding-top: 6px;
-}
-
-.history-change-content {
-  display: grid;
-  gap: 10px;
-}
-
-.history-change-value {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 18px;
-
-  padding: 12px 16px;
-
-  border-radius: 14px;
-
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.history-change-value span {
-  color: #d7d0ee;
-
-  font-size: 15px;
-  font-weight: 800;
-}
-
-.history-change-value strong {
-  color: white;
-
-  font-size: 16px;
-  font-weight: 900;
-  text-align: right;
-}
-
-.history-empty {
-  padding: 16px 18px;
-
-  border-radius: 14px;
-
-  background: rgba(255, 255, 255, 0.08);
-  color: #d7d0ee;
-
-  font-size: 16px;
-  font-weight: 800;
-}
-
-/* Licht und Sound nebeneinander */
-.personalisierung-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  align-items: stretch;
-}
-
-/* Karten sollen sauber die gleiche Breite nutzen */
-.personalisierung-karte {
-  width: 100%;
-}
-
-/* Lichtkarte und Soundkarte gleich hoch wirken lassen */
-.personalisierung-karte .track-liste {
-  width: 100%;
-}
-
-/* Auf kleineren Screens wieder untereinander */
 @media (max-width: 900px) {
-  .personalisierung-grid {
+  .blog-main {
+    width: min(100%, calc(100% - 48px));
+    padding: 44px 0 120px;
+  }
+
+  .blog-hero {
+    padding: 26px 28px;
+  }
+
+  .blog-card {
+    grid-template-columns: 62px 1fr;
+    gap: 18px;
+
+    padding: 24px 26px;
+  }
+
+  .blog-card-content {
+    padding-right: 180px;
+    padding-bottom: 72px;
+  }
+
+  .blog-form-actions {
+    grid-template-columns: 1fr 220px;
+  }
+}
+
+
+
+/* Kleine Tablets und Smartphones */
+
+@media (max-width: 700px) {
+  .blog-main {
+    width: min(100%, calc(100% - 32px));
+    padding: 36px 0 115px;
+  }
+
+  .blog-hero {
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding: 24px;
+  }
+
+  .blog-hero h2 {
+    font-size: 27px;
+  }
+
+  .blog-new-post {
+    width: 100%;
+  }
+
+  .blog-filter-bar {
+    gap: 8px;
+
+    margin: 24px 0 28px;
+  }
+
+  .blog-filter {
+    padding: 10px 16px;
+
+    font-size: 14px;
+  }
+
+  .blog-card {
+    grid-template-columns: 1fr;
+    gap: 14px;
+
+    padding: 22px;
+  }
+
+  .blog-card-icon {
+    width: 52px;
+    height: 52px;
+
+    font-size: 32px;
+  }
+
+  .blog-card-content {
+    padding-right: 0;
+    padding-bottom: 76px;
+  }
+
+  .blog-card h3 {
+    font-size: 22px;
+  }
+
+  .blog-card p {
+    font-size: 16px;
+  }
+
+  .blog-meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  body.blog-page .blog-create-form {
+    padding: 26px 24px;
+  }
+
+  body.blog-page .blog-create-form h2 {
+    font-size: 24px;
+  }
+
+  body.blog-page .blog-form-actions {
     grid-template-columns: 1fr;
   }
 }
 
-.personalisierung-karte-breit {
-  grid-column: 1 / -1;
+
+
+/* Smartphones */
+
+@media (max-width: 480px) {
+  .blog-main {
+    width: min(100%, calc(100% - 24px));
+    padding: 28px 0 110px;
+  }
+
+  .blog-hero {
+    padding: 20px;
+  }
+
+  .blog-hero h2 {
+    font-size: 24px;
+  }
+
+  .blog-hero p {
+    font-size: 15px;
+  }
+
+  .blog-new-post {
+    padding: 13px 18px;
+
+    font-size: 15px;
+  }
+
+  .blog-new-post span {
+    font-size: 24px;
+  }
+
+  .blog-filter {
+    padding: 9px 14px;
+
+    font-size: 13px;
+  }
+
+  .blog-card {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .blog-card-icon {
+    width: 48px;
+    height: 48px;
+
+    font-size: 29px;
+  }
+
+  .blog-tag {
+    margin-bottom: 12px;
+    padding: 6px 14px;
+
+    font-size: 13px;
+  }
+
+  .blog-card h3 {
+    margin-bottom: 12px;
+
+    font-size: 20px;
+  }
+
+  .blog-card p {
+    margin-bottom: 16px;
+
+    font-size: 15px;
+  }
+
+  .blog-meta {
+    font-size: 13px;
+  }
+
+  .blog-meta-left,
+  .blog-meta-right {
+    gap: 10px;
+  }
+
+  .blog-delete-button {
+    right: 14px;
+    bottom: 14px;
+
+    padding: 9px 18px;
+
+    font-size: 13px;
+  }
+
+  body.blog-page .blog-create-form {
+    margin: 26px 0 28px;
+    padding: 22px 20px;
+  }
+
+  body.blog-page .blog-create-form h2 {
+    margin-bottom: 24px;
+
+    font-size: 22px;
+  }
+
+  body.blog-page .blog-create-form label {
+    font-size: 15px;
+  }
+
+  body.blog-page .blog-create-form input {
+    height: 54px;
+    padding: 0 16px;
+
+    font-size: 16px;
+  }
+
+  body.blog-page .blog-create-form textarea {
+    min-height: 210px;
+    padding: 16px;
+
+    font-size: 16px;
+  }
+
+  body.blog-page .blog-custom-select-button {
+    height: 60px;
+    padding: 0 18px;
+
+    font-size: 16px;
+  }
+
+  body.blog-page .blog-custom-select-options button {
+    padding: 14px 16px;
+
+    font-size: 16px;
+  }
+
+  body.blog-page .blog-publish-button,
+  body.blog-page .blog-cancel-button {
+    height: 56px;
+
+    font-size: 16px;
+  }
 }
+
+
+
+/* Sehr kleine Smartphones */
+
+@media (max-width: 380px) {
+  .blog-main {
+    width: min(100%, calc(100% - 20px));
+    padding: 24px 0 105px;
+  }
+
+  .blog-hero {
+    padding: 18px;
+  }
+
+  .blog-hero h2 {
+    font-size: 22px;
+  }
+
+  .blog-card {
+    padding: 18px;
+  }
+
+  .blog-card h3 {
+    font-size: 18px;
+  }
+
+  .blog-card p {
+    font-size: 14px;
+  }
+
+  .blog-delete-button {
+    padding: 8px 16px;
+
+    font-size: 12px;
+  }
+}
+
+
+
+

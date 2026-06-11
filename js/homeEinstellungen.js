@@ -24,12 +24,11 @@ async function ladeHomeEinstellungen() {
 
     soundElement.textContent = uebersetzeSound(daten.soundtype);
 
-    const lichtText = `${uebersetzeLicht(daten.light_name)}es Licht`;
-    lightElement.textContent = lichtText;
+    const lichtName = uebersetzeLicht(daten.light_name);
+const lichtText = `${lichtName}es Licht`;
 
-    if (daten.light_hex) {
-      lightElement.style.color = `#${daten.light_hex}`;
-    }
+lightElement.textContent = lichtText;
+setzeLichtBadge(lightElement, daten.light_name);
 
   } catch (error) {
     console.error("Fehler beim Laden der Home-Einstellungen:", error);
@@ -61,6 +60,24 @@ function uebersetzeLicht(lightName) {
   };
 
   return lichtNamen[lightName] || lightName || "Unbekannt";
+}
+
+function setzeLichtBadge(element, lightName) {
+  element.className = "licht-badge";
+
+  const lichtKlassen = {
+    yellow: "gelb",
+    green: "gruen",
+    violet: "violett",
+    pink: "pink",
+    blue: "blau"
+  };
+
+  const klasse = lichtKlassen[lightName];
+
+  if (klasse) {
+    element.classList.add(klasse);
+  }
 }
 
 ladeHomeEinstellungen();
