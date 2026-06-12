@@ -202,12 +202,7 @@ Beim NeoPixel-Ring sollte auf eine ausreichend stabile Stromversorgung geachtet 
 
 ## Bildmaterial
 
-Für die finale Abgabe kann zusätzlich ein Foto des realen Aufbaus oder ein Screenshot des Fritzing-Steckplans ergänzt werden. Sinnvoll wären:
-
-- Foto des gesamten Aufbaus mit ESP32, Sensoren, LED-Ring und MP3-Player
-- Detailfoto der Verkabelung des INMP441-Mikrofons
-- Detailfoto der Verkabelung des MP3-Players
-- Screenshot oder Export des Fritzing-Steckplans
+Steckplan: siehe Foto 
 
 ---
 
@@ -217,11 +212,11 @@ Für die finale Abgabe kann zusätzlich ein Foto des realen Aufbaus oder ein Scr
 
 Das Projekt besteht aus zwei zentralen Dateien.
 
-```text
+
 Audioplayer_richtig/
 ├── Audioplayer_richtig.ino
 └── audioplayer.h
-```
+
 
 Die Datei `Audioplayer_richtig.ino` ist die Hauptdatei. Sie enthält die globale Konfiguration, die Initialisierung im `setup()` und die laufende Programmlogik in `loop()`. In dieser Datei werden die WLAN-Daten, die Server-URLs, die Sensorpins, die NeoPixel-Konfiguration, die I2S-Konfiguration und die Systemparameter definiert.
 
@@ -271,6 +266,9 @@ Die Reihenfolge der Sounds ist im Code so definiert:
 
 ```cpp
 const char* SOUND_NAMES[MAX_TRACK] = {
+    "voice_1",
+    "voice_2",
+    "voice_3",
     "story_1",
     "story_2",
     "story_3",
@@ -278,6 +276,7 @@ const char* SOUND_NAMES[MAX_TRACK] = {
     "music_2",
     "music_3"
 };
+Bei Voice ist keine Audio hinterlegt. Da dort die Eltern persönliche Nachrichten auf die SD-Karte laden können. 
 ```
 
 Das bedeutet:
