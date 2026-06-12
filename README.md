@@ -162,6 +162,10 @@ flowchart LR
     WEB["WebApp / Datenbank"] <--> API
 ```
 
+### Bildmaterial Komponentenplan
+
+![Komponentenplan SleepySheepy](Bilder_Readme/Komponentenplan.png)
+
 ### Eingesetzte Komponenten
 
 Das Projekt verwendet den ESP32-C6 als Mikrocontroller. Daran angeschlossen sind zwei Sensoren: ein PIR-Bewegungssensor und ein INMP441-Mikrofon. Als Aktoren werden ein NeoPixel-LED-Ring und ein OpenSmart-MP3-Player verwendet. Der MP3-Player gibt Audiodateien über einen Lautsprecher aus. Zusätzlich kommuniziert der ESP32 über WLAN mit einem externen Webserver.
@@ -188,6 +192,7 @@ Der NeoPixel-Ring wird über ein digitales Datensignal angesteuert und zeigt im 
 | ESP32 zu MP3-Player | UART / Serial | Tracknummern und Steuerbefehle werden gesendet |
 | ESP32 zu Webserver | WLAN + HTTPS | Einstellungen werden geladen und Sensordaten gesendet |
 | WebApp / Datenbank zu Server-API | Serverseitige Schnittstelle | WebApp verwaltet Einstellungen und gespeicherte Messdaten |
+
 
 ---
 
@@ -483,9 +488,14 @@ Für eine sicherere Umsetzung wäre ein zusätzlicher API-Key sinnvoll. Dieser k
 
 Das Projekt verbindet Sensorik, Aktorik und Webkommunikation zu einem interaktiven Physical-Computing-System. Der ESP32-C6 erkennt Bewegung und Lautstärke, zählt Ereignisse innerhalb eines Zeitfensters und reagiert bei Überschreitung eines Grenzwerts mit Licht und Audio. Die WebApp beziehungsweise der Server steuert dabei wichtige Einstellungen wie Farbe, Soundauswahl, Shuffle und Abspieldauer. Dadurch entsteht ein System, bei dem physische Eingaben aus der Umgebung mit digitalen Einstellungen und serverseitiger Datenspeicherung kombiniert werden.
 
+## Known bugs
+* Was funktioniert noch nicht einwandfrei?  
+* Was ist uns aufgefallen bei der Entwicklung?  
+* Was könnte noch verbessert werden?
+
 ## Umsetzungsprozess
 
-**Reflexion / Erfahrung / Lernfortschritt:** 
+### Reflexion / Erfahrung / Lernfortschritt
 
 Zu Beginn des Projekts verfügten kaum über Vorwissen im Bereich Physical Computing. Viele Begriffe, Technologien und Abläufe waren für uns neu und zunächst schwer greifbar. Im Verlauf des Projekts konnten wir jedoch ein Basis-Verständnis dafür entwickeln, wie Sensoren ausgelesen, Daten verarbeitet und über Schnittstellen zwischen Mikrocontroller, Datenbank und Webapplikation ausgetauscht werden können.
 
