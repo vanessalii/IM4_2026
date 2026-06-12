@@ -2281,6 +2281,10 @@ body.profil-page {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.24);
 }
 
+.schlaf-keine-daten {
+  background: rgba(255, 255, 255, 0.08);
+  color: #c7c1df;
+}
 
 
 /* Tages-Overlay */
@@ -2994,6 +2998,80 @@ body.profil-page {
   }
 }
 
+/* ==============================
+   Hinweis wenn nicht mit Schaf verbunden
+============================== */
+/* Schaf-Hinweis */
+
+.schaf-hinweis {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+
+  margin-bottom: 28px;
+  padding: 24px 28px;
+
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  background: rgba(255, 255, 255, 0.09);
+  color: white;
+
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+}
+
+.schaf-hinweis.aktiv {
+  display: flex;
+}
+
+.schaf-hinweis h3 {
+  margin: 0 0 6px;
+
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.schaf-hinweis p {
+  margin: 0;
+
+  color: #d8d1f1;
+
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.schaf-hinweis-button {
+  flex-shrink: 0;
+
+  padding: 14px 22px;
+
+  border-radius: 999px;
+
+  background: linear-gradient(90deg, #a64cff, #3f86ff);
+  color: white;
+
+  font-size: 16px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.schaf-hinweis-button:hover {
+  text-decoration: none;
+  opacity: 0.92;
+}
+
+@media (max-width: 700px) {
+  .schaf-hinweis {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .schaf-hinweis-button {
+    width: 100%;
+    text-align: center;
+  }
+}
 
 
 /* ==============================

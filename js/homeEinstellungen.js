@@ -1,4 +1,6 @@
 async function ladeHomeEinstellungen() {
+  const schafHinweis = document.getElementById("homeSchafHinweis");
+
   try {
     const response = await fetch("/api/homeEinstellungen.php", {
       credentials: "include"
@@ -8,8 +10,17 @@ async function ladeHomeEinstellungen() {
     console.log("Home Einstellungen:", result);
 
     if (result.status !== "success") {
-      console.error(result.message);
+      console.warn(result.message);
+
+      if (schafHinweis) {
+        schafHinweis.classList.add("aktiv");
+      }
+
       return;
+    }
+
+    if (schafHinweis) {
+      schafHinweis.classList.remove("aktiv");
     }
 
     const daten = result.daten;
@@ -25,13 +36,17 @@ async function ladeHomeEinstellungen() {
     soundElement.textContent = uebersetzeSound(daten.soundtype);
 
     const lichtName = uebersetzeLicht(daten.light_name);
-const lichtText = `${lichtName}es Licht`;
+    const lichtText = `${lichtName}es Licht`;
 
-lightElement.textContent = lichtText;
-setzeLichtBadge(lightElement, daten.light_name);
+    lightElement.textContent = lichtText;
+    setzeLichtBadge(lightElement, daten.light_name);
 
   } catch (error) {
     console.error("Fehler beim Laden der Home-Einstellungen:", error);
+
+    if (schafHinweis) {
+      schafHinweis.classList.add("aktiv");
+    }
   }
 }
 

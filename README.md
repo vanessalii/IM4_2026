@@ -74,13 +74,35 @@ Um dieses Boilerplate auf dem eigenen Web-Server zu installieren, führe folgend
 
 
 
+## Kurzbeschreibung des Projekts
 
+•⁠  ⁠*Modul:* Interaktive Medien 4 an der Fachhochschule Graubünden (FS26)  
+•⁠  ⁠*Themenfeld:* IoT-Applikation zum Thema Eltern mit kleinen Kindern  
+•⁠  ⁠*Name des Projekts:* \[SleepySheepy\]   
+•⁠  ⁠*Team Physical Computing:* \[Moena Bischoff, Melissa Goebel\]   
+•⁠  ⁠*Team WebApp:* \[Vanessa Oberhänsli, Lynn Hartmann\]
+ 
+ 
+### Welches Problem im Alltag von Eltern mit kleinen Kindern wird gelöst? 
+
+Viele Kinder im Vorschulalter wachen nachts auf und benötigen Unterstützung, um wieder einzuschlafen. Oft rufen sie ihre Eltern, wodurch deren Schlaf unterbrochen wird. Gleichzeitig ist das selbstständige Wiedereinschlafen eine wichtige Entwicklungsaufgabe für Kinder. Eltern stehen daher vor der Herausforderung, ihrem Kind Sicherheit und Geborgenheit zu geben, ohne bei jedem nächtlichen Aufwachen direkt eingreifen zu müssen.
+
+SleepySheepy unterstützt Kinder dabei, sich bei nächtlichem Aufwachen selbst zu beruhigen und wieder in den Schlaf zu finden. Gleichzeitig erhalten Eltern Einblick in die nächtlichen Aktivitäten ihres Kindes, ohne ständig präsent sein zu müssen.
+
+
+### Was ist der Sinn und Zweck des Systems?
+
+SleepySheepy ist ein intelligentes Plüschtier mit begleitender Web-App, das die nächtliche Selbstregulation von Kindern fördert und Eltern entlastet. Das System begleitet Kinder zunächst beim Einschlafen durch beruhigende Inhalte wie Geschichten, Musik oder Sprachaufnahmen der Eltern. Nach dem Einschlafen überwacht das Plüschtier mithilfe von Bewegungs- und Geräuschsensoren die Aktivität des Kindes. Wird über einen definierten Zeitraum Unruhe erkannt, aktiviert das System automatisch individuell festgelegte Beruhigungsfunktionen wie Licht oder Audio-Inhalte.
+
+Die erfassten Sensordaten werden in einer Datenbank gespeichert und in der Web-App visualisiert. Eltern können dort Einstellungen verwalten, Beruhigungsinhalte auswählen und die nächtlichen Aktivitäten ihres Kindes nachvollziehen.
+
+Das Ziel des Systems ist es, Kindern mehr Selbstständigkeit beim Wiedereinschlafen zu ermöglichen und Eltern gleichzeitig Sicherheit, Transparenz und Entlastung im Familienalltag zu bieten.
 
 # Projektdokumentation: Audioplayer Physical Computing
 
 ## Kurzbeschreibung
 
-Unser Physical Computigt erkennt über einen PIR-Sensor Bewegung und misst über ein digitales INMP441-I2S-Mikrofon die Lautstärke der Umgebung. Wenn innerhalb eines Zeitfensters von 15 Sekunden mehrfach Bewegung und erhöhte Lautstärke erkannt werden, wird ein sogenannter Calm Mode gestartet. In diesem Modus leuchtet ein NeoPixel-LED-Ring in einer vom Server geladenen Farbe und ein OpenSmart-MP3-Player spielt einen beruhigenden Audiotrack ab.
+Unser Physical Computing erkennt über einen PIR-Sensor Bewegung und misst über ein digitales INMP441-I2S-Mikrofon die Lautstärke der Umgebung. Wenn innerhalb eines Zeitfensters von 15 Sekunden mehrfach Bewegung und erhöhte Lautstärke erkannt werden, wird ein sogenannter Calm Mode gestartet. In diesem Modus leuchtet ein NeoPixel-LED-Ring in einer vom Server geladenen Farbe und ein OpenSmart-MP3-Player spielt einen beruhigenden Audiotrack ab.
 
 Die Einstellungen für den Calm Mode werden über WLAN von einem Webserver geladen. Dazu gehören die Spieldauer, die Lichtfarbe, die Auswahl des Audiotracks und die Shuffle-Einstellung. Wenn ein Alarmzustand erkannt wird, sendet der ESP32 Sensordaten und Statusinformationen als JSON an den Server.
 
@@ -355,7 +377,7 @@ Ein mögliches JSON-Paket sieht so aus:
 }
 ```
 
-Im Code wird zusätzlich das Feld `seralnr` gesendet. Das ist sehr wahrscheinlich ein Tippfehler und sollte eigentlich `serialnr` heißen. Da `serialnr` ebenfalls korrekt gesendet wird, kann der Server trotzdem die richtige Seriennummer verwenden, wenn er das korrekte Feld ausliest.
+Im Code wird zusätzlich das Feld `seralnr` gesendet. Das ist sehr wahrscheinlich ein Tippfehler und sollte eigentlich `serialnr` heissen. Da `serialnr` ebenfalls korrekt gesendet wird, kann der Server trotzdem die richtige Seriennummer verwenden, wenn er das korrekte Feld ausliest.
 
 ### Datenweg
 
