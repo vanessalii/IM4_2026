@@ -356,7 +356,7 @@ Ein mögliches JSON-Paket sieht so aus:
 }
 ```
 
-Im Code wird zusätzlich das Feld `seralnr` gesendet. Das ist sehr wahrscheinlich ein Tippfehler und sollte eigentlich `serialnr` heißen. Da `serialnr` ebenfalls korrekt gesendet wird, kann der Server trotzdem die richtige Seriennummer verwenden, wenn er das korrekte Feld ausliest.
+Im Code wird zusätzlich das Feld `seralnr` gesendet. Das ist sehr wahrscheinlich ein Tippfehler und sollte eigentlich `serialnr` heissen. Da `serialnr` ebenfalls korrekt gesendet wird, kann der Server trotzdem die richtige Seriennummer verwenden, wenn er das korrekte Feld ausliest.
 
 ### Datenweg
 
