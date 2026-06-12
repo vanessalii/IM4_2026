@@ -1,4 +1,10 @@
 <?php
+/*****************************************************
+ * API-Endpunkt zum Abrufen der individuellen
+ * Einstellungen eines Plüschtiers. Die Daten
+ * werden anhand der serialnr aus der Datenbank
+ * geladen und als JSON zurückgegeben.
+ *****************************************************/
 
 // ==========================================
 // 1. Datenbank-Verbindung laden
