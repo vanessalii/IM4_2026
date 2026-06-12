@@ -193,7 +193,7 @@ Der NeoPixel-Ring wird über ein digitales Datensignal angesteuert und zeigt im 
 
 ## Steckplan
 
-Der Steckplan kann zum Beispiel in Fritzing, Tinkercad oder Wokwi nachgebaut werden. Für diese Abgabe ist Fritzing besonders passend, weil dafür im Modul zusätzliche Fritzing Parts bereitgestellt wurden.
+
 
 ### Pinbelegung
 
