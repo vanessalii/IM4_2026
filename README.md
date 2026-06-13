@@ -162,6 +162,10 @@ flowchart LR
     WEB["WebApp / Datenbank"] <--> API
 ```
 
+### Bildmaterial Komponentenplan
+
+![Komponentenplan SleepySheepy](Bilder_Readme/Komponentenplan.png)
+
 ### Eingesetzte Komponenten
 
 Das Projekt verwendet den ESP32-C6 als Mikrocontroller. Daran angeschlossen sind zwei Sensoren: ein PIR-Bewegungssensor und ein INMP441-Mikrofon. Als Aktoren werden ein NeoPixel-LED-Ring und ein OpenSmart-MP3-Player verwendet. Der MP3-Player gibt Audiodateien über einen Lautsprecher aus. Zusätzlich kommuniziert der ESP32 über WLAN mit einem externen Webserver.
@@ -189,11 +193,11 @@ Der NeoPixel-Ring wird über ein digitales Datensignal angesteuert und zeigt im 
 | ESP32 zu Webserver | WLAN + HTTPS | Einstellungen werden geladen und Sensordaten gesendet |
 | WebApp / Datenbank zu Server-API | Serverseitige Schnittstelle | WebApp verwaltet Einstellungen und gespeicherte Messdaten |
 
+
 ---
 
 ## Steckplan
 
-Der Steckplan kann zum Beispiel in Fritzing, Tinkercad oder Wokwi nachgebaut werden. Für diese Abgabe ist Fritzing besonders passend, weil dafür im Modul zusätzliche Fritzing Parts bereitgestellt wurden.
 
 ### Pinbelegung
 
@@ -222,9 +226,9 @@ Beim NeoPixel-Ring sollte auf eine ausreichend stabile Stromversorgung geachtet 
 
 ---
 
-## Bildmaterial
+## Bildmaterial Steckplan
 
-Steckplan: siehe Foto 
+![Steckplan SleepySheepy](Bilder_Readme/Steckplan.png)
 
 ---
 
@@ -339,7 +343,7 @@ Der ESP32 erwartet eine JSON-Antwort. Aus der Antwort werden diese Felder gelese
 | `soundtype` | Name des gewünschten Sounds |
 | `lightcolour` | HEX-Farbwert für den NeoPixel-Ring |
 
-Der Wert `calmtime` wird im Code von Minuten in Millisekunden umgerechnet. Der Wert `shuffle` wird in einen Boolean umgewandelt. Der Wert `soundtype` wird mit der Liste `SOUND_NAMES` verglichen und dadurch einer Tracknummer zugeordnet. Der Wert `lightcolour` wird als HEX-Farbe gelesen und in RGB-Werte umgewandelt.
+Der Wert `calmtime` wird im Code von Minuten in Millisekunden umgerechnet. Der Wert `shuffle` wird in einen Boolean umgewandelt, also shuffel ein oder aus. Der Wert `soundtype` wird mit der Liste `SOUND_NAMES` verglichen und dadurch einer Tracknummer zugeordnet. Der Wert `lightcolour` wird als HEX-Farbe gelesen und in RGB-Werte umgewandelt.
 
 ### Sensordaten senden
 
@@ -349,7 +353,7 @@ Wenn ein Alarm erkannt wurde, sendet der ESP32 Daten per HTTP-POST an:
 https://im4.vanessa-oberhaensli.ch/api/load.php
 ```
 
-Die Daten werden als JSON mit dem Header `Content-Type: application/json` gesendet. Im Code werden unter anderem folgende Werte übertragen:
+Die Daten werden als JSON mit dem Header `Content-Type: application/json` gesendet. Folgende Werte werden im Code übertragen:
 
 | JSON-Feld | Bedeutung |
 |---|---|
@@ -376,8 +380,6 @@ Ein mögliches JSON-Paket sieht so aus:
   "shuffle": false
 }
 ```
-
-Im Code wird zusätzlich das Feld `seralnr` gesendet. Das ist sehr wahrscheinlich ein Tippfehler und sollte eigentlich `serialnr` heissen. Da `serialnr` ebenfalls korrekt gesendet wird, kann der Server trotzdem die richtige Seriennummer verwenden, wenn er das korrekte Feld ausliest.
 
 ### Datenweg
 
@@ -476,14 +478,52 @@ einstellungen.php?serialnr=SleShep1
 
 Beim Senden der Sensordaten wird die Seriennummer zusätzlich im JSON-Body übertragen. Dadurch kann der Server die Daten einem bestimmten Gerät zuordnen.
 
-Die WLAN-Verbindung ist durch SSID und Passwort geschützt. Außerdem werden HTTPS-URLs verwendet. HTTPS schützt die Datenübertragung auf dem Weg zwischen ESP32 und Server, weil die Verbindung verschlüsselt ist. Trotzdem ersetzt HTTPS keine richtige API-Authentifizierung. Jede Person, die die Seriennummer und die API-URL kennt, könnte theoretisch versuchen, Daten an den Server zu senden oder Einstellungen abzufragen, falls der Server keine weiteren Schutzmechanismen nutzt.
+Die WLAN-Verbindung ist durch SSID und Passwort geschützt. Ausserdem werden HTTPS-URLs verwendet. HTTPS schützt die Datenübertragung auf dem Weg zwischen ESP32 und Server, weil die Verbindung verschlüsselt ist. Trotzdem ersetzt HTTPS keine richtige API-Authentifizierung. Jede Person, die die Seriennummer und die API-URL kennt, könnte theoretisch versuchen, Daten an den Server zu senden oder Einstellungen abzufragen, falls der Server keine weiteren Schutzmechanismen nutzt.
 
-Für eine sicherere Umsetzung wäre ein zusätzlicher API-Key sinnvoll. Dieser könnte bei jedem Request als HTTP-Header mitgeschickt werden. Der Server würde dann prüfen, ob der API-Key gültig ist und zur Seriennummer passt. Außerdem sollten WLAN-Passwort und API-Geheimnisse nicht in einem öffentlich abgegebenen Repository stehen. Besser wäre eine separate Konfigurationsdatei, die nicht veröffentlicht wird, oder eine Eingabe über ein geschütztes Setup-Verfahren.
-
-Zusammengefasst verwendet das aktuelle Projekt eine gerätebasierte Identifikation über die Seriennummer, aber keine starke Authentifizierung. Für einen Prototyp im Studienkontext ist das nachvollziehbar, für einen produktiven Einsatz müsste die Schnittstelle stärker geschützt werden.
+Für eine sicherere Umsetzung wäre ein zusätzlicher API-Key sinnvoll. Dieser könnte bei jedem Request als HTTP-Header mitgeschickt werden. Der Server würde dann prüfen, ob der API-Key gültig ist und zur Seriennummer passt. Ausserdem sollten WLAN-Passwort und API-Geheimnisse nicht in einem öffentlich abgegebenen Repository stehen. Besser wäre eine separate Konfigurationsdatei, die nicht veröffentlicht wird, oder eine Eingabe über ein geschütztes Setup-Verfahren. Zusammengefasst verwendet das aktuelle Projekt eine gerätebasierte Identifikation über die Seriennummer, aber keine starke Authentifizierung. Für einen produktiven Einsatz müsste die Schnittstelle stärker geschützt werden.
 
 ---
 
 ## Zusammenfassung
 
 Das Projekt verbindet Sensorik, Aktorik und Webkommunikation zu einem interaktiven Physical-Computing-System. Der ESP32-C6 erkennt Bewegung und Lautstärke, zählt Ereignisse innerhalb eines Zeitfensters und reagiert bei Überschreitung eines Grenzwerts mit Licht und Audio. Die WebApp beziehungsweise der Server steuert dabei wichtige Einstellungen wie Farbe, Soundauswahl, Shuffle und Abspieldauer. Dadurch entsteht ein System, bei dem physische Eingaben aus der Umgebung mit digitalen Einstellungen und serverseitiger Datenspeicherung kombiniert werden.
+
+## Known bugs
+* Was funktioniert noch nicht einwandfrei?  
+* Was ist uns aufgefallen bei der Entwicklung?  
+* Was könnte noch verbessert werden?
+
+## Umsetzungsprozess
+
+### Reflexion / Erfahrung / Lernfortschritt
+
+Zu Beginn des Projekts verfügten kaum über Vorwissen im Bereich Physical Computing. Viele Begriffe, Technologien und Abläufe waren für uns neu und zunächst schwer greifbar. Im Verlauf des Projekts konnten wir jedoch ein Basis-Verständnis dafür entwickeln, wie Sensoren ausgelesen, Daten verarbeitet und über Schnittstellen zwischen Mikrocontroller, Datenbank und Webapplikation ausgetauscht werden können.
+
+Obwohl wir viele Schritte nachvollziehen konnten, bleiben einige technische Zusammenhänge für uns noch abstrakt und würden bei einer erneuten Umsetzung vermutlich mehr Zeit für Vertiefung und Verständnis benötigen.
+Rückblickend fanden wir die Projektidee spannend, da sie ein reales, konkretes Alltagsproblem adressiert. Jedoch haben wir während des Prozesses gemerkt, dass man auch Ideen mit weniger Komponenten und Aufwand hätte wählen können, die mehr unserem Fähigkeiten-Level entsprochen hätten. So hätten wir vielleicht auch früher mit dem technischen Prototyping beginnen, um mehr Zeit für Tests und Optimierungen zu haben.
+
+### Herausforderungen & Lösungen
+
+Die grösste Herausforderung bestand darin, dass wir uns gleichzeitig in mehrere neue Themengebiete einarbeiten mussten: Sensorik, Mikrocontroller-Programmierung, WLAN-Kommunikation, Datenbanken und die Zusammenarbeit mit dem WebApp-Team.
+
+Während der Umsetzung mussten wir verschiedene Ansätze überdenken und vereinfachen. Ursprünglich planten wir beispielsweise eine Live-Sprechfunktion ähnlich wie bei einem Babyphone. Schnell wurde jedoch deutlich, dass eine solche Lösung den Rahmen des Projekts sprengen würde. Stattdessen entschieden wir uns für gespeicherte Sprachmemos, die technisch deutlich realistischer umsetzbar waren. Auch die Organsiation der Audio-Datein mussten wir mehrmals überarbeiten. Zuerst wollten wir auswählbare Kategorien erstellen, diese Funktion liessen wir dann aber auch bleiben um den Aufbau und die Datenorgansation nicht noch umfangreicher und komplexer zu gestalten.
+
+Auch die Kommunikation zwischen Mikrocontroller und Datenbank stellte uns vor Herausforderungen. Das Verständnis dafür, wie Daten über HTTP-Anfragen an ein PHP-Skript gesendet und anschliessend in einer Datenbank gespeichert werden, erforderte mehrere Überarbeitungen. Hinzu kamen kleinere technische Probleme wie Upload-Fehler beim ESP32, fehlerhafte Datenbankabfragen oder Schwierigkeiten bei der Konfiguration von Server und Datenbank.
+
+Eine weitere Herausforderung war die Abstimmung zwischen Physical Computing und WebApp. Da beide Teams voneinander abhängig waren, mussten Datenstrukturen und Schnittstellen gemeinsam definiert und laufend angepasst werden. Dabei entstand das Risiko, dass nicht alle Änderungen direkt kommuniziert wurden und so am Ende des Projekts weitere Abgleichungen  getroffen werden mussten.
+
+### KI-Einsatz
+Während des Projekts haben wir verschiedene KI-Tools eingesetzt, insbesondere ChatGPT. Die KI half uns dabei, Codes zu verstehen, Fehler zu analysieren und Lösungsansätze für Probleme zu entwickeln.
+
+Unter anderem nutzten wir KI zur:
+* Erklärung von Mikrocontroller- und Datenbankkonzepten
+* Unterstützung und Erklärung bei PHP-, SQL- und Arduino-Code
+* Strukturierung von Datenbanktabellen
+* Erstellung von User Flows und Systemdiagrammen
+* Formulierung und Überarbeitung von Dokumentationen
+Die KI diente dabei als Lern- und Recherchewerkzeug. Alle Vorschläge mussten von uns geprüft, angepasst und in den Projektkontext übertragen werden.
+
+### Fazit
+Das Projekt hat uns gezeigt, wie komplex die Entwicklung eines vernetzten Systems sein kann und wie viele verschiedene Komponenten dabei zusammenspielen müssen. Trotz unseres begrenzten Vorwissens konnten wir einen funktionierenden Prototypen entwickeln, der Sensordaten erfasst, verarbeitet und mit einer Webapplikation verbindet.
+
+Auch wenn nicht alle technischen Zusammenhänge vollständig verstanden oder in der ursprünglich geplanten Tiefe umgesetzt werden konnten, haben wir während des Projekts viel gelernt und praktische Erfahrungen gesammelt. Besonders die Verbindung von Hardware, Datenbank und Webanwendung war für uns eine lehrreiche Herausforderung. Insgesamt sind wir stolz darauf, dass wir als Anfängerinnen ein funktionierendes Gesamtsystem realisieren konnten.
