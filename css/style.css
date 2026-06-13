@@ -1848,7 +1848,287 @@ body.profil-page {
   font-weight: 600;
 }
 
+body.blog-page .blog-main {
+  padding-bottom: 140px !important;
+}
 
+/* ==========================================
+   EINHEITLICHE BOTTOM NAVIGATION FÜR ALLE SEITEN
+   ========================================== */
+
+.bottom-nav {
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  top: auto !important;
+
+  width: 100% !important;
+  height: 90px !important;
+
+  margin: 0 !important;
+  padding: 8px 0 10px !important;
+
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  align-items: center !important;
+  justify-items: center !important;
+
+  background: rgba(91, 87, 135, 0.55) !important;
+  backdrop-filter: blur(18px) !important;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+
+  z-index: 9999 !important;
+  box-sizing: border-box !important;
+}
+
+.bottom-nav .nav-item {
+  width: 100% !important;
+  height: 100% !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+
+  color: #c7c1df !important;
+  text-decoration: none !important;
+
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+}
+
+.bottom-nav .nav-item:hover {
+  text-decoration: none !important;
+}
+
+.bottom-nav .nav-item.aktiv {
+  color: white !important;
+}
+
+.bottom-nav .nav-icon {
+  width: 36px !important;
+  height: 36px !important;
+
+  display: block !important;
+  object-fit: contain !important;
+}
+
+.bottom-nav .icon-personalisierung {
+  position: relative !important;
+  transform: translateY(-22px) !important;
+  margin: 0 !important;
+}
+
+.bottom-nav .icon-personalisierung-kreis {
+  width: 76px !important;
+  height: 76px !important;
+
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+
+  border-radius: 50% !important;
+
+  background: linear-gradient(180deg, #ff66d9, #a64cff) !important;
+  box-shadow: 0 14px 30px rgba(166, 76, 255, 0.4) !important;
+}
+
+.bottom-nav .icon-personalisierung-kreis img {
+  width: 42px !important;
+  height: 42px !important;
+
+  display: block !important;
+  object-fit: contain !important;
+}
+
+/* Inhalt bekommt auf allen App-Seiten Platz über der Navigation */
+.hauptbereich,
+.blog-main,
+.profil-container,
+.settings-main {
+  padding-bottom: 120px !important;
+}
+
+/* Navigation im Overlay ausblenden */
+body.overlay-offen .bottom-nav {
+  display: none !important;
+}
+
+/* ==========================================
+   Navigation: Icons etwas näher zusammen
+   ========================================== */
+
+.bottom-nav {
+  padding-left: 12vw !important;
+  padding-right: 12vw !important;
+}
+
+/* ==========================================
+   Navigation: Icons näher zusammen und grösser
+   ========================================== */
+
+.bottom-nav {
+  padding-left: 14vw !important;
+  padding-right: 14vw !important;
+}
+
+.bottom-nav .nav-icon {
+  width: 44px !important;
+  height: 44px !important;
+}
+
+.bottom-nav .nav-item {
+  font-size: 16px !important;
+  gap: 7px !important;
+}
+
+.bottom-nav .icon-personalisierung-kreis {
+  width: 86px !important;
+  height: 86px !important;
+}
+
+.bottom-nav .icon-personalisierung-kreis img {
+  width: 48px !important;
+  height: 48px !important;
+}
+
+.bottom-nav .icon-personalisierung {
+  transform: translateY(-26px) !important;
+}
+
+/* ==========================================
+   Zurück-Button
+   ========================================== */
+
+.zurueck-button {
+  position: fixed;
+  top: 32px;
+  left: 32px;
+  z-index: 10000;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 14px 22px;
+
+  border-radius: 999px;
+
+  background: rgba(91, 87, 135, 0.65);
+  color: white;
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  font-size: 18px;
+  font-weight: 900;
+  text-decoration: none;
+
+  backdrop-filter: blur(12px);
+
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.zurueck-button:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+  background: rgba(120, 95, 180, 0.78);
+}
+
+.zurueck-button:active {
+  transform: translateY(0);
+}
+
+/* Vergangene Tage ohne Sensordaten */
+.schlaf-keine-daten-vergangen {
+  background: rgba(120, 255, 190, 0.32);
+}
+
+/* Heute oder zukünftige Tage ohne Sensordaten */
+.schlaf-keine-daten {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================
+   Registrierung/Login etwas tiefer setzen
+   ========================================== */
+
+body.login-page,
+body.register-page {
+  align-items: flex-start;
+  padding-top: 80px;
+}
+
+/* ==========================================
+   Home: Aufwachliste scrollbar machen
+   ========================================== */
+
+.aufwach-liste {
+  max-height: 230px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* schöner Scrollbalken */
+.aufwach-liste::-webkit-scrollbar {
+  width: 8px;
+}
+
+.aufwach-liste::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+}
+
+.aufwach-liste::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+}
+
+.aufwach-liste::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.38);
+}
+
+
+
+/* ==========================================
+   Home: Letzte Nacht sauber passend anzeigen
+   ========================================== */
+
+.home-seite .home-karte {
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* Nur der Inhalt der Aufwachliste soll scrollen */
+.home-seite .aufwach-liste {
+  max-height: 330px !important;
+  overflow-y: auto !important;
+  padding-right: 12px !important;
+}
+
+/* Karte kompakter machen */
+.home-seite .nacht-inhalt {
+  grid-template-columns: 320px 1fr !important;
+  gap: 28px !important;
+  align-items: start !important;
+  margin-top: 20px !important;
+}
+
+/* Linke Einstellungsbox nicht zu hoch */
+.home-seite .einstellung-box {
+  min-height: 330px !important;
+  justify-content: center !important;
+}
+
+/* Gesamt-Box bleibt vollständig sichtbar */
+.home-seite .gesamt-box {
+  margin-top: 18px !important;
+  padding: 16px 20px !important;
+}
 /* ==============================
     HOME Responsive
 ============================== */
@@ -2482,10 +2762,6 @@ body.profil-page {
   background: rgba(255, 102, 217, 0.42);
 }
 
-
-
-/* Schlaf-Overlay */
-
 /* Schlaf-Overlay */
 
 .tag-overlay {
@@ -2559,8 +2835,6 @@ body.profil-page {
   line-height: 1.15;
 }
 
-
-
 /* Overlay-Zusammenfassung */
 
 .overlay-summary {
@@ -2595,8 +2869,6 @@ body.profil-page {
   font-weight: 800;
 }
 
-
-
 /* Overlay-Abschnitte */
 
 .overlay-section {
@@ -2609,8 +2881,6 @@ body.profil-page {
   font-size: 24px;
   font-weight: 900;
 }
-
-
 
 /* Ereignisse */
 
@@ -2641,8 +2911,6 @@ body.profil-page {
 .overlay-event:hover {
   background: rgba(255, 255, 255, 0.12);
 }
-
-
 
 /* Einstellungen im Overlay */
 
@@ -2683,8 +2951,6 @@ body.profil-page {
   font-weight: 900;
   text-align: right;
 }
-
-
 
 /* Zeit-Eingabe */
 
@@ -2776,8 +3042,6 @@ body.profil-page {
     font-size: 24px;
   }
 }
-
-
 
 /* Kleine Tablets und Smartphones */
 
@@ -3095,8 +3359,6 @@ body.profil-page {
   font-size: 18px;
 }
 
-
-
 /* Kartenraster */
 
 .personalisierung-grid {
@@ -3123,8 +3385,6 @@ body.profil-page {
 .personalisierung-karte-breit {
   grid-column: 1 / -1;
 }
-
-
 
 /* Kartenkopf */
 
@@ -3498,8 +3758,6 @@ body.blog-page {
   margin: 0 auto;
   padding: 56px 0 80px;
 }
-
-
 
 /* Kopfbereich */
 

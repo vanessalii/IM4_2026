@@ -132,25 +132,23 @@ function zeichneMonatsKalender(year, month, datenbankDaten) {
     });
 
     const anzahl = eintrag ? Number(eintrag.anzahl) : 0;
-const hatDaten = Boolean(eintrag);
+    const hatDaten = Boolean(eintrag);
 
-const button = document.createElement("button");
-button.type = "button";
+    const button = document.createElement("button");
+    button.type = "button";
 
-if (hatDaten) {
-  button.classList.add("schlaf-tag", ermittleSchlafKlasse(anzahl));
-} else {
-  button.classList.add("schlaf-tag", "schlaf-keine-daten");
-}
+    button.classList.add(
+      "schlaf-tag",
+      ermittleSchlafKlasse(anzahl, year, month, tag, hatDaten)
+    );
 
     const datumString = `${year}-${String(month).padStart(2, "0")}-${String(tag).padStart(2, "0")}`;
-
     button.dataset.date = datumString;
 
-   button.innerHTML = `
-  <strong>${tag}</strong>
-  <span>${hatDaten ? `${anzahl}x` : ""}</span>
-`;
+    button.innerHTML = `
+      <strong>${tag}</strong>
+      <span>${hatDaten ? `${anzahl}x` : ""}</span>
+    `;
 
     button.addEventListener("click", () => {
       ladeTagesDetails(datumString);
@@ -160,7 +158,23 @@ if (hatDaten) {
   }
 }
 
-function ermittleSchlafKlasse(anzahl) {
+function ermittleSchlafKlasse(anzahl, year, month, tag, hatDaten) {
+  const heute = new Date();
+  heute.setHours(0, 0, 0, 0);
+
+  const datum = new Date(year, month - 1, tag);
+  datum.setHours(0, 0, 0, 0);
+
+  const istVergangenheit = datum < heute;
+
+  if (!hatDaten && istVergangenheit) {
+    return "schlaf-keine-daten-vergangen";
+  }
+
+  if (!hatDaten) {
+    return "schlaf-keine-daten";
+  }
+
   if (anzahl <= 1) {
     return "schlaf-hervorragend";
   }
@@ -247,7 +261,6 @@ function zeigeTagesOverlay(data) {
   zeigeEinstellungenHistory(data);
 
   overlay.classList.add("aktiv");
-
   document.body.classList.add("overlay-offen");
 }
 
@@ -391,16 +404,6 @@ function ermittleGeaenderteWerte(vorher, aktuell) {
   }
 
   return unterschiede;
-}
-
-function formatiereFeld(text, laenge) {
-  const wert = String(text || "-");
-
-  if (wert.length > laenge) {
-    return wert.slice(0, laenge - 1);
-  }
-
-  return wert.padEnd(laenge, " ");
 }
 
 function formatiereUhrzeit(timestamp) {

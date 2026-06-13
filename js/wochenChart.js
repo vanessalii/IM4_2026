@@ -70,9 +70,9 @@ async function ladeWochenChart() {
           },
           y: {
             beginAtZero: true,
-            suggestedMax: 8,
+            suggestedMax: 60,
             ticks: {
-              stepSize: 1,
+              stepSize: 4,
               color: "#c7c1df",
               font: {
                 size: 14,
@@ -93,41 +93,38 @@ async function ladeWochenChart() {
 }
 
 function erstelleLetzte7TageLabels() {
-  const tage = [];
-
-  const kurzTage = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
-
-  for (let i = 6; i >= 0; i--) {
-    const datum = new Date();
-    datum.setDate(datum.getDate() - i);
-
-    tage.push(kurzTage[datum.getDay()]);
-  }
-
-  return tage;
+  return ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
 }
 
 function erstelleLetzte7TageWerte(datenbankDaten) {
   const werte = [];
 
-  for (let i = 6; i >= 0; i--) {
-    const datum = new Date();
-    datum.setDate(datum.getDate() - i);
+  // Demo-Woche: Montag, 8. Juni 2026 bis Sonntag, 14. Juni 2026
+  const startDatum = new Date(2026, 5, 8); 
+  // Wichtig: Monat 5 = Juni, weil JavaScript Monate bei 0 startet
 
-    const datumString = datum.toISOString().split("T")[0];
+  for (let i = 0; i < 7; i++) {
+    const datum = new Date(startDatum);
+    datum.setDate(startDatum.getDate() + i);
+
+    const datumString = formatiereDatumLokal(datum);
 
     const eintrag = datenbankDaten.find((item) => {
       return item.tag === datumString;
     });
 
-    if (eintrag) {
-      werte.push(Number(eintrag.anzahl));
-    } else {
-      werte.push(0);
-    }
+    werte.push(eintrag ? Number(eintrag.anzahl) : 0);
   }
 
   return werte;
+}
+
+function formatiereDatumLokal(datum) {
+  const jahr = datum.getFullYear();
+  const monat = String(datum.getMonth() + 1).padStart(2, "0");
+  const tag = String(datum.getDate()).padStart(2, "0");
+
+  return `${jahr}-${monat}-${tag}`;
 }
 
 ladeWochenChart();
