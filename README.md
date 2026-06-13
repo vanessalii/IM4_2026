@@ -98,6 +98,54 @@ Die erfassten Sensordaten werden in einer Datenbank gespeichert und in der Web-A
 
 Das Ziel des Systems ist es, Kindern mehr Selbstständigkeit beim Wiedereinschlafen zu ermöglichen und Eltern gleichzeitig Sicherheit, Transparenz und Entlastung im Familienalltag zu bieten.
 
+### UX & Konzeption
+
+**Figma:** [Link zum Figma]( https://www.figma.com/design/ttmTtepUD14OOeOQiDrhcn/IM-4-%E2%80%93-App-Konzeption-Vorlage--Kopie-?node-id=78-325&p=f)
+**User Flow \+ Screen Flow** (Screenshot aus Figma) 
+![alt text](image.png)
+ 
+
+*In Figma wurden der User Flow und der Screen Flow für beide Projektteile erstellt. Der Flow zeigt, wie Nutzer durch die WebApp navigieren und wie die wichtigsten Funktionen miteinander verbunden sind.
+
+Für die WebApp wurden insbesondere Registrierung, Login, Home-Ansicht, Profil, Licht- und Soundsteuerung sowie die Statistik- und Kalenderansicht geplant.
+
+* *Welche Features waren angedacht?*
+*Registrierung und Login
+*Profilbereich für persönliche Informationen
+*Home-Ansicht mit Übersicht zur letzten Nacht
+*Steuerung von Licht und Sound über die WebApp
+*Statistikseite mit Monatsübersicht
+*Kalenderansicht zur Bewertung einzelner Nächte
+*Detailansicht für einzelne Tage bzw. Nächte
+
+* *Welche Features wurden nicht umgesetzt? (Warum)*
+*Vollständige Automatisierung der Schlafauswertung: Die Auswertung wurde vereinfacht, da die stabile Darstellung der wichtigsten Schlafdaten im Vordergrund stand.
+*Erweiterte Detailanalysen: Zusätzliche Auswertungen und Vergleiche wurden nicht vollständig umgesetzt, da sie den Rahmen des Projekts überschritten hätten.
+*Feinschliff einzelner Interaktionen: Einzelne UI-Details und Animationen wurden reduziert, damit die Grundfunktionen zuverlässig funktionieren.
+
+### Setup
+* **WebApp:** [Link zur Website]( https://im4.vanessa-oberhaensli.ch/login.html)  
+* **Video-Dokumentation:** [Link zum Video auf Youtube] (http://link.zum.video) 
+
+#### Installationsanleitung WebApp
+
+*Was benötige ich an Infrastruktur?*  
+Für die WebApp wird ein Webserver benötigt, der PHP und MySQL unterstützt. Zusätzlich wird ein Datenbank-Tool wie phpMyAdmin benötigt, um die Datenbank zu erstellen und die SQL-Datei zu importieren.
+
+*Wie kann ich die Datenbank importieren?*  
+Zuerst wird in phpMyAdmin eine neue Datenbank erstellt. Anschliessend kann die mitgelieferte SQL-Datei über den Bereich «Importieren» ausgewählt und ausgeführt werden. Dadurch werden die benötigten Tabellen und Strukturen angelegt.
+
+*Wo muss ich die DB-Credentials eintragen?*  
+Die Zugangsdaten zur Datenbank müssen in der PHP-Datei eingetragen werden, in der die Datenbankverbindung definiert ist. Dort werden Datenbank-Host, Datenbankname, Benutzername und Passwort angepasst.
+$host = "localhost";
+$dbname = "[Datenbankname]";
+$username = "[Benutzername]";
+$password = "[Passwort]";
+
+*Wie nehme ich das physische Artefakt in Betrieb?*
+Die Inbetriebnahme des physischen Artefakts wird im Abschnitt «Bauanleitung Physical Computing» dokumentiert.
+
+
 # Projektdokumentation: Audioplayer Physical Computing
 
 ## Kurzbeschreibung
@@ -324,6 +372,7 @@ Die Dateinamen auf der SD-Karte müssen zur Reihenfolge des MP3-Players passen, 
 
 Die Kommunikation zwischen WebApp beziehungsweise Server und ESP32 läuft über HTTP-Anfragen mit JSON-Daten. Der ESP32 verbindet sich dafür mit dem WLAN und spricht zwei PHP-Endpunkte an.
 
+
 ### Einstellungen laden
 
 Der ESP32 lädt Einstellungen über diese URL:
@@ -481,6 +530,10 @@ Beim Senden der Sensordaten wird die Seriennummer zusätzlich im JSON-Body über
 Die WLAN-Verbindung ist durch SSID und Passwort geschützt. Ausserdem werden HTTPS-URLs verwendet. HTTPS schützt die Datenübertragung auf dem Weg zwischen ESP32 und Server, weil die Verbindung verschlüsselt ist. Trotzdem ersetzt HTTPS keine richtige API-Authentifizierung. Jede Person, die die Seriennummer und die API-URL kennt, könnte theoretisch versuchen, Daten an den Server zu senden oder Einstellungen abzufragen, falls der Server keine weiteren Schutzmechanismen nutzt.
 
 Für eine sicherere Umsetzung wäre ein zusätzlicher API-Key sinnvoll. Dieser könnte bei jedem Request als HTTP-Header mitgeschickt werden. Der Server würde dann prüfen, ob der API-Key gültig ist und zur Seriennummer passt. Ausserdem sollten WLAN-Passwort und API-Geheimnisse nicht in einem öffentlich abgegebenen Repository stehen. Besser wäre eine separate Konfigurationsdatei, die nicht veröffentlicht wird, oder eine Eingabe über ein geschütztes Setup-Verfahren. Zusammengefasst verwendet das aktuelle Projekt eine gerätebasierte Identifikation über die Seriennummer, aber keine starke Authentifizierung. Für einen produktiven Einsatz müsste die Schnittstelle stärker geschützt werden.
+
+Die Authentifizierung der WebApp erfolgt über Registrierung und Login. Bei der Registrierung werden neue Nutzer in der Datenbank gespeichert. Beim Login werden die eingegebenen Daten mit den gespeicherten Daten verglichen.
+Nach erfolgreichem Login wird eine Session gestartet. Dadurch erkennt die WebApp, ob eine Person angemeldet ist und welche Daten zu diesem Account gehören. Geschützte Seiten und personenbezogene Daten können so nur nach erfolgreicher Anmeldung genutzt werden.
+
 
 ---
 
