@@ -4346,3 +4346,66 @@ body.blog-page .blog-custom-select-options button.is-selected {
     height: 30px;
   }
 }
+
+/* Login/Register auf Handy grösser darstellen */
+@media (max-width: 600px) {
+  body.login-page,
+  body.register-page {
+    min-height: 100vh;
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login-container,
+  .register-container,
+  .auth-container {
+    width: 100%;
+    max-width: none;
+    min-height: auto;
+    padding: 36px 26px;
+    border-radius: 28px;
+  }
+
+  .login-container h1,
+  .register-container h1,
+  .auth-container h1 {
+    font-size: 34px;
+  }
+
+  .login-container p,
+  .register-container p,
+  .auth-container p {
+    font-size: 16px;
+  }
+
+  .login-container label,
+  .register-container label,
+  .auth-container label {
+    font-size: 15px;
+  }
+
+  .login-container input,
+  .register-container input,
+  .auth-container input {
+    height: 56px;
+    font-size: 17px;
+    border-radius: 12px;
+  }
+
+  .login-container button,
+  .register-container button,
+  .auth-container button {
+    min-height: 56px;
+    font-size: 17px;
+    border-radius: 12px;
+  }
+
+  .tab-button,
+  .auth-tab {
+    height: 52px;
+    font-size: 16px;
+  }
+}
+
