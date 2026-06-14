@@ -1,4 +1,5 @@
 let ausgewaehltesDatum = new Date();
+let schafVerbunden = false;
 
 const monatNamen = [
   "Januar",
@@ -68,6 +69,8 @@ async function ladeMonatsKalender(year, month) {
     if (result.status !== "success") {
       console.warn(result.message);
 
+      schafVerbunden = false;
+
       if (schafHinweis) {
         schafHinweis.classList.add("aktiv");
       }
@@ -76,14 +79,25 @@ async function ladeMonatsKalender(year, month) {
       return;
     }
 
+    const daten = result.daten || [];
+
+    // Schaf gilt als verbunden, wenn die API es sagt ODER wenn Daten vorhanden sind
+    schafVerbunden = result.schafVerbunden === true || daten.length > 0;
+
     if (schafHinweis) {
-      schafHinweis.classList.remove("aktiv");
+      if (schafVerbunden) {
+        schafHinweis.classList.remove("aktiv");
+      } else {
+        schafHinweis.classList.add("aktiv");
+      }
     }
 
-    zeichneMonatsKalender(year, month, result.daten || []);
+    zeichneMonatsKalender(year, month, daten);
 
   } catch (error) {
     console.error("Fehler beim Laden des Monatskalenders:", error);
+
+    schafVerbunden = false;
 
     const schafHinweis = document.getElementById("schafHinweis");
 
@@ -151,6 +165,11 @@ function zeichneMonatsKalender(year, month, datenbankDaten) {
     `;
 
     button.addEventListener("click", () => {
+      if (!schafVerbunden && !hatDaten) {
+        alert("Es ist noch kein Schaf mit diesem Account verbunden.");
+        return;
+      }
+
       ladeTagesDetails(datumString);
     });
 
@@ -167,10 +186,17 @@ function ermittleSchlafKlasse(anzahl, year, month, tag, hatDaten) {
 
   const istVergangenheit = datum < heute;
 
-  if (!hatDaten && istVergangenheit) {
+  // Wenn kein Schaf verbunden ist und keine Daten vorhanden sind: neutral
+  if (!schafVerbunden && !hatDaten) {
+    return "schlaf-keine-daten";
+  }
+
+  // Wenn ein Schaf verbunden ist, aber für vergangene Tage keine Daten vorhanden sind: grün
+  if (schafVerbunden && !hatDaten && istVergangenheit) {
     return "schlaf-keine-daten-vergangen";
   }
 
+  // Zukünftige Tage ohne Daten bleiben neutral
   if (!hatDaten) {
     return "schlaf-keine-daten";
   }

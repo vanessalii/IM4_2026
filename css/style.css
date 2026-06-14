@@ -3283,6 +3283,29 @@ body.register-page {
   background: #91FAFE;
 }
 
+/* Speichern-Button auf der Personalisierungsseite links ausrichten */
+.personalisierung-seite .einstellungen-speichern-bereich {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start !important;
+  text-align: left !important;
+  margin-top: 32px;
+  margin-bottom: 48px;
+}
+
+.personalisierung-seite .einstellungen-speichern-button {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  align-self: flex-start !important;
+}
+
+.personalisierung-seite .speichern-status {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
 /* ==============================
     PERSONALISIERUNG Responsive
 ============================== */
