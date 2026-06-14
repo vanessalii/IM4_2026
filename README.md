@@ -92,6 +92,14 @@ Verwendete Programmdateien:
 - `Audioplayer_richtig.ino`
 - `audioplayer.h`
 
+Fotos:
+<img width="4032" height="2268" alt="IMG_8195" src="https://github.com/user-attachments/assets/92cd2896-b82a-474b-9410-7354a41c3f10" />
+<img width="4032" height="2268" alt="IMG_8332" src="https://github.com/user-attachments/assets/86cc056b-20d3-445c-901b-3d0d0bab0745" />
+<img width="4032" height="2268" alt="IMG_8660" src="https://github.com/user-attachments/assets/b0af4e10-fe67-4011-904e-7ec37afd3beb" />
+<img width="4032" height="2268" alt="IMG_8661" src="https://github.com/user-attachments/assets/ce3a41c3-bb90-4d2a-a7d2-ff971bf0a970" />
+<img width="4032" height="2268" alt="IMG_8662" src="https://github.com/user-attachments/assets/eeb3f17d-570a-4c14-9589-e8d9c8347b33" />
+<img width="4032" height="2268" alt="IMG_8663" src="https://github.com/user-attachments/assets/f2916e0d-af59-41a0-829e-800fb3a2ebc4" />
+
 ---
 
 ## Bauanleitung Physical Computing
