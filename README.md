@@ -541,7 +541,8 @@ Nach erfolgreichem Login wird eine Session gestartet. Dadurch erkennt die WebApp
 Das Projekt verbindet Sensorik, Aktorik und Webkommunikation zu einem interaktiven Physical-Computing-System. Der ESP32-C6 erkennt Bewegung und Lautstärke, zählt Ereignisse innerhalb eines Zeitfensters und reagiert bei Überschreitung eines Grenzwerts mit Licht und Audio. Die WebApp beziehungsweise der Server steuert dabei wichtige Einstellungen wie Farbe, Soundauswahl, Shuffle und Abspieldauer. Dadurch entsteht ein System, bei dem physische Eingaben aus der Umgebung mit digitalen Einstellungen und serverseitiger Datenspeicherung kombiniert werden.
 
 ## Known bugs
-* Was funktioniert noch nicht einwandfrei?  
+
+### Was funktioniert noch nicht einwandfrei?  
 
 Die Zuordnung zwischen WebApp und Plüschtier ist aktuell stark von der korrekten Seriennummer abhängig. Wenn diese nicht exakt übereinstimmt, können Einstellungen oder Sensordaten nicht richtig zugeordnet werden.
 
@@ -549,15 +550,20 @@ Ausserdem werden neue Daten nicht immer in Echtzeit angezeigt. Teilweise muss ei
 
 Die Statistik ist zudem davon abhängig, dass das physische Artefakt zuverlässig Sensordaten sendet. Wenn das Plüschtier offline ist oder Daten fehlen, können einzelne Nächte nicht vollständig ausgewertet werden.
 
-* Was ist uns aufgefallen bei der Entwicklung?  
+Das Plüschtier ist erst ein Prototyp und kann so noch nicht von Kindern verwendet werden. Das Schaf und die integrierte Technik ist zuwenig stabil, um damit spielen zu können.
+
+
+### Was ist uns aufgefallen bei der Entwicklung?  
 
 Die Abstimmung zwischen Frontend, Backend und Datenbank war anspruchsvoller als zu Beginn erwartet.
 Besonders wichtig war eine einheitliche Benennung von IDs, Variablen und Datenbankfeldern.
 Beim Testen wurde deutlich, dass viele Fehler erst sichtbar werden, wenn mehrere Teile der WebApp zusammenarbeiten.
 
-* Was könnte noch verbessert werden?
+### Was könnte noch verbessert werden?
 
 In Zukunft könnte die WebApp weiter ausgebaut werden. Besonders die Geräteverwaltung könnte verbessert werden, damit mehrere Plüschtiere pro Benutzerkonto verwaltet werden können. Auch die Statistik könnte erweitert werden, zum Beispiel mit Langzeitvergleichen, häufig verwendeten Sounds oder bevorzugten Lichtfarben.
+
+ Für unseren Prototypen hatten wir mehrere Plüsch-Schafe getestet, aber die Grösse des Lautsprechers verursachte immer Probleme. Am Ende mussten wir den physischen Teil improvisieren, da die Kabel nicht fest genug fixiert und der Lautsprecher nicht integriert werden konnten. Für eine zukünftige Verbesserung des Produkts würden wir ein grösseres Plüschtier verwenden. Auch ein speziell angefertigten Innengehäuse würde Sinn machen: dadurch könnten die elektronischen Teile sicher fixiert und die Stabilität des Schafes deutlich verbessert werden.
 
 ## Umsetzungsprozess
 
