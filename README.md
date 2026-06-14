@@ -51,7 +51,7 @@ Für die WebApp wurden insbesondere Registrierung, Login, Home-Ansicht, Profil, 
 
 ### Setup
 * **WebApp:** [Link zur Website]( https://im4.vanessa-oberhaensli.ch/login.html)  
-* **Video-Dokumentation:** [Link zum Video auf Youtube] (https://youtu.be/a2KxjekczdM) 
+* **Video-Dokumentation:** (https://youtu.be/a2KxjekczdM) 
 
 #### Installationsanleitung WebApp
 
