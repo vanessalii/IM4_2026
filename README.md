@@ -51,7 +51,7 @@ Für die WebApp wurden insbesondere Registrierung, Login, Home-Ansicht, Profil, 
 
 ### Setup
 * **WebApp:** [Link zur Website]( https://im4.vanessa-oberhaensli.ch/login.html)  
-* **Video-Dokumentation:** [Link zum Video auf Youtube] (http://link.zum.video) 
+* **Video-Dokumentation:** [Link zum Video auf Youtube] (https://youtu.be/a2KxjekczdM) 
 
 #### Installationsanleitung WebApp
 
@@ -84,6 +84,8 @@ Für die WebApp ist vor allem wichtig, dass das physische Artefakt eine gültige
 Unser Physical Computing erkennt über einen PIR-Sensor Bewegung und misst über ein digitales INMP441-I2S-Mikrofon die Lautstärke der Umgebung. Wenn innerhalb eines Zeitfensters von 15 Sekunden mehrfach Bewegung und erhöhte Lautstärke erkannt werden, wird ein sogenannter Calm Mode gestartet. In diesem Modus leuchtet ein NeoPixel-LED-Ring in einer vom Server geladenen Farbe und ein OpenSmart-MP3-Player spielt einen beruhigenden Audiotrack ab.
 
 Die Einstellungen für den Calm Mode werden über WLAN von einem Webserver geladen. Dazu gehören die Spieldauer, die Lichtfarbe, die Auswahl des Audiotracks und die Shuffle-Einstellung. Wenn ein Alarmzustand erkannt wird, sendet der ESP32 Sensordaten und Statusinformationen als JSON an den Server.
+
+Download-Link Arduino-Datei: https://www.swisstransfer.com/d/7c16fc65-6cbd-4e2f-9e3d-09d9b5c5cc30
 
 Verwendete Programmdateien:
 
