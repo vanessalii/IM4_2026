@@ -7,7 +7,7 @@ async function ladeHomeEinstellungen() {
     });
 
     const result = await response.json();
-    console.log("Home Einstellungen:", result);
+    console.log("Home Einstellungen 23:59:", result);
 
     if (result.status !== "success") {
       console.warn(result.message);
@@ -16,6 +16,15 @@ async function ladeHomeEinstellungen() {
         schafHinweis.classList.add("aktiv");
       }
 
+      return;
+    }
+
+    if (!result.daten) {
+      if (schafHinweis) {
+        schafHinweis.classList.add("aktiv");
+      }
+
+      setzeLeereEinstellungen();
       return;
     }
 
@@ -35,11 +44,10 @@ async function ladeHomeEinstellungen() {
 
     soundElement.textContent = uebersetzeSound(daten.soundtype);
 
-    const lichtName = uebersetzeLicht(daten.light_name);
-    const lichtText = `${lichtName}es Licht`;
+    const lichtKey = normalisiereLichtName(daten.light_name);
+    lightElement.textContent = erstelleLichtText(lichtKey);
 
-    lightElement.textContent = lichtText;
-    setzeLichtBadge(lightElement, daten.light_name);
+    setzeLichtBadge(lightElement, lichtKey);
 
   } catch (error) {
     console.error("Fehler beim Laden der Home-Einstellungen:", error);
@@ -47,6 +55,20 @@ async function ladeHomeEinstellungen() {
     if (schafHinweis) {
       schafHinweis.classList.add("aktiv");
     }
+  }
+}
+
+function setzeLeereEinstellungen() {
+  const soundElement = document.getElementById("homeSound");
+  const lightElement = document.getElementById("homeLight");
+
+  if (soundElement) {
+    soundElement.textContent = "Kein Sound";
+  }
+
+  if (lightElement) {
+    lightElement.textContent = "Kein Licht";
+    lightElement.className = "licht-badge";
   }
 }
 
@@ -65,16 +87,32 @@ function uebersetzeSound(soundtype) {
   return soundNamen[soundtype] || soundtype || "Kein Sound";
 }
 
-function uebersetzeLicht(lightName) {
-  const lichtNamen = {
-    yellow: "Gelb",
-    green: "Grün",
-    violet: "Violett",
-    pink: "Pink",
-    blue: "Blau"
-  };
+function normalisiereLichtName(lightName) {
+  return String(lightName || "").trim().toLowerCase();
+}
 
-  return lichtNamen[lightName] || lightName || "Unbekannt";
+function erstelleLichtText(lightName) {
+  if (lightName === "yellow" || lightName === "gelb") {
+    return "Gelbes Licht";
+  }
+
+  if (lightName === "green" || lightName === "grün" || lightName === "gruen") {
+    return "Grünes Licht";
+  }
+
+  if (lightName === "violet" || lightName === "violett") {
+    return "Violettes Licht";
+  }
+
+  if (lightName === "pink") {
+    return "Pinkes Licht";
+  }
+
+  if (lightName === "blue" || lightName === "blau") {
+    return "Blaues Licht";
+  }
+
+  return "Kein Licht";
 }
 
 function setzeLichtBadge(element, lightName) {
@@ -82,10 +120,19 @@ function setzeLichtBadge(element, lightName) {
 
   const lichtKlassen = {
     yellow: "gelb",
+    gelb: "gelb",
+
     green: "gruen",
+    grün: "gruen",
+    gruen: "gruen",
+
     violet: "violett",
+    violett: "violett",
+
     pink: "pink",
-    blue: "blau"
+
+    blue: "blau",
+    blau: "blau"
   };
 
   const klasse = lichtKlassen[lightName];

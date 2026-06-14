@@ -18,49 +18,67 @@ try {
     $userId = $_SESSION['user_id'];
 
     // Seriennummer des eingeloggten Users aus devices holen
-    $stmt = $pdo->prepare("SELECT serialnr FROM devices WHERE user_id = ?");
+    $stmt = $pdo->prepare("
+        SELECT serialnr 
+        FROM devices 
+        WHERE user_id = ?
+        LIMIT 1
+    ");
+
     $stmt->execute([$userId]);
     $device = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$device || empty($device['serialnr'])) {
-        throw new Exception("Keine Seriennummer für diesen User gefunden");
+        echo json_encode([
+            "status" => "success",
+            "message" => "Kein Schaf verbunden",
+            "daten" => null
+        ]);
+        exit;
     }
 
     $serialnr = $device['serialnr'];
 
-    // Einstellungen inkl. Lichtfarbe und Sound holen
+    /*
+      Für die Home-Seite sollen nicht die aktuellen Einstellungen geladen werden,
+      sondern die Einstellungen, die letzte Nacht um 23:59 Uhr aktiv waren.
+    */
+    $gestern = date("Y-m-d", strtotime("-1 day"));
+    $settingsTime = $gestern . " 23:59:59";
+
     $sql = "
         SELECT 
-            e.serialnr,
-            e.bedtime,
-            e.calmtime,
-            e.shuffle,
-            e.lightcolour_id,
-            e.soundtype_id,
+            eh.serialnr,
+            eh.bedtime,
+            eh.calmtime,
+            eh.shuffle,
+            eh.lightcolour_id,
+            eh.soundtype_id,
+            eh.created_at,
 
             lc.name AS light_name,
             lc.colour AS light_hex,
 
             st.typename AS soundtype
-        FROM einstellungen e
+        FROM einstellungen_history eh
         LEFT JOIN lightcolour lc
-            ON e.lightcolour_id = lc.id
+            ON eh.lightcolour_id = lc.id
         LEFT JOIN soundtype st
-            ON e.soundtype_id = st.id
-        WHERE e.serialnr = ?
+            ON eh.soundtype_id = st.id
+        WHERE eh.serialnr = ?
+        AND eh.created_at <= ?
+        ORDER BY eh.created_at DESC
         LIMIT 1
     ";
 
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$serialnr]);
+    $stmt->execute([$serialnr, $settingsTime]);
     $einstellungen = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$einstellungen) {
-        throw new Exception("Keine Einstellungen gefunden");
-    }
 
     echo json_encode([
         "status" => "success",
+        "serialnr" => $serialnr,
+        "settingsTime" => $settingsTime,
         "daten" => $einstellungen
     ]);
 
