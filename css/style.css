@@ -109,7 +109,6 @@ form button:hover {
 }
 
 
-
 /* ==============================
    APP-LAYOUT
 ============================== */
@@ -127,8 +126,6 @@ body.home-seite {
 .hauptbereich {
   flex: 1;
 }
-
-
 
 /* ==============================
    OBERE NAVIGATION
@@ -186,135 +183,9 @@ body.home-seite {
   cursor: pointer;
 }
 
-
-
-/* ==============================
-   UNTERE NAVIGATION
-============================== */
-
-.bottom-nav {
-  width: 100%;
-  height: 90px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 200px;
-
-  background: rgba(58, 50, 103, 0.96);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-
-  backdrop-filter: blur(8px);
-}
-
-body.home-seite .bottom-nav {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 9999;
-}
-
-.nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-
-  color: #c7c1df;
-
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.nav-item:hover {
-  text-decoration: none;
-}
-
-.nav-item.aktiv {
-  color: white;
-}
-
-.nav-icon {
-  width: 50px;
-  height: 50px;
-
-  display: block;
-  object-fit: contain;
-}
-
-.nav-item.icon-personalisierung {
-  position: relative;
-  transform: translateY(-28px);
-
-  margin: 0 12px;
-}
-
-.icon-personalisierung-kreis {
-  width: 78px;
-  height: 78px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border-radius: 50%;
-
-  background: linear-gradient(180deg, #ff66d9, #a64cff);
-  box-shadow: 0 12px 24px rgba(166, 76, 255, 0.35);
-}
-
-.icon-personalisierung-kreis img {
-  width: 42px;
-  height: 42px;
-
-  display: block;
-  object-fit: contain;
-}
-
-
-
 /* ==============================
    ALLGEMEIN RESPONSIVE
 ============================== */
-
-@media (max-width: 1300px) {
-  .bottom-nav {
-    gap: 150px;
-  }
-}
-
-/* Tablets und kleinere Laptops */
-
-@media (max-width: 1100px) {
-  .bottom-nav {
-    gap: 120px;
-  }
-}
-
-
-
-/* Tablets */
-
-@media (max-width: 900px) {
-  .bottom-nav {
-    gap: 70px;
-  }
-}
-
-/* Grosse Smartphones */
-
-@media (max-width: 650px) {
-  .bottom-nav {
-    justify-content: space-around;
-    gap: 0;
-
-    padding: 0 18px;
-  }
-}
-
-
 
 /* Smartphones */
 
@@ -380,7 +251,6 @@ body.home-seite .bottom-nav {
 }
 
 
-
 /* Sehr kleine Smartphones */
 
 @media (max-width: 380px) {
@@ -402,31 +272,7 @@ body.home-seite .bottom-nav {
     font-size: 11px;
   }
 
-  .bottom-nav {
-    gap: 14px;
-  }
-
-  .nav-item {
-    font-size: 10px;
-  }
-
-  .nav-icon {
-    width: 30px;
-    height: 30px;
-  }
-
-  .icon-personalisierung-kreis {
-    width: 56px;
-    height: 56px;
-  }
-
-  .icon-personalisierung-kreis img {
-    width: 30px;
-    height: 30px;
-  }
 }
-
-
 
 /* ==============================
    LOGIN UND REGISTRIERUNG
@@ -520,7 +366,6 @@ body.register-page {
   background: linear-gradient(90deg, #a64cff, #3f86ff);
 }
 
-
 /* ==============================
    LOGIN Responsive
 ============================== */
@@ -553,8 +398,6 @@ body.register-page {
     font-size: 15px;
   }
 }
-
-
 
 /* Smartphones */
 
@@ -621,7 +464,6 @@ body.register-page {
 }
 
 
-
 /* Sehr kleine Smartphones */
 
 @media (max-width: 380px) {
@@ -654,8 +496,6 @@ body.register-page {
     padding: 15px;
   }
 }
-
-
 
 /* ==============================
    EINSTELLUNGEN
@@ -836,9 +676,6 @@ body.register-page {
   line-height: 1;
 }
 
-
-
-
 /* ==============================
    PROFIL
 ============================== */
@@ -851,8 +688,6 @@ body.profil-page {
   display: block;
   overflow-x: hidden;
 }
-
-
 
 /* Container */
 
@@ -867,8 +702,6 @@ body.profil-page {
   padding-bottom: 120px;
 }
 
-
-
 /* Titel */
 
 .profil-title {
@@ -881,8 +714,6 @@ body.profil-page {
   line-height: 1;
   text-align: left;
 }
-
-
 
 /* Karte */
 
@@ -901,8 +732,6 @@ body.profil-page {
 
   backdrop-filter: blur(10px);
 }
-
-
 
 /* Formular */
 
@@ -957,8 +786,6 @@ body.profil-page {
   box-shadow: 0 0 0 4px rgba(170, 90, 255, 0.16);
 }
 
-
-
 /* Button */
 
 .profil-button {
@@ -984,8 +811,6 @@ body.profil-page {
   transform: translateY(-1px);
   box-shadow: 0 20px 38px rgba(79, 112, 255, 0.34);
 }
-
-
 
 /* ==============================
    EINSTELLUNGS-UNTERSEITEN
@@ -1038,8 +863,6 @@ body.profil-page {
   box-shadow: 0 0 0 4px rgba(170, 90, 255, 0.16);
 }
 
-
-
 /* Speichern */
 
 .einstellungen-speichern-bereich {
@@ -1083,8 +906,6 @@ body.profil-page {
   font-size: 16px;
   font-weight: 800;
 }
-
-
 
 /* Verlauf */
 
@@ -1209,7 +1030,6 @@ body.profil-page {
   font-weight: 800;
 }
 
-
 /* ==============================
    Einstellungen Responsive
 ============================== */
@@ -1253,8 +1073,6 @@ body.profil-page {
     gap: 18px;
   }
 }
-
-
 
 /* Kleine Tablets und Smartphones */
 
@@ -1365,8 +1183,6 @@ body.profil-page {
     padding-top: 0;
   }
 }
-
-
 
 /* Smartphones */
 
@@ -1513,8 +1329,6 @@ body.profil-page {
   }
 }
 
-
-
 /* ==============================
    HOME
 ============================== */
@@ -1528,8 +1342,6 @@ body.profil-page {
   padding: 40px 32px 120px;
 }
 
-
-
 /* Begrüssung */
 
 .gruss-bereich {
@@ -1540,8 +1352,6 @@ body.profil-page {
   font-size: 36px;
   font-weight: 700;
 }
-
-
 
 /* Karten */
 
@@ -1566,8 +1376,6 @@ body.profil-page {
   font-size: 28px;
 }
 
-
-
 /* Letzte Nacht */
 
 .nacht-inhalt {
@@ -1579,8 +1387,6 @@ body.profil-page {
 
   margin-top: 24px;
 }
-
-
 
 /* Einstellungen letzte Nacht */
 
@@ -1712,8 +1518,6 @@ body.profil-page {
   color: #c7c1df;
 }
 
-
-
 /* Gesamt */
 
 .gesamt-box {
@@ -1727,8 +1531,6 @@ body.profil-page {
 
   font-size: 18px;
 }
-
-
 
 /* Diagramm */
 
@@ -1959,22 +1761,9 @@ body.overlay-offen .bottom-nav {
 }
 
 /* ==========================================
-   Navigation: Icons etwas näher zusammen
-   ========================================== */
-
-.bottom-nav {
-  padding-left: 12vw !important;
-  padding-right: 12vw !important;
-}
-
-/* ==========================================
    Navigation: Icons näher zusammen und grösser
    ========================================== */
 
-.bottom-nav {
-  padding-left: 14vw !important;
-  padding-right: 14vw !important;
-}
 
 .bottom-nav .nav-icon {
   width: 44px !important;
@@ -2092,8 +1881,6 @@ body.register-page {
   background: rgba(255, 255, 255, 0.38);
 }
 
-
-
 /* ==========================================
    Home: Letzte Nacht sauber passend anzeigen
    ========================================== */
@@ -2165,8 +1952,6 @@ body.register-page {
   }
 }
 
-
-
 /* Kleine Tablets und Smartphones */
 
 @media (max-width: 700px) {
@@ -2214,8 +1999,6 @@ body.register-page {
     min-width: 560px;
   }
 }
-
-
 
 /* Smartphones */
 
@@ -2290,8 +2073,6 @@ body.register-page {
   }
 }
 
-
-
 /* Sehr kleine Smartphones */
 
 @media (max-width: 380px) {
@@ -2326,8 +2107,6 @@ body.register-page {
   }
 }
 
-
-
 /* ==============================
    STATISTIK
 ============================== */
@@ -2341,7 +2120,6 @@ body.register-page {
 
   margin-bottom: 24px;
 }
-
 
 /* Monatswechsel */
 
@@ -2376,8 +2154,6 @@ body.register-page {
   font-weight: 700;
 }
 
-
-
 /* Durchschnitt */
 
 .durchschnitt-box {
@@ -2395,8 +2171,6 @@ body.register-page {
 .durchschnitt-box span {
   color: #c7c1df;
 }
-
-
 
 /* Monatsdiagramm */
 
@@ -2475,8 +2249,6 @@ body.register-page {
   font-weight: 700;
 }
 
-
-
 /* Kalender-Legende */
 
 .legende {
@@ -2522,8 +2294,6 @@ body.register-page {
   background: rgba(255, 102, 217, 0.35);
 }
 
-
-
 /* Einfacher Kalender */
 
 .kalender {
@@ -2565,7 +2335,6 @@ body.register-page {
   background: rgba(255, 255, 255, 0.08);
   color: #c7c1df;
 }
-
 
 /* Tages-Overlay */
 
@@ -2621,8 +2390,6 @@ body.register-page {
   cursor: pointer;
 }
 
-
-
 /* Chart */
 
 .chart-container {
@@ -2634,8 +2401,6 @@ body.register-page {
 
   border-radius: 20px;
 }
-
-
 
 /* Schlaf-Legende */
 
@@ -2682,8 +2447,6 @@ body.register-page {
 .punkt.schlecht {
   background: rgba(255, 102, 217, 0.55);
 }
-
-
 
 /* Schlaf-Kalender */
 
@@ -3115,8 +2878,6 @@ body.register-page {
   }
 }
 
-
-
 /* Smartphones */
 
 @media (max-width: 480px) {
@@ -3225,8 +2986,6 @@ body.register-page {
     font-size: 18px;
   }
 }
-
-
 
 /* Sehr kleine Smartphones */
 
@@ -3416,8 +3175,6 @@ body.register-page {
   font-size: 24px;
 }
 
-
-
 /* Auswahl */
 
 .track-liste {
@@ -3453,8 +3210,6 @@ body.register-page {
   border-color: rgba(255, 255, 255, 0.25);
 }
 
-
-
 /* Status */
 
 .status-text {
@@ -3469,8 +3224,6 @@ body.register-page {
 .status-text strong {
   color: white;
 }
-
-
 
 /* Lichtauswahl */
 
@@ -3530,7 +3283,6 @@ body.register-page {
   background: #91FAFE;
 }
 
-
 /* ==============================
     PERSONALISIERUNG Responsive
 ============================== */
@@ -3556,8 +3308,6 @@ body.register-page {
     grid-column: auto;
   }
 }
-
-
 
 /* Kleine Tablets und Smartphones */
 
@@ -3605,8 +3355,6 @@ body.register-page {
     height: 52px;
   }
 }
-
-
 
 /* Smartphones */
 
@@ -3684,8 +3432,6 @@ body.register-page {
   }
 }
 
-
-
 /* Sehr kleine Smartphones */
 
 @media (max-width: 380px) {
@@ -3717,8 +3463,6 @@ body.register-page {
     height: 44px;
   }
 }
-
-
 
 /* ==============================
    BLOG
@@ -3819,8 +3563,6 @@ body.blog-page {
   opacity: 0.9;
 }
 
-
-
 /* Filter */
 
 .blog-filter-bar {
@@ -3854,8 +3596,6 @@ body.blog-page {
   border-color: rgba(255, 255, 255, 0.32);
   transform: translateY(-1px);
 }
-
-
 
 /* Beiträge */
 
@@ -3959,8 +3699,6 @@ body.blog-page {
   line-height: 1.5;
 }
 
-
-
 /* Beitrag-Metadaten */
 
 .blog-meta {
@@ -3986,8 +3724,6 @@ body.blog-page {
 .blog-meta span {
   line-height: 1.3;
 }
-
-
 
 /* Blogformular */
 
@@ -4082,8 +3818,6 @@ body.blog-page .blog-create-form textarea:focus {
   box-shadow: 0 0 0 4px rgba(170, 90, 255, 0.16);
 }
 
-
-
 /* Formular-Aktionen */
 
 body.blog-page .blog-form-actions {
@@ -4121,8 +3855,6 @@ body.blog-page .blog-publish-button {
 body.blog-page .blog-cancel-button {
   background: rgba(255, 255, 255, 0.14);
 }
-
-
 
 /* Kategorie-Auswahl */
 
@@ -4233,8 +3965,6 @@ body.blog-page .blog-custom-select-options button.is-selected {
   color: white;
 }
 
-
-
 /* Beitrag löschen */
 
 .blog-delete-button {
@@ -4298,8 +4028,6 @@ body.blog-page .blog-custom-select-options button.is-selected {
     grid-template-columns: 1fr 220px;
   }
 }
-
-
 
 /* Kleine Tablets und Smartphones */
 
@@ -4381,8 +4109,6 @@ body.blog-page .blog-custom-select-options button.is-selected {
     grid-template-columns: 1fr;
   }
 }
-
-
 
 /* Smartphones */
 
@@ -4519,8 +4245,6 @@ body.blog-page .blog-custom-select-options button.is-selected {
   }
 }
 
-
-
 /* Sehr kleine Smartphones */
 
 @media (max-width: 380px) {
@@ -4556,6 +4280,46 @@ body.blog-page .blog-custom-select-options button.is-selected {
   }
 }
 
+/* ==========================================
+   Bottom Navigation Mobile Optimierung
+   ========================================== */
 
+@media (max-width: 600px) {
+  .bottom-nav {
+    height: 74px !important;
+    padding: 6px 6px 8px !important;
 
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
 
+    background: rgba(91, 87, 135, 0.78) !important;
+  }
+
+  .bottom-nav .nav-item {
+    min-width: 0 !important;
+
+    gap: 3px !important;
+
+    font-size: 11px !important;
+    line-height: 1.1 !important;
+  }
+
+  .bottom-nav .nav-icon {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .bottom-nav .icon-personalisierung {
+    transform: translateY(-16px) !important;
+  }
+
+  .bottom-nav .icon-personalisierung-kreis {
+    width: 58px !important;
+    height: 58px !important;
+  }
+
+  .bottom-nav .icon-personalisierung-kreis img {
+    width: 30px;
+    height: 30px;
+  }
+}

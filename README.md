@@ -1,78 +1,3 @@
-# 🔑👤 Authentifizierung Minimal (Boilerplate)
-
-![Static Badge](https://img.shields.io/badge/Sprache-PHP-%23f7df1e)
-![Static Badge](https://img.shields.io/badge/Kurs-MMP_IM4-blue)
-![Last Changed](https://img.shields.io/endpoint?url=https://badges.crazy-internet.ch/im4_example.php)
-
-> 🎨 Dieses Boilerplate kann entweder in einem Code-Along Schritt für Schritt gemeinsam erarbeitet werden oder fixfertig auf einem Webserver installiert werden.
-
-Dieses Repository beinhaltet ein vollständiges, minimales Authenzifizierungs-System basierend auf PHP als Backend und HTML/CSS/JS als Frontend.
-
-Es ermöglicht Benutzern das `Registrieren`, `Anmelden`, `Abmelden` und den Zugriff auf eine `geschützte Seite` nach erfolgreicher Authentifizierung.
-
-Eine einfache Erklärung des Login-Ablaufs mit Sessions und Cookies findest du in [`sessions.md`](sessions.md).
-
-# 🏁 Live - Version
-
-Du kannst Homely unter folgendem Link testen:
-
-[https://im4.crazy-internet.ch/](https://im4.crazy-internet.ch/)
-
-## ⚙️ Installation
-
-Um dieses Boilerplate auf dem eigenen Web-Server zu installieren, führe folgende Schritte aus:
-
-### 1. Download
-
-- [Klone das Repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) über GitHub oder [downloade das Repository als ZIP Datei](https://docs.github.com/en/repositories/working-with-files/using-files/downloading-source-code-archives) auf deinen eigenen Computer.
-
-### 2. Datenbank
-
-- Erstelle eine neue Datenbank bei deinem Hoster (z.B. [Infomaniak](https://www.infomaniak.com/de/support/faq/1981/mysqlmariadb-benutzer-und-datenbanken-verwalten)).
-
-- Importiere die Datei `system/database.sql` in die neue Datenbank, um die `users` Tabelle zu erstellen.
-
-### 3. Code
-
-- Benenne die Datei `system/config.php.blank` in `system/config.php` um.
-
-- Passe die Datenbankverbindungsdaten in der Datei `system/config.php` an.
-
-### 4. FTP Connect
-
-- Erstelle eine neue FTP Verbindung mit dem SFTP Plugin gemäss [Anleitung im MMP 101](https://github.com/Interaktive-Medien/101-MMP/blob/main/resources/sftp.md).
-
-# 📁 Struktur
-
-## 🎨 Frontend
-
-### root (Basis-Verzeichnis)
-
-- beinhaltet alle HTML-Dateien des Frontends.
-- beinhaltet die `.gitignore` Datei, welche die Dateien und Verzeichnisse ausblendet, die nicht auf GitHub hochgeladen werden sollen.
-
-### js
-
-- beinhaltet alle JavaScript-Dateien des Frontends.
-
-### css
-
-- beinhaltet alle CSS-Dateien des Frontends.
-
-## 🤖 Backend
-
-### api
-
-- Beinhaltet alle API-Endpunkte des Backends.
-- Diese Dateien werden von `JavaScript` aufgerufen und geben eine Antwort an `JavaScript` zurück.
-
-### system
-
-- Beinhaltet die Konfigurationsdatei für die Datenbankverbindung.
-- Beinhaltet die Datei `database.sql`, die die `users` Tabelle erstellt.
-- Beinhaltet die Datei `config.php`, die die Konfiguration des Backends enthält.
-
-
 
 ## Kurzbeschreibung des Projekts
 
@@ -102,9 +27,8 @@ Das Ziel des Systems ist es, Kindern mehr Selbstständigkeit beim Wiedereinschla
 
 **Figma:** [Link zum Figma]( https://www.figma.com/design/ttmTtepUD14OOeOQiDrhcn/IM-4-%E2%80%93-App-Konzeption-Vorlage--Kopie-?node-id=78-325&p=f)
 **User Flow \+ Screen Flow** (Screenshot aus Figma) 
-![alt text](image.png)
+(/Bilder_Readme/image.png)
  
-
 *In Figma wurden der User Flow und der Screen Flow für beide Projektteile erstellt. Der Flow zeigt, wie Nutzer durch die WebApp navigieren und wie die wichtigsten Funktionen miteinander verbunden sind.
 
 Für die WebApp wurden insbesondere Registrierung, Login, Home-Ansicht, Profil, Licht- und Soundsteuerung sowie die Statistik- und Kalenderansicht geplant.
@@ -120,7 +44,9 @@ Für die WebApp wurden insbesondere Registrierung, Login, Home-Ansicht, Profil, 
 
 * *Welche Features wurden nicht umgesetzt? (Warum)*
 *Vollständige Automatisierung der Schlafauswertung: Die Auswertung wurde vereinfacht, da die stabile Darstellung der wichtigsten Schlafdaten im Vordergrund stand.
+
 *Erweiterte Detailanalysen: Zusätzliche Auswertungen und Vergleiche wurden nicht vollständig umgesetzt, da sie den Rahmen des Projekts überschritten hätten.
+
 *Feinschliff einzelner Interaktionen: Einzelne UI-Details und Animationen wurden reduziert, damit die Grundfunktionen zuverlässig funktionieren.
 
 ### Setup
@@ -130,7 +56,10 @@ Für die WebApp wurden insbesondere Registrierung, Login, Home-Ansicht, Profil, 
 #### Installationsanleitung WebApp
 
 *Was benötige ich an Infrastruktur?*  
-Für die WebApp wird ein Webserver benötigt, der PHP und MySQL unterstützt. Zusätzlich wird ein Datenbank-Tool wie phpMyAdmin benötigt, um die Datenbank zu erstellen und die SQL-Datei zu importieren.
+Für die Installation und den Betrieb der WebApp wird eine Webserver-Umgebung benötigt. Die WebApp besteht aus HTML-, CSS-, JavaScript- und PHP-Dateien und benötigt zusätzlich eine MySQL-Datenbank zur Speicherung von Benutzerdaten, Blogbeiträgen, Einstellungen und Sensordaten.
+
+*Was muss ich auf meinem Webserver installieren?* 
+Auf dem Webserver muss keine zusätzliche Software manuell installiert werden, sofern bereits ein normales Webhosting mit PHP und MySQL vorhanden ist. Wichtig ist, dass der Server PHP unterstützt und Zugriff auf eine MySQL- oder MariaDB-Datenbank bietet.
 
 *Wie kann ich die Datenbank importieren?*  
 Zuerst wird in phpMyAdmin eine neue Datenbank erstellt. Anschliessend kann die mitgelieferte SQL-Datei über den Bereich «Importieren» ausgewählt und ausgeführt werden. Dadurch werden die benötigten Tabellen und Strukturen angelegt.
@@ -143,7 +72,9 @@ $username = "[Benutzername]";
 $password = "[Passwort]";
 
 *Wie nehme ich das physische Artefakt in Betrieb?*
-Die Inbetriebnahme des physischen Artefakts wird im Abschnitt «Bauanleitung Physical Computing» dokumentiert.
+Die Inbetriebnahme des physischen Artefakts wird separat im Abschnitt «Bauanleitung Physical Computing» dokumentiert. Dort wird beschrieben, wie das Plüschtier beziehungsweise die verbaute Hardware aufgebaut, angeschlossen und mit der WebApp verbunden wird.
+
+Für die WebApp ist vor allem wichtig, dass das physische Artefakt eine gültige Seriennummer verwendet. Diese Seriennummer muss mit der Seriennummer übereinstimmen, die in der WebApp beziehungsweise in der Datenbank hinterlegt ist. Nur so können die Sensordaten korrekt zugeordnet und die gespeicherten Einstellungen an das richtige Plüschtier übermittelt werden.
 
 
 # Projektdokumentation: Audioplayer Physical Computing
@@ -284,6 +215,10 @@ Beim NeoPixel-Ring sollte auf eine ausreichend stabile Stromversorgung geachtet 
 
 ### Projektstruktur / Code-Struktur
 
+Das Gesamtprojekt besteht aus zwei zentralen Bereichen: dem Physical-Computing-Teil für das Plüschtier und der WebApp für die Bedienung durch die Eltern. 
+
+Physical Computing
+
 Das Projekt besteht aus zwei zentralen Dateien.
 
 
@@ -368,7 +303,27 @@ Die Dateinamen auf der SD-Karte müssen zur Reihenfolge des MP3-Players passen, 
 
 ---
 
+WebApp
+
+Die WebApp ist in HTML-, CSS-, JavaScript- und PHP-Dateien aufgeteilt. Die HTML-Dateien bilden die einzelnen Seiten der Anwendung, zum Beispiel Login, Registrierung, Home, Personalisierung, Profil, Blog und Statistik. Die CSS-Dateien definieren das visuelle Erscheinungsbild der WebApp, also Layout, Farben, Navigation, responsive Darstellung und einzelne Komponenten.
+
+Die JavaScript-Dateien übernehmen die Interaktionen im Frontend. Sie reagieren auf Benutzereingaben, laden Daten dynamisch nach und senden ausgewählte Einstellungen oder Formulardaten an das Backend. Dazu gehören zum Beispiel das Speichern der Personalisierung, das Laden der letzten Nacht, das Anzeigen der Monatsstatistik oder das Erstellen von Blogbeiträgen.
+
+Die PHP-Dateien bilden die Schnittstelle zwischen Frontend und Datenbank. Sie nehmen Anfragen aus dem Frontend entgegen, verarbeiten diese und lesen oder speichern die entsprechenden Daten in der MySQL-Datenbank. Die Daten werden dabei meist im JSON-Format zwischen JavaScript und PHP ausgetauscht.
+
+Zusätzlich gibt es eine zentrale Konfigurationsdatei für die Datenbankverbindung. In dieser Datei werden die Zugangsdaten zur Datenbank hinterlegt, damit alle PHP-Schnittstellen auf dieselbe MySQL-Datenbank zugreifen können.
+
 ## Datenschnittstelle zwischen WebApp und Physical Computing
+
+Die WebApp speichert die Einstellungen und Schlafdaten in einer MySQL-Datenbank. Dazu gehören zum Beispiel die ausgewählte Beruhigungsdauer, die gewählte Lichtfarbe, der ausgewählte Sound sowie die erfassten Sensordaten einzelner Nächte. Die WebApp dient dabei als Benutzeroberfläche für die Eltern. Über sie können Einstellungen angepasst und Schlafdaten angezeigt werden.
+
+Das Physical-Computing-System greift über PHP-Endpunkte auf diese Daten zu. Der ESP32 kann gespeicherte Einstellungen vom Server laden und Sensordaten an den Server senden. Dadurch entsteht die Verbindung zwischen der WebApp und dem physischen Plüschschaf: Die in der WebApp gespeicherten Werte bestimmen, wie das Plüschtier reagiert, zum Beispiel welches Licht angezeigt oder welcher Sound abgespielt wird. Gleichzeitig werden erkannte Aufwachereignisse vom physischen Artefakt an die WebApp zurückgegeben.
+
+Der grundlegende Datenfluss funktioniert in beide Richtungen:
+
+WebApp → PHP/API → Datenbank → Physical Computing
+Physical Computing → PHP/API → Datenbank → WebApp
+
 
 Die Kommunikation zwischen WebApp beziehungsweise Server und ESP32 läuft über HTTP-Anfragen mit JSON-Daten. Der ESP32 verbindet sich dafür mit dem WLAN und spricht zwei PHP-Endpunkte an.
 
@@ -497,6 +452,34 @@ erDiagram
         int trackNumber
         string filename
     }
+
+    BLOGPOST { 
+        int id 
+        int user_id 
+        string title 
+        text content 
+        datetime created_at 
+        }
+
+        SETTING { 
+            int id
+            int user_id 
+            string serialnr 
+            int calmtime 
+            int soundtype_id 
+            int lightcolour_id 
+            datetime updated_at 
+            }
+
+        SETTING_HISTORY { 
+            int id 
+            int user_id 
+            string serialnr 
+            int calmtime 
+            int soundtype_id 
+            int lightcolour_id 
+            datetime created_at 
+            }
 ```
 
 ### Erklärung des ERM
@@ -508,6 +491,12 @@ Die Entität `DEVICE_SETTING` enthält die Einstellungen, die vom Server an den 
 Die Entität `SENSOR_EVENT` enthält Mess- und Ereignisdaten, die der ESP32 an den Server sendet. Dazu gehören der PIR-Zustand, der Lautstärkewert, die Anzahl der Trigger, der Status und Informationen zum abgespielten Track. Ein Gerät kann viele Sensorereignisse erzeugen.
 
 Die Entität `SOUND` beschreibt die verfügbaren Audiodateien. Im Arduino-Code sind sechs Soundnamen definiert. Diese Soundnamen können serverseitig mit Tracknummern oder Dateinamen verbunden werden. Die WebApp kann dann einen Soundtyp auswählen, den der ESP32 später in eine Tracknummer übersetzt.
+
+Die Entität `BLOGPOST` enthält die Blogbeiträge, die von angemeldeten Nutzern erstellt werden können. Jeder Blogbeitrag ist einem Benutzer zugeordnet.
+
+Die Entität `SETTING` enthält die aktuell gespeicherten Einstellungen für das Plüschtier. Dazu gehören die Beruhigungsdauer, die Lichtfarbe und der ausgewählte Sound. Diese Werte werden in der WebApp festgelegt und können später vom Physical-Computing-System geladen werden.
+
+Die Entität `SETTING_HISTORY` speichert Änderungen an den Einstellungen. Dadurch kann in der Statistikansicht nachvollzogen werden, wann welche Einstellungen geändert wurden.
 
 ---
 
@@ -543,19 +532,46 @@ Das Projekt verbindet Sensorik, Aktorik und Webkommunikation zu einem interaktiv
 
 ## Known bugs
 * Was funktioniert noch nicht einwandfrei?  
+
+Die Zuordnung zwischen WebApp und Plüschtier ist aktuell stark von der korrekten Seriennummer abhängig. Wenn diese nicht exakt übereinstimmt, können Einstellungen oder Sensordaten nicht richtig zugeordnet werden.
+
+Ausserdem werden neue Daten nicht immer in Echtzeit angezeigt. Teilweise muss eine Seite neu geladen werden, damit aktualisierte Einstellungen oder neue Sensordaten sichtbar sind.
+
+Die Statistik ist zudem davon abhängig, dass das physische Artefakt zuverlässig Sensordaten sendet. Wenn das Plüschtier offline ist oder Daten fehlen, können einzelne Nächte nicht vollständig ausgewertet werden.
+
 * Was ist uns aufgefallen bei der Entwicklung?  
+
+Die Abstimmung zwischen Frontend, Backend und Datenbank war anspruchsvoller als zu Beginn erwartet.
+Besonders wichtig war eine einheitliche Benennung von IDs, Variablen und Datenbankfeldern.
+Beim Testen wurde deutlich, dass viele Fehler erst sichtbar werden, wenn mehrere Teile der WebApp zusammenarbeiten.
+
 * Was könnte noch verbessert werden?
+
+In Zukunft könnte die WebApp weiter ausgebaut werden. Besonders die Geräteverwaltung könnte verbessert werden, damit mehrere Plüschtiere pro Benutzerkonto verwaltet werden können. Auch die Statistik könnte erweitert werden, zum Beispiel mit Langzeitvergleichen, häufig verwendeten Sounds oder bevorzugten Lichtfarben.
 
 ## Umsetzungsprozess
 
 ### Reflexion / Erfahrung / Lernfortschritt
+
+Physical Computing
 
 Zu Beginn des Projekts verfügten kaum über Vorwissen im Bereich Physical Computing. Viele Begriffe, Technologien und Abläufe waren für uns neu und zunächst schwer greifbar. Im Verlauf des Projekts konnten wir jedoch ein Basis-Verständnis dafür entwickeln, wie Sensoren ausgelesen, Daten verarbeitet und über Schnittstellen zwischen Mikrocontroller, Datenbank und Webapplikation ausgetauscht werden können.
 
 Obwohl wir viele Schritte nachvollziehen konnten, bleiben einige technische Zusammenhänge für uns noch abstrakt und würden bei einer erneuten Umsetzung vermutlich mehr Zeit für Vertiefung und Verständnis benötigen.
 Rückblickend fanden wir die Projektidee spannend, da sie ein reales, konkretes Alltagsproblem adressiert. Jedoch haben wir während des Prozesses gemerkt, dass man auch Ideen mit weniger Komponenten und Aufwand hätte wählen können, die mehr unserem Fähigkeiten-Level entsprochen hätten. So hätten wir vielleicht auch früher mit dem technischen Prototyping beginnen, um mehr Zeit für Tests und Optimierungen zu haben.
 
+WebApp
+
+Während der Umsetzung der WebApp haben wir gelernt, wie Frontend, Backend und Datenbank zusammenarbeiten. Besonders wichtig waren dabei eine klare Dateistruktur, einheitliche Benennungen und regelmässiges Testen der einzelnen Funktionen.
+
+Ein wichtiger Lernpunkt war, dass Änderungen an der Datenbankstruktur oft Auswirkungen auf mehrere Bereiche der WebApp haben. Wenn zum Beispiel Tabellen, Spaltennamen oder API-Schnittstellen angepasst werden, müssen häufig auch JavaScript- und PHP-Dateien entsprechend geändert werden.
+
+Rückblickend hätten wir die Datenbankstruktur und die Schnittstellen früher final definieren sollen. Dadurch hätten spätere Anpassungen reduziert und Fehler bei der Verbindung zwischen WebApp, Datenbank und physischem Artefakt vermieden werden können.
+
+
 ### Herausforderungen & Lösungen
+
+Physical Computing
 
 Die grösste Herausforderung bestand darin, dass wir uns gleichzeitig in mehrere neue Themengebiete einarbeiten mussten: Sensorik, Mikrocontroller-Programmierung, WLAN-Kommunikation, Datenbanken und die Zusammenarbeit mit dem WebApp-Team.
 
@@ -565,7 +581,18 @@ Auch die Kommunikation zwischen Mikrocontroller und Datenbank stellte uns vor He
 
 Eine weitere Herausforderung war die Abstimmung zwischen Physical Computing und WebApp. Da beide Teams voneinander abhängig waren, mussten Datenstrukturen und Schnittstellen gemeinsam definiert und laufend angepasst werden. Dabei entstand das Risiko, dass nicht alle Änderungen direkt kommuniziert wurden und so am Ende des Projekts weitere Abgleichungen  getroffen werden mussten.
 
+WebApp
+
+Eine grosse Herausforderung war die Verbindung zwischen JavaScript, PHP und der Datenbank. Bereits kleine Fehler bei IDs, Variablennamen, Dateipfaden oder Datenbankfeldern führten dazu, dass Daten nicht korrekt geladen oder gespeichert wurden.
+
+Um diese Probleme zu lösen, haben wir die Funktionen schrittweise getestet und mit Konsolenausgaben überprüft, welche Daten im Frontend ankommen. Zusätzlich wurden die PHP-Schnittstellen einzeln kontrolliert, damit klar wurde, ob Fehler im Frontend, im Backend oder in der Datenbank entstanden sind.
+
+Einige ursprünglich geplante Funktionen wurden bewusst vereinfacht, damit die wichtigsten Abläufe stabil funktionieren. Im Fokus standen deshalb vor allem Login, Personalisierung, Datenbankverbindung, Statistik und die Kommunikation mit dem physischen Artefakt.
+
 ### KI-Einsatz
+
+Physical Computing
+
 Während des Projekts haben wir verschiedene KI-Tools eingesetzt, insbesondere ChatGPT. Die KI half uns dabei, Codes zu verstehen, Fehler zu analysieren und Lösungsansätze für Probleme zu entwickeln.
 
 Unter anderem nutzten wir KI zur:
@@ -576,7 +603,29 @@ Unter anderem nutzten wir KI zur:
 * Formulierung und Überarbeitung von Dokumentationen
 Die KI diente dabei als Lern- und Recherchewerkzeug. Alle Vorschläge mussten von uns geprüft, angepasst und in den Projektkontext übertragen werden.
 
+WebApp
+
+## KI-Einsatz
+
+KI wurde im Projekt unterstützend eingesetzt, vor allem bei der Fehlersuche, bei Code-Erklärungen, bei der Strukturierung der Dateien und bei der Dokumentation. Besonders hilfreich war die KI, um Fehlermeldungen besser zu verstehen, mögliche Ursachen einzugrenzen und Lösungsansätze für JavaScript-, PHP-, CSS- und Datenbankprobleme zu erhalten.
+
+Die Vorschläge wurden jedoch nicht direkt ungeprüft übernommen. Sie wurden jeweils kontrolliert, an die eigene Projektstruktur angepasst und anschliessend im Projekt getestet. Dadurch diente die KI vor allem als Unterstützung im Entwicklungsprozess, während die finale Umsetzung und Entscheidung weiterhin durch das Projektteam erfolgte.
+
+
 ### Fazit
+
+Physical Computing
+
 Das Projekt hat uns gezeigt, wie komplex die Entwicklung eines vernetzten Systems sein kann und wie viele verschiedene Komponenten dabei zusammenspielen müssen. Trotz unseres begrenzten Vorwissens konnten wir einen funktionierenden Prototypen entwickeln, der Sensordaten erfasst, verarbeitet und mit einer Webapplikation verbindet.
 
 Auch wenn nicht alle technischen Zusammenhänge vollständig verstanden oder in der ursprünglich geplanten Tiefe umgesetzt werden konnten, haben wir während des Projekts viel gelernt und praktische Erfahrungen gesammelt. Besonders die Verbindung von Hardware, Datenbank und Webanwendung war für uns eine lehrreiche Herausforderung. Insgesamt sind wir stolz darauf, dass wir als Anfängerinnen ein funktionierendes Gesamtsystem realisieren konnten.
+
+WebApp
+
+## Fazit
+
+Die wichtigsten Funktionen der WebApp konnten erfolgreich umgesetzt werden. Dazu gehören Login und Registrierung, die Personalisierung des Plüschschafs, die Anzeige der letzten Nacht, die Statistik sowie die Verbindung zur Datenbank.
+
+Das Projekt hat gezeigt, wie anspruchsvoll das Zusammenspiel von Gestaltung, Frontend, Backend, Datenbank und physischem Artefakt ist. Besonders die Verbindung zwischen WebApp und SleepySheepy war ein wichtiger Bestandteil, da Einstellungen gespeichert, Sensordaten verarbeitet und Informationen wieder in der Oberfläche angezeigt werden mussten.
+
+Gleichzeitig wurde deutlich, welche Bereiche in einer nächsten Version noch weiterentwickelt werden könnten. Dazu gehören zum Beispiel eine erweiterte Geräteverwaltung, eine genauere Statistik, bessere Fehlermeldungen und eine noch stabilere Kommunikation zwischen WebApp und Plüschtier.
